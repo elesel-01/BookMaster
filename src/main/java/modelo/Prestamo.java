@@ -83,6 +83,12 @@ public class Prestamo{
         return 0.0; // Si no hay retraso, la multa es cero
     }
 	
+	// Método para verificar si el préstamo está vencido
+    public boolean estaVencido() {
+        // Un préstamo está vencido si la fecha límite ya pasó y el estado sigue siendo ACTIVO
+        return LocalDateTime.now().isAfter(fechaDevolucion) && estado == EstadoPrestamo.ACTIVO;
+    }
+	
 	public String getFechasFormateadas() {
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", new Locale("es", "ES"));
 	    
