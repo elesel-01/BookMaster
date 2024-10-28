@@ -83,31 +83,11 @@ public class Libro {
     
     /******************************************************/
 
-	public static Libro pedirDatos() {
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("Introduce el título del libro:");
-		String titulo = scanner.nextLine();
-		System.out.println("Introduce el ISBN del libro:");
-		String ISBN = scanner.nextLine();
-		System.out.println("Introduce la editorial del libro:");
-		String editorial = scanner.nextLine();
-		System.out.println("Introduce el año de publicación del libro:");
-		int anioPublicacion = scanner.nextInt();
-		scanner.nextLine();
-		
-		//no entiendo
-		//Autor autor = Autor.pedirDatos();
-		//Categoria categoria = Categoria.pedirDatos();
-
-		return new Libro(titulo, autor, ISBN, true, editorial, anioPublicacion, categoria);
-	}
-
 	// parecido a usar toString
 	public void mostrarDetalles() {
 		System.out.println("Título: " + titulo);
 		System.out.println("Autor: " + autor.getNombre());
-		System.out.println("ISBN: " + id);
+		System.out.println("ID: " + id);
 		System.out.println("Editorial: " + editorial);
 		System.out.println("Año de Publicación: " + anioPublicacion);
 		System.out.println("Categoría: " + categoria.getNombre() + " - " + categoria.getDescripcion());
@@ -136,26 +116,5 @@ public class Libro {
 		System.out.println("El libro ha sido reservado por " + usuario.getNombre());
 	}
 
-	public static void main(String[] args) {
-
-		Libro libro = Libro.pedirDatos();
-
-		libro.mostrarDetalles();
-
-		libro.prestar();
-
-		libro.devolver();
-	}
 }
 
-/*class Usuario {
-	private String nombre;
-
-	public Usuario(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-}*/
