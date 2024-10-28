@@ -15,7 +15,7 @@ public class Libro {
 		this.titulo = titulo;
 		this.autor = autor;
 		this.id = id;
-		this.disponible = true; //inicialmente el libro está disponible
+		this.disponible = true; // Inicialmente el libro está disponible
 		this.editorial = editorial;
 		this.anioPublicacion = anioPublicacion;
 		this.categoria = categoria;
@@ -23,7 +23,8 @@ public class Libro {
 		//autor.agregarObra(this); no entiendo.
 	}
 	
-	// Getters y Setters
+	/**************** Getters y Setters *********************/
+
     public int getId() {
         return id;
     }
@@ -79,7 +80,8 @@ public class Libro {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
-
+    
+    /******************************************************/
 
 	public static Libro pedirDatos() {
 		Scanner scanner = new Scanner(System.in);
