@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Usuario {
     private String nombre;
-    private String id;
+    private int id;
     private List<Prestamo> historialPrestamos;
     private List<Reserva> reservasActivas;
 
     // Constructor
-    public Usuario(String nombre, String id) {
+    public Usuario(String nombre, int id) {
         this.nombre = nombre;
         this.id = id;
         this.historialPrestamos = new ArrayList<>();
@@ -26,11 +26,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,7 +46,7 @@ public class Usuario {
 
     public void solicitarPrestamo(Libro libro) {
         if (libro != null) {
-            Prestamo nuevoPrestamo = new Prestamo(libro, this);
+            Prestamo nuevoPrestamo = new Prestamo(id, libro, this, fechaPrestamo, duracionDias);
             historialPrestamos.add(nuevoPrestamo);
             System.out.println(nombre + " ha realizado un préstamo del libro: " + libro.getTitulo());
         } else {

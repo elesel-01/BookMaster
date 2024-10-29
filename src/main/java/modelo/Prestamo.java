@@ -107,7 +107,10 @@ public class Prestamo {
 
 	@Override
 	public String toString() {
-		return "Prestamo:" + "\n\tLibro = " + libro.getTitulo() + "\n\tUsuario = " + usuario.getNombre()
-				+ getFechasFormateadas() + "\n\tEstado = " + estado;
+		return "Prestamo:" +
+					"\n\tLibro = " + libro.getTitulo() + 
+					"\n\tUsuario = " + usuario.getNombre() +
+					getFechasFormateadas() +
+					"\n\tEstado = " + estado;
 	}
 }
