@@ -15,7 +15,7 @@ public class BibliotecaTest {
         biblioteca = new Biblioteca("Biblioteca Central");
         // Using the predefined constructors
         libro = new Libro(1, "El Quijote", "Miguel de Cervantes", "Editorial X", 1605, "Novela");
-        usuario = new Usuario("Juan Perez", 123);
+        usuario = new Usuario("Juan", "Perez", "correo@gmail.com", 12345678);
     }
 
     @Test

@@ -12,7 +12,7 @@ public class ReservaTest {
 
     @BeforeEach
     public void setUp() {
-        usuario = new Usuario("Juan Perez", 123);
+    	usuario = new Usuario("Juan", "Perez", "correo@gmail.com", 12345678);
         libro = new Libro(1, "El Quijote", "Miguel de Cervantes", "Editorial X", 1605, "Novela");
         reserva = new Reserva(usuario, libro, EstadoReserva.COMPLETADA);
     }
@@ -57,7 +57,7 @@ public class ReservaTest {
         assertNotNull(reservaString);
         assertTrue(reservaString.contains("Reserva:"));
         assertTrue(reservaString.contains("El Quijote"));
-        assertTrue(reservaString.contains("Juan Perez"));
+        assertTrue(reservaString.contains("Juan"));
     }
 }
 
