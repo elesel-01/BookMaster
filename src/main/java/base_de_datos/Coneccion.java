@@ -9,7 +9,7 @@ public class Coneccion {
 		
 		private static String driver = "com.mysql.cj.jdbc.Driver";
 		private static String usuario = "root";
-		private static String password = "7418001348";
+		private static String password = "7545123456";
 		
 		// URL de la base de datos con ajuste para evitar advertencias de zona horaria y SSL
 		private static String url = "jdbc:mysql://localhost:3306/bookmaster?useSSL=false&serverTimezone=UTC";
@@ -19,9 +19,14 @@ public class Coneccion {
 		// Método para obtener la conexión
 		public Connection getConnection() {
 			try {
+				Class.forName(driver);
 				// Intentamos conectar a la base de datos usando DriverManager
 				con = DriverManager.getConnection(url, usuario, password);
 				System.out.println("Conectado a MySQL");
+			} catch (ClassNotFoundException e) {
+				// Capturamos e imprimimos cualquier error que ocurra al intentar cargar el driver
+				e.printStackTrace();
+				System.out.println("Error de driver");
 			} catch (SQLException e) {
 				// Capturamos e imprimimos cualquier error que ocurra al intentar conectarse
 				e.printStackTrace();

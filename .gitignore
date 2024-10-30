@@ -1,1 +1,5 @@
+# Ignore changes from target
 /target/
+
+# Ignore changes from classpath
+.classpath
