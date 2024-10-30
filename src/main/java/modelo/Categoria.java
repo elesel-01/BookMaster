@@ -1,7 +1,7 @@
 package modelo;
 
 public class Categoria {
-    private String nombre;
+    /*private String nombre;
     private String descripcion;
 
     public Categoria(String nombre, String descripcion) {
@@ -23,6 +23,6 @@ public class Categoria {
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 '}';
-    }
+    }*/
 }
 

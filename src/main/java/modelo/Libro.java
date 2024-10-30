@@ -9,9 +9,9 @@ public class Libro {
 	private boolean disponible;
 	private String editorial;
 	private int anioPublicacion;
-	private Categoria categoria;
+	private String categoria;
 
-	public Libro(int id, String titulo, String autor, String editorial, int anioPublicacion, Categoria categoria) {
+	public Libro(int id, String titulo, String autor, String editorial, int anioPublicacion, String categoria) {
 		this.titulo = titulo;
 		this.autor = autor;
 		this.id = id;
@@ -65,11 +65,11 @@ public class Libro {
 		this.anioPublicacion = anioPublicacion;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
@@ -90,7 +90,7 @@ public class Libro {
 		System.out.println("ID: " + id);
 		System.out.println("Editorial: " + editorial);
 		System.out.println("Año de Publicación: " + anioPublicacion);
-		System.out.println("Categoría: " + categoria.getNombre() + " - " + categoria.getDescripcion());
+		System.out.println("Categoría: " + categoria );
 		System.out.println("Disponible: " + (disponible ? "Sí" : "No"));
 	}
 

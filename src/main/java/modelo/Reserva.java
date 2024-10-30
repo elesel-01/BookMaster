@@ -2,11 +2,8 @@ package modelo;
 
 import java.time.LocalDateTime; //Para obtener fechas
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-
-import java.time.LocalDateTime; //Para obtener fechas
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
 public class Reserva {
     private Usuario usuario;
     private Libro libro;
@@ -43,7 +40,7 @@ public class Reserva {
 
     // Método para formatear la fecha de reserva
     public String getFechaFormateada() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", new Locale("es", "ES"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", Locale.of("es", "ES"));
         return fechaReserva.format(formatter);
     }
 

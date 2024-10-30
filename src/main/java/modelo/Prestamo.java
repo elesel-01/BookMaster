@@ -2,7 +2,6 @@ package modelo;
 
 import java.time.LocalDateTime; //Para obtener fechas gaaaa
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Locale;
 import java.time.temporal.ChronoUnit;
 
@@ -97,9 +96,10 @@ public class Prestamo {
 		// ACTIVO
 		return LocalDateTime.now().isAfter(fechaDevolucion) && estado == EstadoPrestamo.ACTIVO;
 	}
-
+	
+	// Método para obtener las fechas formateadas en un string
 	public String getFechasFormateadas() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", new Locale("es", "ES"));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", Locale.of("es", "ES"));
 
 		return String.format("\n\tFecha de préstamo: %s\n\tFecha de devolución: %s", fechaPrestamo.format(formatter),
 				fechaDevolucion.format(formatter));
@@ -111,6 +111,8 @@ public class Prestamo {
 					"\n\tLibro = " + libro.getTitulo() + 
 					"\n\tUsuario = " + usuario.getNombre() +
 					getFechasFormateadas() +
-					"\n\tEstado = " + estado;
+					"\n\tEstado = " + estado +
+					"\nMulta = " + calcularMulta();
 	}
+		
 }
