@@ -5,7 +5,7 @@ import java.util.ArrayList;
 //import java.util.List;
 
 public class Administrador {
-	Scanner scanner = new Scanner(System.in);
+	//Scanner scanner = new Scanner(System.in);
 	ArrayList<String> libro = new ArrayList<>();
 	
 	public void agregarLibro(String nombreLibro) {
