@@ -12,7 +12,7 @@ public class Coneccion {
 		private static String password = "7418001348";
 		
 		// URL de la base de datos con ajuste para evitar advertencias de zona horaria y SSL
-		private static String url = "jdbc:mysql://localhost:3306/holass?useSSL=false&serverTimezone=UTC";
+		private static String url = "jdbc:mysql://localhost:3306/bookmaster?useSSL=false&serverTimezone=UTC";
 
 		Connection con = null;
 
