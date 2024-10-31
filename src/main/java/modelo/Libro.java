@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Scanner;
-
 public class Libro {
 	private String titulo;
 	private String autor; // cambiando tipo Autor a String

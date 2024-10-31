@@ -10,11 +10,11 @@ public class Reserva {
     private LocalDateTime fechaReserva;
     private EstadoReserva estado;
     // Constructor
-    public Reserva(Usuario usuario, Libro libro, EstadoReserva estado) {
+    public Reserva(Usuario usuario, Libro libro) {
         this.usuario = usuario;
         this.libro = libro;
         this.fechaReserva = LocalDateTime.now(); // Fecha actual para la reserva
-        this.estado = estado;
+        this.estado = EstadoReserva.PENDIENTE; // Al crear una reserva, su estado inicial
     }
 
     // Getters y setters
