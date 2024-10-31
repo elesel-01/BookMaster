@@ -1,44 +1,122 @@
-	package modelo;
+package modelo;
 
-import java.util.ArrayList;
-//import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Connection;
+import base_de_datos.Coneccion;
+import java.sql.PreparedStatement;
 
 public class Administrador {
-	//Scanner scanner = new Scanner(System.in);
-	ArrayList<Libro> libros = new ArrayList<>();
+	 private Connection getConnection() {
+	        Coneccion con = new Coneccion();
+	        return con.getConnection(); // Asegúrate de que Coneccion tenga un método getConnection que devuelva un Connection
+	 }
 	
-	public void agregarLibro(Libro libro) {
-		if(libro !=null ) {
-			libro.add(libro);
-		}else {
-			System.out.println("No puede estar sin llenar");
-		}	
-	}
+	public boolean agregarLibro(Libro libro) {
+		PreparedStatement ps= null;
+		Connection con = getConnection();
 	
-	public void eliminarLibro(Libro libro) {
-		int pos = posicion(libroAModificar);
-		if(pos!=-1) {
-			libro.remove(pos); 
-			System.out.println("libro eliminado con exito");
-		}else {
-			System.out.println("no encontrado");
-		}
-	}
-
-	public int posicion (Libro libro) {
-		
-		for(int i = 0;i <libro.size(); i++) {
-			if(libro.equalsIgnoreCase(libro.get(i))) {
-			return  i;	
+		String sql= "INSERT INTO libro(titulo, autor,cantidad, codigolibro, editorial,anioPublicacion,categoria) VALUES(?,?,?,?,?,?,?)";
+		 try {
+			 ps= con.prepareStatement(sql);
+			 ps.setString(1, libro.getTitulo());
+			 ps.setString(2, libro.getAutor());
+			 ps.setInt(3, libro.getCantidad());
+			 ps.setInt(4, libro.getCodigolibro());
+			 ps.setString(5, libro.getEditorial());
+			 ps.setInt(6, libro.getAnioPublicacion());
+			 ps.setString(7, libro.getCategoria());
+			 ps.execute();
+		 }catch(SQLException e) {
+			 System.err.println(e);
+			 return false;
+		} finally {
+			try {
+				if(ps!= null) ps.close();
+				if(con!= null) con.close();
+			} catch (SQLException e) {
+				System.err.println(e);
 			}
 		}
-		return -1;
+		return true;
+		 
 	}
 	
-	public ArrayList<Libro> obtenerLibros() {
-	    return libro;
+	public boolean eliminarLibro(Libro libro) {
+		PreparedStatement ps= null;
+		Connection con = getConnection();
+	
+		String sql= "DELETE FROM libro WHERE id=?";
+		 try {
+			 ps= con.prepareStatement(sql);
+			 ps.setInt(1, libro.getId());
+			 ps.execute();
+			 return true;
+		 }catch(SQLException e) {
+			 System.err.println(e);
+			 return false;
+		} finally {
+			try {
+				if(ps!= null) ps.close();
+				if(con!= null) con.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
+		 
 	}
-
+	
+	public boolean crearCuenta(Usuario usuario) {
+		PreparedStatement ps= null;
+		Connection con = getConnection();
+	
+		String sql= "INSERT INTO usuario(nombre, apellido,dni, passw, email) VALUES(?,?,?,?,?)";
+		 try {
+			 ps= con.prepareStatement(sql);
+			 ps.setString(1, usuario.getNombre());
+			 ps.setString(2, usuario.getApellido());
+			 ps.setInt(3, usuario.getDni());
+			 ps.setString(4, usuario.getPassw());
+			 ps.setString(5, usuario.getEmail());
+			 ps.execute();
+		 }catch(SQLException e) {
+			 System.err.println(e);
+			 return false;
+		} finally {
+			try {
+				if(ps!= null) ps.close();
+				if(con!= null) con.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
+		return true;
+		 
+	}
+	
+	public boolean eliminarCuenta(Usuario usuario) {
+		PreparedStatement ps= null;
+		Connection con = getConnection();
+	
+		String sql= "DELETE FROM usuario WHERE id=?";
+		 try {
+			 ps= con.prepareStatement(sql);
+			 ps.setInt(1, usuario.getId());
+			 ps.execute();
+			 return true;
+		 }catch(SQLException e) {
+			 System.err.println(e);
+			 return false;
+		} finally {
+			try {
+				if(ps!= null) ps.close();
+				if(con!= null) con.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
+		 
+	}
+	
 
 }
-
