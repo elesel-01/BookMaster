@@ -20,8 +20,17 @@ public class Biblioteca {
 		// this.totalLibros = 0;
 		// this.totalUsuarios = 0;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	// Métodos
+	
 	/*
 	 * En si esta metodo sirve para agregar un libro al catalogo de la biblioteca
 	 * luego ya se encargaría de modificar la disponibilidad
@@ -93,14 +102,6 @@ public class Biblioteca {
 		} else {
 			System.out.println("No se puede registrar un usuario nulo.");
 		}
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 	
 	// Método para obtener el catálogo (devuelve una copia de la lista)

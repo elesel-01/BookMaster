@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.time.temporal.ChronoUnit;
 
-public class Prestamo {
+public class Prestamos {
 	private int id;
 	private Libro libro;
 	private Usuario usuario;
@@ -13,7 +13,7 @@ public class Prestamo {
 	private LocalDateTime fechaDevolucion; // fecha límite para la devolución del libro
 	private EstadoPrestamo estado; // Estado del préstamo (ACTIVO, DEVUELTO, ATRASADO, FINALIZADO)
 
-	public Prestamo(int id, Libro libro, Usuario usuario, LocalDateTime fechaPrestamo, int duracionDias) {
+	public Prestamos(int id, Libro libro, Usuario usuario, LocalDateTime fechaPrestamo, int duracionDias) {
 		this.id = id;
 		this.libro = libro;
 		this.usuario = usuario;
@@ -96,7 +96,7 @@ public class Prestamo {
 		// ACTIVO
 		return LocalDateTime.now().isAfter(fechaDevolucion) && estado == EstadoPrestamo.ACTIVO;
 	}
-	
+
 	// Método para obtener las fechas formateadas en un string
 	public String getFechasFormateadas() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", Locale.of("es", "ES"));
@@ -105,14 +105,19 @@ public class Prestamo {
 				fechaDevolucion.format(formatter));
 	}
 
+	public void extenderPlazo(int dias) {
+		if (estado == EstadoPrestamo.ACTIVO || estado == EstadoPrestamo.ATRASADO) {
+			this.fechaDevolucion = this.fechaDevolucion.plusDays(dias);
+			System.out.println("El plazo del préstamo ha sido extendido en " + dias + " días.");
+		} else {
+			System.out.println("No se puede extender el plazo de un préstamo que no está activo.");
+		}
+	}
+
 	@Override
 	public String toString() {
-		return "Prestamo:" +
-					"\n\tLibro = " + libro.getTitulo() + 
-					"\n\tUsuario = " + usuario.getNombre() +
-					getFechasFormateadas() +
-					"\n\tEstado = " + estado +
-					"\nMulta = " + calcularMulta();
+		return "Prestamo:" + "\n\tLibro = " + libro.getTitulo() + "\n\tUsuario = " + usuario.getNombre()
+				+ getFechasFormateadas() + "\n\tEstado = " + estado + "\nMulta = " + calcularMulta();
 	}
-		
+
 }
