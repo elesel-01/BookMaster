@@ -14,7 +14,7 @@ public class ReservaTest {
     public void setUp() {
     	usuario = new Usuario("Juan", "Perez", "correo@gmail.com", 12345678);
         libro = new Libro(1, "El Quijote", "Miguel de Cervantes", "Editorial X", 1605, "Novela");
-        reserva = new Reserva(usuario, libro, EstadoReserva.COMPLETADA);
+        reserva = new Reserva(usuario, libro, EstadoReserva.PENDIENTE);
     }
 
     @Test
@@ -35,13 +35,13 @@ public class ReservaTest {
 
     @Test
     public void testGetEstado() {
-        assertEquals(EstadoReserva.COMPLETADA, reserva.getEstado());
+        assertEquals(EstadoReserva.PENDIENTE, reserva.getEstado());
     }
 
     @Test
     public void testSetEstado() {
-        reserva.setEstado(EstadoReserva.CANCELADA);
-        assertEquals(EstadoReserva.CANCELADA, reserva.getEstado());
+        reserva.setEstado(EstadoReserva.RECHAZADA);
+        assertEquals(EstadoReserva.RECHAZADA, reserva.getEstado());
     }
 
     @Test
