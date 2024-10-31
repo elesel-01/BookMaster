@@ -22,16 +22,31 @@ public class Biblioteca {
 	}
 
 	// Métodos
+	/*
+	 * En si esta metodo sirve para agregar un libro al catalogo de la biblioteca
+	 * luego ya se encargaría de modificar la disponibilidad
+	 */
 	public void agregarLibro(Libro libro) {
 		if (libro != null) {
-			catalogo.add(libro);
-			System.out.println("Libro " + libro.getTitulo() + "añadido al catálgo.");
-			// totalLibros++;
+			boolean exists = false; // para evitar duplicados
+			for (Libro l : catalogo) {
+				if (l.getId() == libro.getId()) {
+					exists = true;
+					break;
+				}
+			}
+			if (!exists) {
+				catalogo.add(libro);
+				System.out.println("Libro " + libro.getTitulo() + "añadido al catálgo.");
+				// totalLibros++;
+			} else {
+			System.out.println("El libro + " + libro.getTitulo() + " ya existe en el catálogo.");
+			}
 		} else {
-			System.out.println("No se puede añadir un libro nulo");
+			System.out.println("No se puede agregar un libro nulo.");
 		}
 	}
-
+	
 	public void eliminarLibro(Libro libro) {
 		if (catalogo.remove(libro)) {
 			System.out.println("El libro " + libro.getTitulo() + " ha sido eliminado del catálogo.");
@@ -48,6 +63,26 @@ public class Biblioteca {
 			}
 		}
 		System.out.println("Libro con título " + titulo + " no encontrado en el catálogo.");
+		return null;
+	}
+	
+	public Libro buscarLibroPorAutor(String autor) {
+		for (Libro libro : catalogo) {
+			if (libro.getAutor().equalsIgnoreCase(autor)) {
+				return libro;
+			}
+		}
+		System.out.println("Libro con autor " + autor + " no encontrado en el catálogo.");
+		return null;
+	}
+	
+	public Libro buscarLibroPorCategoria(String categoria) {
+		for (Libro libro : catalogo) {
+			if (libro.getCategoria().equalsIgnoreCase(categoria)) {
+				return libro;
+			}
+		}
+		System.out.println("Libro con categoría " + categoria + " no encontrado en el catálogo.");
 		return null;
 	}
 
