@@ -86,7 +86,7 @@ public class Libro {
 	// parecido a usar toString
 	public void mostrarDetalles() {
 		System.out.println("Título: " + titulo);
-		System.out.println("Autor: " + autor.getNombre());
+		System.out.println("Autor: " + autor);
 		System.out.println("ID: " + id);
 		System.out.println("Editorial: " + editorial);
 		System.out.println("Año de Publicación: " + anioPublicacion);
