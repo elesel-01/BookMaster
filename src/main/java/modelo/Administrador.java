@@ -5,17 +5,17 @@ import java.util.ArrayList;
 
 public class Administrador {
 	//Scanner scanner = new Scanner(System.in);
-	ArrayList<String> libro = new ArrayList<>();
+	ArrayList<Libro> libros = new ArrayList<>();
 	
-	public void agregarLibro(String nombreLibro) {
-		if(nombreLibro !=null && !nombreLibro.trim().isEmpty()) {
-			libro.add(nombreLibro);
+	public void agregarLibro(Libro libro) {
+		if(libro !=null ) {
+			libro.add(libro);
 		}else {
 			System.out.println("No puede estar sin llenar");
 		}	
 	}
 	
-	public void eliminarLibro(String libroAModificar) {
+	public void eliminarLibro(Libro libro) {
 		int pos = posicion(libroAModificar);
 		if(pos!=-1) {
 			libro.remove(pos); 
@@ -25,17 +25,17 @@ public class Administrador {
 		}
 	}
 
-	public int posicion (String buscarLibro) {
+	public int posicion (Libro libro) {
 		
 		for(int i = 0;i <libro.size(); i++) {
-			if(buscarLibro.equalsIgnoreCase(libro.get(i))) {
+			if(libro.equalsIgnoreCase(libro.get(i))) {
 			return  i;	
 			}
 		}
 		return -1;
 	}
 	
-	public ArrayList<String> obtenerLibros() {
+	public ArrayList<Libro> obtenerLibros() {
 	    return libro;
 	}
 
