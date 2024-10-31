@@ -11,7 +11,7 @@ public class Libro {
 	private int anioPublicacion;
 	private String categoria;
 
-	public Libro(int id, String titulo, String autor, String editorial, int anioPublicacion, String categoria) {
+	/*public Libro(int id, String titulo, String autor, String editorial, int anioPublicacion, String categoria) {
 		this.titulo = titulo;
 		this.autor = autor;
 		this.id = id;
@@ -21,7 +21,7 @@ public class Libro {
 		this.categoria = categoria;
 
 		// autor.agregarObra(this); no entiendo.
-	}
+	}*/
 
 	/**************** Getters y Setters *********************/
 
@@ -84,7 +84,7 @@ public class Libro {
 	/******************************************************/
 
 	// parecido a usar toString
-	public void mostrarDetalles() {
+	/*public void mostrarDetalles() {
 		System.out.println("Título: " + titulo);
 		System.out.println("Autor: " + autor);
 		System.out.println("ID: " + id);
@@ -114,6 +114,6 @@ public class Libro {
 
 	public void reserva(Usuario usuario) {
 		System.out.println("El libro ha sido reservado por " + usuario.getNombre());
-	}
+	}*/
 
 }
