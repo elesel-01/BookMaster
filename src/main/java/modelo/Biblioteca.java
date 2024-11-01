@@ -65,36 +65,6 @@ public class Biblioteca {
 		// totalLibros--;
 	}
 
-	public Libro buscarLibroPorTitulo(String titulo) {
-		for (Libro libro : catalogo) {
-			if (libro.getTitulo().equalsIgnoreCase(titulo)) { // se puso equalsIgnoreCase
-				return libro;
-			}
-		}
-		System.out.println("Libro con título " + titulo + " no encontrado en el catálogo.");
-		return null;
-	}
-	
-	public Libro buscarLibroPorAutor(String autor) {
-		for (Libro libro : catalogo) {
-			if (libro.getAutor().equalsIgnoreCase(autor)) {
-				return libro;
-			}
-		}
-		System.out.println("Libro con autor " + autor + " no encontrado en el catálogo.");
-		return null;
-	}
-	
-	public Libro buscarLibroPorCategoria(String categoria) {
-		for (Libro libro : catalogo) {
-			if (libro.getCategoria().equalsIgnoreCase(categoria)) {
-				return libro;
-			}
-		}
-		System.out.println("Libro con categoría " + categoria + " no encontrado en el catálogo.");
-		return null;
-	}
-
 	public void registrarUsuario(Usuario usuario) {
 		if (usuario != null) {
 			usuariosRegistrados.add(usuario);
