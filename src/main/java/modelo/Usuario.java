@@ -10,15 +10,17 @@ public class Usuario {
     private String email;
     private String passw;
     private int dni;
+    private String rol;
     //private List<Prestamo> historialPrestamos;
     //private List<Reserva> reservasActivas;
 
     // Constructor
-    public Usuario(String nombre, String apellido, String email, int dni) {
+    public Usuario(String nombre, String apellido, String email, int dni, String rol) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.dni = dni;
+        this.rol = rol;
         //this.historialPrestamos = new ArrayList<>();
         //this.reservasActivas = new ArrayList<>();
     }
@@ -71,6 +73,12 @@ public class Usuario {
 	public void setPassw(String passw) {
 		this.passw= passw;
 	}
+	
+	public String getRol() {
+		return rol;
+	}
+	
+}
 
     /*public List<Prestamo> getHistorialPrestamos() {
         return historialPrestamos;
@@ -140,4 +148,3 @@ public class Usuario {
             System.out.println("No se encontró ninguna reserva pendiente para el libro: " + libro.getTitulo());
         }
     }*/
-}
