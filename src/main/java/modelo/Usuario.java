@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
+	private int id;
     private String nombre;
     private String apellido;
     private String email;
+    private String passw;
     private int dni;
-    private List<Prestamo> historialPrestamos;
-    private List<Reserva> reservasActivas;
+    //private List<Prestamo> historialPrestamos;
+    //private List<Reserva> reservasActivas;
 
     // Constructor
     public Usuario(String nombre, String apellido, String email, int dni) {
@@ -17,8 +19,8 @@ public class Usuario {
         this.apellido = apellido;
         this.email = email;
         this.dni = dni;
-        this.historialPrestamos = new ArrayList<>();
-        this.reservasActivas = new ArrayList<>();
+        //this.historialPrestamos = new ArrayList<>();
+        //this.reservasActivas = new ArrayList<>();
     }
 
     // Getters y setters
@@ -29,16 +31,48 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+	public String getApellido() {
+		return apellido;
+	}
+	
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email= email;
+	}
+	
     public int getId() {
-        return dni;
+        return id;
     }
 
     public void setId(int id) {
-        this.dni = id;
+        this.id = id;
     }
+    
+	public int getDni() {
+		return dni;
+	}
+	
+	public void setDni(int dni) {
+		this.dni= dni;
+	}
+	
+	public String getPassw() {
+		return passw;
+	}
+	
+	public void setPassw(String passw) {
+		this.passw= passw;
+	}
 
-    public List<Prestamo> getHistorialPrestamos() {
+    /*public List<Prestamo> getHistorialPrestamos() {
         return historialPrestamos;
     }
 
@@ -105,5 +139,5 @@ public class Usuario {
         } else {
             System.out.println("No se encontró ninguna reserva pendiente para el libro: " + libro.getTitulo());
         }
-    }
+    }*/
 }

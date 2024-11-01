@@ -1,9 +1,11 @@
 package modelo;
 
 public class Libro {
+	private int id;
 	private String titulo;
 	private String autor; // cambiando tipo Autor a String
-	private int id;
+	private int cantidad;
+	private int codigolibro;
 	private boolean disponible;
 	private String editorial;
 	private int anioPublicacion;
@@ -30,7 +32,23 @@ public class Libro {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public int getCantidad() {
+		return cantidad;
+	}
 
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	
+	public int getCodigolibro() {
+		return codigolibro;
+	}
+	
+	public void setCodigolibro(int codigolibro) {
+        this.codigolibro = codigolibro;
+    }
+	
 	public String getTitulo() {
 		return titulo;
 	}
