@@ -60,7 +60,7 @@ public class Consola {
                 	if ("admin".equals(usuarioLogueado.getRol())) {
                 		menuAdmin();
                 	} else {
-                		menuUsuario();
+                		Consola3.usuarioMenu();
                 	}
 				} else {
 					System.out.println("Usuario o contraseña incorrectos.");
