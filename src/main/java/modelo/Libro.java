@@ -1,7 +1,7 @@
 package modelo;
 
 public class Libro {
-	private int id;
+	private int idEstanteria;
 	private String titulo;
 	private String autor; // cambiando tipo Autor a String
 	private int cantidad;
@@ -10,27 +10,27 @@ public class Libro {
 	private String editorial;
 	private int anioPublicacion;
 	private String categoria;
-
-	/*public Libro(int id, String titulo, String autor, String editorial, int anioPublicacion, String categoria) {
+	
+	public Libro(int codigoLibro, int idEstanteria, String titulo, String autor, String editorial, int anioPublicacion, String categoria, boolean disponible) {
+		this.idEstanteria = idEstanteria;
 		this.titulo = titulo;
 		this.autor = autor;
-		this.id = id;
-		this.disponible = true; // Inicialmente el libro está disponible
+		this.disponible = disponible;
 		this.editorial = editorial;
 		this.anioPublicacion = anioPublicacion;
 		this.categoria = categoria;
-
+		this.codigolibro = codigoLibro;
 		// autor.agregarObra(this); no entiendo.
-	}*/
+	}
 
 	/**************** Getters y Setters *********************/
 
-	public int getId() {
-		return id;
+	public int getIdEstanteria() {
+		return idEstanteria;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdEstanteria(int idEstanteria) {
+		this.idEstanteria = idEstanteria;
 	}
 	
 	public int getCantidad() {
@@ -98,18 +98,23 @@ public class Libro {
 	}
 
 	/******************************************************/
-
-	// parecido a usar toString
-	/*public void mostrarDetalles() {
-		System.out.println("Título: " + titulo);
-		System.out.println("Autor: " + autor);
-		System.out.println("ID: " + id);
-		System.out.println("Editorial: " + editorial);
-		System.out.println("Año de Publicación: " + anioPublicacion);
-		System.out.println("Categoría: " + categoria );
-		System.out.println("Disponible: " + (disponible ? "Sí" : "No"));
+	
+	@Override
+	public String toString() {
+	    return "Libro{" +
+	    		"códigoLibro=" + codigolibro +
+	            ", idEstanteria=" + idEstanteria +
+	            ", titulo='" + titulo + '\'' +
+	            ", autor='" + autor + '\'' +
+	            ", cantidad=" + cantidad +
+	            ", codigolibro=" + codigolibro +
+	            ", disponible=" + (disponible ? "Sí" : "No") +
+	            ", editorial='" + editorial + '\'' +
+	            ", anioPublicacion=" + anioPublicacion +
+	            ", categoria='" + categoria + '\'' +
+	            '}';
 	}
-
+	/*
 	public void prestar() {
 		if (disponible) {
 			disponible = false;
