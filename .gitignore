@@ -1,8 +1,2 @@
 # Ignore changes from target
 /target/
-
-# Ignore changes from classpath
-.classpath
-
-# Ignore changes from base_de_datos
-src/main/java/base_de_datos/Conexion.java
