@@ -28,6 +28,7 @@ public class Consola {
     }
 
     void menu() {
+    	System.out.println("=== MENÚ PRINCIPAL DE LA BIBLIOTECA ===");
         System.out.println("Menu de opciones (No logeados)");
         System.out.println("1. Login");
         System.out.println("2. Registrarse");
@@ -62,7 +63,7 @@ public class Consola {
                 if (usuarioLogueado != null) {
                 	if ("admin".equals(usuarioLogueado.getRol())) {
                 		Consola2 consolaAdmin = new Consola2(usuarioLogueado);
-                		consolaAdmin.mostrarMenuAdministrador();
+                		consolaAdmin.mostrarAdministrador();
                 	} else {
                 		Consola3 consolaUsuario = new Consola3(usuarioLogueado);
                 		consolaUsuario.usuarioMenu();
@@ -141,11 +142,6 @@ public class Consola {
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
         } while (opcion != 0);
-    }
-    
-    void menuAdmin() {
-    	System.out.println("Menú de Administrador");
-    	// Lógica para el menú de administrador
     }
     
     /*void limpiarConsola() {

@@ -8,7 +8,7 @@ import controlador.ControladorAdministrador;
 
 public class Consola2 {
 	private Scanner scanner = new Scanner(System.in);
-	private ControladorAdministrador controladorAministrador = new ControladorAdministrador();
+	private ControladorAdministrador controladorAdministrador = new ControladorAdministrador();
 	private Usuario usuarioLogueado = null;
 	
 	public Consola2(Usuario usuarioLogueado) {
@@ -16,20 +16,20 @@ public class Consola2 {
 	}
 	
 	public void mostrarMenuAdministrador() { // Tiene que ser no estático para pasar objetos
-		System.out.println("Menu de Administrador");
+        System.out.println("=== MENÚ DE ADMINISTRADOR DE LA BIBLIOTECA ===");
         System.out.println("1. Registrar un nuevo libro"); // VALQUI
         System.out.println("2. Eliminar un libro"); // VALQUI
-        System.out.println("3. Registrar un nuevo usuario"); // GERARDO -- ControladorAdministrador
+        System.out.println("3. Registrar un nuevo usuario"); // GERARDO -- ControladorAdministrador (LISTO)
         System.out.println("4. Eliminar un usuario"); // GERARDO -- ControladorAdministrador
         System.out.println("5. Ver usuarios morosos"); //VALQUI
         System.out.println("6. Ver solicitudes"); // LUIS
         System.out.println("7. Lista de libros"); // VALQUI
         System.out.println("8. Libros prestados"); // VALQUI
-        System.out.println("9. Cerrar sección"); // LUIS -- ControladorUsuario
+        System.out.println("9. Cerrar sesión"); // LUIS -- ControladorUsuario
         System.out.print("Ingrese la opción deseada: ");
 	}
 	
-	void mostrarAdministrador(Scanner scanner) {
+	void mostrarAdministrador() {
 		int opcionAdmin;
 		do {
 			mostrarMenuAdministrador();
@@ -54,7 +54,7 @@ public class Consola2 {
 					System.out.println("ingrese la categoria del Libro: ");
 					String categoria = scanner.nextLine();
 					boolean disponible = true;
-					controladorAministrador.registrarLibro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible);
+					controladorAdministrador.registrarLibro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible);
 					System.out.println("nuevo libro registrado con exito gaaaaa");
 					break;
 				case 2:
@@ -62,9 +62,24 @@ public class Consola2 {
 					//eliminarLibro(scanner);
 					break;
 				case 3:
-					System.out.println("por implementar");
-					//crearCuenta(scanner);
-					break;
+					System.out.println("Opcion selecionada: Registar un nuevo usuario ");
+					scanner.nextLine(); // Limpiar el buffer del scanner
+	                System.out.print("Ingrese nombres: ");
+	                String nombres = scanner.nextLine();
+	                System.out.print("Ingrese apellidos: ");
+	                String apellidos = scanner.nextLine();
+	                System.out.print("Ingrese DNI: ");
+	                int dni = scanner.nextInt();
+	                scanner.nextLine(); // Limpiar el buffer del scanner
+	                System.out.print("Ingrese correo: ");
+	                String correo = scanner.next();
+	                System.out.print("Ingrese contraseña: ");
+	                String contrasena = scanner.next();
+	                System.out.print("Ingrese rol (admin/usuario): ");
+	                String rol = scanner.next();
+	                controladorAdministrador.registrarUsuario(nombres, apellidos, correo, dni, contrasena, rol);
+	                System.out.println("Usuario registrado con éxito.");
+	                break;
 				case 4:
 					System.out.println("por implementar");
 					//eliminarCuenta(scanner);
