@@ -7,6 +7,7 @@ import base_de_datos.Coneccion;
 import java.sql.PreparedStatement;
 
 public class Administrador {
+	
 	 private Connection getConnection() {
 	        Coneccion con = new Coneccion();
 	        return con.getConnection(); // Asegúrate de que Coneccion tenga un método getConnection que devuelva un Connection
@@ -49,7 +50,7 @@ public class Administrador {
 		String sql= "DELETE FROM libro WHERE id=?";
 		 try {
 			 ps= con.prepareStatement(sql);
-			 ps.setInt(1, libro.getId());
+			 ps.setInt(1, libro.getIdEstanteria());
 			 ps.execute();
 			 return true;
 		 }catch(SQLException e) {
