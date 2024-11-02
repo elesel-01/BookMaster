@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base_de_datos.Coneccion;
-import modelo.Libro;
 import modelo.Usuario;
 
 public class ControladorUsuario {
@@ -61,109 +60,5 @@ public class ControladorUsuario {
         	e.printStackTrace();
         }
     }
-    
-    public List<Libro> buscarLibroPorNombre(String nombre) {
-        List<Libro> libros = new ArrayList<>();
-        Coneccion db = new Coneccion();
-        try (Connection connection = db.getConnection()) {
-            String sql = "SELECT * FROM libro WHERE titulo LIKE ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, "%" + nombre + "%");
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    while (resultSet.next()) {
-                        libros.add(new Libro(
-                        	resultSet.getInt("idLibro"),
-                            resultSet.getInt("idEstanteria"),
-                            resultSet.getString("titulo"),
-                            resultSet.getString("autor"),
-                            resultSet.getString("editorial"),
-                            resultSet.getInt("anioPublicacion"),
-                            resultSet.getString("categoria"),
-                            resultSet.getBoolean("disponible")
-                        ));
-                    }
-                } catch (SQLException e) {
-                    System.err.println("Error processing ResultSet: " + e.getMessage());
-                    e.printStackTrace();
-                }
-            } catch (SQLException e) {
-                System.err.println("Error preparing statement: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } catch (SQLException e) {
-            System.err.println("Error connecting to database: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return libros;
-    }
-	
-    public List<Libro> buscarLibroPorAutor(String autor) {
-        List<Libro> libros = new ArrayList<>();
-        Coneccion db = new Coneccion();
-        try (Connection connection = db.getConnection()) {
-            String sql = "SELECT * FROM libro WHERE autor LIKE ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, "%" + autor + "%");
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    while (resultSet.next()) {
-                        libros.add(new Libro(
-                        		resultSet.getInt("idLibro"),
-                        		resultSet.getInt("idEstanteria"),
-                                resultSet.getString("titulo"),
-                                resultSet.getString("autor"),
-                                resultSet.getString("editorial"),
-                                resultSet.getInt("anioPublicacion"),
-                                resultSet.getString("categoria"),
-                                resultSet.getBoolean("disponible")
-                        ));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return libros;
-    }
-	
-	public List<Libro> buscarLibroPorCategoria(String categoria) {
-        List<Libro> libros = new ArrayList<>();
-        Coneccion db = new Coneccion();
-        try (Connection connection = db.getConnection()) {
-            String sql = "SELECT * FROM libro WHERE categoria LIKE ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, "%" + categoria + "%");
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    while (resultSet.next()) {
-                        libros.add(new Libro(
-                        		resultSet.getInt("idLibro"),
-                        		resultSet.getInt("idEstanteria"),
-                                resultSet.getString("titulo"),
-                                resultSet.getString("autor"),
-                                resultSet.getString("editorial"),
-                                resultSet.getInt("anioPublicacion"),
-                                resultSet.getString("categoria"),
-                                resultSet.getBoolean("disponible")
-                        ));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return libros;
-    }
-	
-	public static void mostrarLibros(List<Libro> libros) {
-		if (libros.isEmpty()) {
-			System.out.println("No se encontraron libros.");
-		} else {
-			for (Libro libro : libros) {
-				System.out.println(libro);
-			}
-		}
-	}
-	
-    
+    //ESCRIBIR ACÁ 
 }
-
-

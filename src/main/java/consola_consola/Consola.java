@@ -3,9 +3,7 @@ package consola_consola;
 import java.util.InputMismatchException;
 //import java.io.IOException;
 import java.util.Scanner;
-import java.util.List;
 
-import modelo.Libro;
 import modelo.Usuario;
 import controlador.ControladorUsuario;
 
@@ -107,28 +105,24 @@ public class Consola {
             System.out.println("3. Buscar por autor");
             System.out.println("0. Volver");
             opcion = leerOpcion();
-            scanner.nextLine(); // Cononsumir el salto de línea
             switch (opcion) {
                 case 1:
                     System.out.print("Ingrese el nombre del libro: ");
-                    String nombre = scanner.nextLine();
+                    String nombre = scanner.next();
+                    // Lógica para buscar por nombre
                     System.out.println("Buscando libro por nombre: " + nombre);
-                    List<Libro> librosPorNombre = controladorUsuario.buscarLibroPorNombre(nombre);
-                    ControladorUsuario.mostrarLibros(librosPorNombre);
                     break;
                 case 2:
                     System.out.print("Ingrese la categoría del libro: ");
-                    String categoria = scanner.nextLine();
+                    String categoria = scanner.next();
+                    // Lógica para buscar por categoría
                     System.out.println("Buscando libro por categoría: " + categoria);
-                    List<Libro> librosPorCategoria = controladorUsuario.buscarLibroPorCategoria(categoria);
-                    ControladorUsuario.mostrarLibros(librosPorCategoria);
                     break;
                 case 3:
                     System.out.print("Ingrese el autor del libro: ");
-                    String autor = scanner.nextLine();
+                    String autor = scanner.next();
+                    // Lógica para buscar por autor
                     System.out.println("Buscando libro por autor: " + autor);
-                    List<Libro> librosPorAutor = controladorUsuario.buscarLibroPorAutor(autor);
-                    ControladorUsuario.mostrarLibros(librosPorAutor);
                     break;
                 case 0:
                     System.out.println("Volviendo al menú principal...");
@@ -190,4 +184,3 @@ public class Consola {
     }*/
     
 }
-
