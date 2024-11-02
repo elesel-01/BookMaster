@@ -17,16 +17,15 @@ public class Administrador {
 		PreparedStatement ps= null;
 		Connection con = getConnection();
 	
-		String sql= "INSERT INTO libro(titulo, autor,cantidad, codigolibro, editorial,anioPublicacion,categoria) VALUES(?,?,?,?,?,?,?)";
+		String sql= "INSERT INTO libro(titulo, autor, editorial,anioPublicacion,categoria) VALUES(?,?,?,?,?)";
 		 try {
 			 ps= con.prepareStatement(sql);
 			 ps.setString(1, libro.getTitulo());
 			 ps.setString(2, libro.getAutor());
-			 ps.setInt(3, libro.getCantidad());
-			 ps.setInt(4, libro.getCodigolibro());
-			 ps.setString(5, libro.getEditorial());
-			 ps.setInt(6, libro.getAnioPublicacion());
-			 ps.setString(7, libro.getCategoria());
+			 
+			 ps.setString(3, libro.getEditorial());
+			 ps.setInt(4, libro.getAnioPublicacion());
+			 ps.setString(5, libro.getCategoria());
 			 ps.execute();
 		 }catch(SQLException e) {
 			 System.err.println(e);
