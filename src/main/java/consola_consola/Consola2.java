@@ -14,13 +14,13 @@ public class Consola2 {
 		System.out.println("Menu de Administrador");
         System.out.println("1. Registrar un nuevo libro");
         System.out.println("2. Eliminar un libro");
-        System.out.println("3. Registrar un nuevo usuario");
-        System.out.println("4. Eliminar un usuario");
+        System.out.println("3. Registrar un nuevo usuario"); // GERARDO -- ControladorAdministrador
+        System.out.println("4. Eliminar un usuario"); // GERARDO -- ControladorAdministrador
         System.out.println("5. Ver usuarios morosos");
         System.out.println("6. Ver solicitudes");
         System.out.println("7. Lista de libros");
         System.out.println("8. Libros prestados");
-        System.out.println("9. Cerrar sección");
+        System.out.println("9. Cerrar sección"); // LUIS -- ControladorUsuario
         System.out.print("Ingrese la opción deseada: ");
 	}
 	

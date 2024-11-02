@@ -11,10 +11,12 @@ public class Consola3 {
 
         while (!salir) {
             System.out.println("=== MENÚ DE LA BIBLIOTECA ===");
-            System.out.println("1. Mis Libros"); // HACER
-            System.out.println("2. Solicitudes"); //HACER
-            System.out.println("3. Cerrar Sesión"); //HACER ESTO
-            System.out.println("4. Salir"); //HACER
+            System.out.println("1. Mis Libros"); // LUIS -- ControladorUsuario
+            System.out.println("2. Solicitudes"); // LUIS -- ControladorReserva
+            System.out.println("3. Cerrar Sesión"); // LUIS -- ControladorUsuario
+            System.out.println("4. Ver mis datos"); // GERARDO -- ControladorUsuario
+            System.out.println("5. Buscar libro"); // GERARDO -- ControladorUsuario
+            System.out.println("0. Salir"); // LUIS -- ControladorUsuario
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();

@@ -72,10 +72,14 @@ public class ControladorUsuario {
 				statement.setString(1, "%" + nombre + "%");
 				try (ResultSet resultSet = statement.executeQuery()) {
 					while (resultSet.next()) {
-						libros.add(new Libro(resultSet.getInt("idLibro"), resultSet.getInt("idEstanteria"),
-								resultSet.getString("titulo"), resultSet.getString("autor"),
-								resultSet.getString("editorial"), resultSet.getInt("anioPublicacion"),
-								resultSet.getString("categoria"), resultSet.getBoolean("disponible")));
+						libros.add(new Libro(
+								resultSet.getInt("idEstanteria"),
+								resultSet.getString("titulo"),
+								resultSet.getString("autor"),
+								resultSet.getString("editorial"),
+								resultSet.getInt("anioPublicacion"),
+								resultSet.getString("categoria"),
+								resultSet.getBoolean("disponible")));
 					}
 				} catch (SQLException e) {
 					System.err.println("Error processing ResultSet: " + e.getMessage());
@@ -101,10 +105,14 @@ public class ControladorUsuario {
 				statement.setString(1, "%" + autor + "%");
 				try (ResultSet resultSet = statement.executeQuery()) {
 					while (resultSet.next()) {
-						libros.add(new Libro(resultSet.getInt("idLibro"), resultSet.getInt("idEstanteria"),
-								resultSet.getString("titulo"), resultSet.getString("autor"),
-								resultSet.getString("editorial"), resultSet.getInt("anioPublicacion"),
-								resultSet.getString("categoria"), resultSet.getBoolean("disponible")));
+						libros.add(new Libro(
+								resultSet.getInt("idEstanteria"),
+								resultSet.getString("titulo"),
+								resultSet.getString("autor"),
+								resultSet.getString("editorial"),
+								resultSet.getInt("anioPublicacion"),
+								resultSet.getString("categoria"),
+								resultSet.getBoolean("disponible")));
 					}
 				}
 			}
@@ -123,10 +131,14 @@ public class ControladorUsuario {
 				statement.setString(1, "%" + categoria + "%");
 				try (ResultSet resultSet = statement.executeQuery()) {
 					while (resultSet.next()) {
-						libros.add(new Libro(resultSet.getInt("idLibro"), resultSet.getInt("idEstanteria"),
-								resultSet.getString("titulo"), resultSet.getString("autor"),
-								resultSet.getString("editorial"), resultSet.getInt("anioPublicacion"),
-								resultSet.getString("categoria"), resultSet.getBoolean("disponible")));
+						libros.add(new Libro(
+								resultSet.getInt("idEstanteria"),
+								resultSet.getString("titulo"),
+								resultSet.getString("autor"),
+								resultSet.getString("editorial"),
+								resultSet.getInt("anioPublicacion"),
+								resultSet.getString("categoria"),
+								resultSet.getBoolean("disponible")));
 					}
 				}
 			}
@@ -143,6 +155,15 @@ public class ControladorUsuario {
 			for (Libro libro : libros) {
 				System.out.println(libro);
 			}
+		}
+	}
+	
+	public void verMisDatos(Usuario usuarioLogueado) {
+		if(usuarioLogueado != null) {
+			System.out.println("Nombre: " + usuarioLogueado.getNombre());
+			System.out.println("Apellido: " + usuarioLogueado.getApellido());
+			System.out.println("Correo: " + usuarioLogueado.getEmail());
+			System.out.println("DNI: " + usuarioLogueado.getDni());
 		}
 	}
 
