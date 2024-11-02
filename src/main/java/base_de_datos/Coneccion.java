@@ -9,7 +9,7 @@ public class Coneccion {
 		
 		private static String driver = "com.mysql.cj.jdbc.Driver";
 		private static String usuario = "root";
-		private static String password = "74180013418";
+		private static String password = "canimelin12";
 		// URL de la base de datos con ajuste para evitar advertencias de zona horaria y SSL
 		private static String url = "jdbc:mysql://localhost:3306/bookmaster?useSSL=false&serverTimezone=UTC";
 
