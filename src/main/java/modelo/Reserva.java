@@ -2,22 +2,19 @@ package modelo;
 
 import java.time.LocalDateTime; //Para obtener fechas
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-
-import java.time.LocalDateTime; //Para obtener fechas
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
 public class Reserva {
     private Usuario usuario;
     private Libro libro;
     private LocalDateTime fechaReserva;
     private EstadoReserva estado;
     // Constructor
-    public Reserva(Usuario usuario, Libro libro, EstadoReserva estado) {
+    public Reserva(Usuario usuario, Libro libro) {
         this.usuario = usuario;
         this.libro = libro;
         this.fechaReserva = LocalDateTime.now(); // Fecha actual para la reserva
-        this.estado = estado;
+        this.estado = EstadoReserva.PENDIENTE; // Al crear una reserva, su estado inicial
     }
 
     // Getters y setters
@@ -43,7 +40,7 @@ public class Reserva {
 
     // Método para formatear la fecha de reserva
     public String getFechaFormateada() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", new Locale("es", "ES"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm", Locale.of("es", "ES"));
         return fechaReserva.format(formatter);
     }
 
