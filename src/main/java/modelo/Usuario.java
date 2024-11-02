@@ -79,6 +79,10 @@ public class Usuario {
 		return rol;
 	}
 	
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
 }
 
     /*public List<Prestamo> getHistorialPrestamos() {
