@@ -20,7 +20,7 @@ public class Consola2 {
         System.out.print("Ingrese la opción deseada: ");
 	}
 	
-	public static void mostrarAdministrador(Scanner scanner) {
+	/*public static void mostrarAdministrador(Scanner scanner) {
 		int opcionAdmin;
 		do {
 			mostrarMenuAdministrador();
@@ -99,5 +99,5 @@ public class Consola2 {
             System.out.println("Error al agregar el libro.");
         }
     }
-
+*/
 }

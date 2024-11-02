@@ -1,30 +1,38 @@
 package modelo;
 
 public class Libro {
+	private int idLibro;
 	private int idEstanteria;
 	private String titulo;
 	private String autor; // cambiando tipo Autor a String
-	private int cantidad;
-	private int codigolibro;
-	private boolean disponible;
 	private String editorial;
 	private int anioPublicacion;
 	private String categoria;
+	private boolean disponible;
 	
-	public Libro(int codigoLibro, int idEstanteria, String titulo, String autor, String editorial, int anioPublicacion, String categoria, boolean disponible) {
+	public Libro(int idLibro, int idEstanteria, String titulo, String autor, String editorial, int anioPublicacion, String categoria, boolean disponible) {
+		this.idLibro = idLibro;
 		this.idEstanteria = idEstanteria;
 		this.titulo = titulo;
 		this.autor = autor;
-		this.disponible = disponible;
 		this.editorial = editorial;
 		this.anioPublicacion = anioPublicacion;
 		this.categoria = categoria;
-		this.codigolibro = codigoLibro;
+		this.disponible = disponible;
+		
 		// autor.agregarObra(this); no entiendo.
 	}
 
 	/**************** Getters y Setters *********************/
+	
+	public int getIdLibro() {
+		return idLibro;
+	}
 
+	public void setIdLibro(int idLibro) {
+		this.idLibro = idLibro;
+	}
+	
 	public int getIdEstanteria() {
 		return idEstanteria;
 	}
@@ -33,21 +41,6 @@ public class Libro {
 		this.idEstanteria = idEstanteria;
 	}
 	
-	public int getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
-	
-	public int getCodigolibro() {
-		return codigolibro;
-	}
-	
-	public void setCodigolibro(int codigolibro) {
-        this.codigolibro = codigolibro;
-    }
 	
 	public String getTitulo() {
 		return titulo;
@@ -102,12 +95,10 @@ public class Libro {
 	@Override
 	public String toString() {
 	    return "Libro{" +
-	    		"códigoLibro=" + codigolibro +
+	            ", idLibro=" + idLibro +
 	            ", idEstanteria=" + idEstanteria +
 	            ", titulo='" + titulo + '\'' +
 	            ", autor='" + autor + '\'' +
-	            ", cantidad=" + cantidad +
-	            ", codigolibro=" + codigolibro +
 	            ", disponible=" + (disponible ? "Sí" : "No") +
 	            ", editorial='" + editorial + '\'' +
 	            ", anioPublicacion=" + anioPublicacion +
