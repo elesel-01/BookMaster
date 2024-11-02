@@ -17,13 +17,13 @@ public class Consola2 {
 	
 	public void mostrarMenuAdministrador() { // Tiene que ser no estático para pasar objetos
         System.out.println("=== MENÚ DE ADMINISTRADOR DE LA BIBLIOTECA ===");
-        System.out.println("1. Registrar un nuevo libro"); // VALQUI
-        System.out.println("2. Eliminar un libro"); // VALQUI
+        System.out.println("1. Registrar un nuevo libro"); // VALQUI ya ta
+        System.out.println("2. Eliminar un libro"); // VALQUI ya ta
         System.out.println("3. Registrar un nuevo usuario"); // GERARDO -- ControladorAdministrador (LISTO)
         System.out.println("4. Eliminar un usuario"); // GERARDO -- ControladorAdministrador
-        System.out.println("5. Ver usuarios morosos"); //VALQUI
+        System.out.println("5. Ver usuarios morosos"); //VALQUI  
         System.out.println("6. Ver solicitudes"); // LUIS
-        System.out.println("7. Lista de libros"); // VALQUI
+        System.out.println("7. Lista de libros"); // VALQUI ya ta
         System.out.println("8. Libros prestados"); // VALQUI
         System.out.println("9. Cerrar sesión"); // LUIS -- ControladorUsuario
         System.out.print("Ingrese la opción deseada: ");
@@ -58,8 +58,7 @@ public class Consola2 {
 					System.out.println("nuevo libro registrado con exito gaaaaa");
 					break;
 				case 2:
-					System.out.println("por implementar");
-					//eliminarLibro(scanner);
+					//controladorAdministrador.eliminarLibro(int idLibro);
 					break;
 				case 3:
 					System.out.println("Opcion selecionada: Registar un nuevo usuario ");
@@ -93,8 +92,7 @@ public class Consola2 {
 					//verSolicitudes(scanner);
 					break;
 				case 7:
-					System.out.println("por implementar");
-					//listaLibros(scanner);
+					controladorAdministrador.listarLibros();
 					break;
 				case 8:
 					System.out.println("por implementar");
