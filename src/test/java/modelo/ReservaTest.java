@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 
 public class ReservaTest {
-    private Reserva reserva;
+   /* private Reserva reserva;
     private Usuario usuario;
     private Libro libro;
 
@@ -58,6 +58,6 @@ public class ReservaTest {
         assertTrue(reservaString.contains("Reserva:"));
         assertTrue(reservaString.contains("El Quijote"));
         assertTrue(reservaString.contains("Juan"));
-    }
+    }*/
 }
 

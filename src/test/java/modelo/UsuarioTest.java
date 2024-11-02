@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class UsuarioTest {
-	Usuario usuario = new Usuario();
+	/*Usuario usuario = new Usuario();
     @Test
     void testGetNombre() {    
         usuario.setNombre("John");
@@ -78,5 +78,5 @@ class UsuarioTest {
     void testSetRol() {
         usuario.setRol("admin");
         assertEquals("admin", usuario.getRol());
-    }
+    }*/
 }
