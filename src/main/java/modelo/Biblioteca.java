@@ -39,7 +39,7 @@ public class Biblioteca {
 		if (libro != null) {
 			boolean exists = false; // para evitar duplicados
 			for (Libro l : catalogo) {
-				if (l.getId() == libro.getId()) {
+				if (l.getIdLibro() == libro.getIdLibro()) {
 					exists = true;
 					break;
 				}
