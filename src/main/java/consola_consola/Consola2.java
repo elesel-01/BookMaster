@@ -2,15 +2,20 @@ package consola_consola;
 
 import modelo.Administrador;
 import modelo.Libro;
+import modelo.Usuario;
 import java.util.Scanner;
 import controlador.ControladorAdministrador;
 
 public class Consola2 {
 	private Scanner scanner = new Scanner(System.in);
 	private ControladorAdministrador controladorAministrador = new ControladorAdministrador();
+	private Usuario usuarioLogueado = null;
 	
+	public Consola2(Usuario usuarioLogueado) {
+		this.usuarioLogueado = usuarioLogueado;
+	}
 	
-	public static void mostrarMenuAdministrador() {
+	public void mostrarMenuAdministrador() { // Tiene que ser no estático para pasar objetos
 		System.out.println("Menu de Administrador");
         System.out.println("1. Registrar un nuevo libro"); // VALQUI
         System.out.println("2. Eliminar un libro"); // VALQUI

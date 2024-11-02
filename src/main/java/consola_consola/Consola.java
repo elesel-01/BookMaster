@@ -41,6 +41,7 @@ public class Consola {
             System.out.print("Ingrese una opcion: ");
             try {
                 opcion = scanner.nextInt();
+                scanner.nextLine(); // Limpiar el buffer del scanner
             } catch (InputMismatchException e) {
                 System.out.println("Entrada no válida. Por favor, ingrese un número.");
                 scanner.next(); // Limpiar el buffer del scanner
@@ -60,9 +61,11 @@ public class Consola {
                 usuarioLogueado = controladorUsuario.autenticarUsuario(correo, contrasena);
                 if (usuarioLogueado != null) {
                 	if ("admin".equals(usuarioLogueado.getRol())) {
-                		menuAdmin();
+                		Consola2 consolaAdmin = new Consola2(usuarioLogueado);
+                		consolaAdmin.mostrarMenuAdministrador();
                 	} else {
-                		Consola3.usuarioMenu();
+                		Consola3 consolaUsuario = new Consola3(usuarioLogueado);
+                		consolaUsuario.usuarioMenu();
                 	}
 				} else {
 					System.out.println("Usuario o contraseña incorrectos.");
@@ -143,38 +146,6 @@ public class Consola {
     void menuAdmin() {
     	System.out.println("Menú de Administrador");
     	// Lógica para el menú de administrador
-    }
-
-    void menuUsuario() {
-    	int opcion;
-        do {
-            System.out.println("Menú de Usuario");
-            System.out.println("1. Ver mis datos");
-            System.out.println("0. Volver");
-            opcion = leerOpcion();
-            switch (opcion) {
-                case 1:
-                    verMisDatos();
-                    break;
-                case 0:
-                    System.out.println("Volviendo al menú principal...");
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
-            }
-        } while (opcion != 0);
-    }
-    
-    void verMisDatos() {
-        if (usuarioLogueado != null) {
-            System.out.println("Nombre: " + usuarioLogueado.getNombre());
-            System.out.println("Apellido: " + usuarioLogueado.getApellido());
-            System.out.println("Correo: " + usuarioLogueado.getEmail());
-            System.out.println("DNI: " + usuarioLogueado.getDni());
-            System.out.println("Rol: " + usuarioLogueado.getRol());
-        } else {
-            System.out.println("No hay usuario logueado.");
-        }
     }
     
     /*void limpiarConsola() {
