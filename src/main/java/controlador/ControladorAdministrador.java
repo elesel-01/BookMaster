@@ -3,6 +3,7 @@ package controlador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -108,6 +109,23 @@ public class ControladorAdministrador {
 			e.printStackTrace();
 		}
 	}
+	
+	/*public void librosPrestados() {
+		
+		String [] librosPrestados = new String[2];
+		
+		try {
+			Connection connection = db.getConnection();
+            String sql = "SELECT idPrestamo, fechaInicio FROM prestamo";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.executeQuery();
+            librosPrestados[0] = ps.getResultSet().getString("idPrestamo");
+            librosPrestados[1] = ps.getResultSet().getTimestamp("fechaInicio").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            System.out.println("ID Prestamo: "+librosPrestados[0]+" Fecha Inicio: "+librosPrestados[1]);        	
+		}catch(SQLException e) {
+			e.printStackTrace();;
+		}
+	}*/
 	
 	public void eliminarUsuario(int idUsuario) {
 		Iterator<Usuario> iterator = usuarios.iterator(); // Iterator se usa porque se necesita eliminar un objeto de la lista

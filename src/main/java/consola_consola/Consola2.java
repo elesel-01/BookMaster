@@ -95,11 +95,10 @@ public class Consola2 {
 					//verSolicitudes(scanner);
 					break;
 				case 7:
-					//controladorAdministrador.listarLibros();
+					controladorAdministrador.listarLibros();
 					break;
 				case 8:
-					System.out.println("por implementar");
-					//librosPrestados(scanner);
+					//controladorAdministrador.librosPrestados();
 					break;
 				case 9:
 					System.out.println("Sesión cerrada.");
