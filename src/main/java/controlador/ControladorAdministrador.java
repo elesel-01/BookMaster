@@ -34,9 +34,8 @@ public class ControladorAdministrador {
 				ps.setString(6, categoria);
 				ps.setBoolean(7, disponible);
 				ps.execute();
-
 			}
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,7 +73,9 @@ public class ControladorAdministrador {
                 listarLibros[4] = ps.getResultSet().getString("editorial");
                 listarLibros[5] = ps.getResultSet().getString("anioPublicacion");
                 listarLibros[6] = ps.getResultSet().getString("categoria");
-                listarLibros[7] = ps.getResultSet().getString("disponible");	
+                listarLibros[7] = ps.getResultSet().getString("disponible");
+                System.out.println("ID Libro: "+listarLibros[0]+" ID Estanteria: "+listarLibros[1]+" Titulo: "+listarLibros[2]+" Autor: "+listarLibros[3]+" Editorial: "+listarLibros[4]+" Año de Publicacion: "+listarLibros[5]+" Categoria: "+
+                listarLibros[6]+" Disponible: "+listarLibros[7]);
             }
 		} catch (SQLException e) {
 			e.printStackTrace();
