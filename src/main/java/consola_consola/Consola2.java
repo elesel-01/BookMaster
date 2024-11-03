@@ -80,8 +80,11 @@ public class Consola2 {
 	                System.out.println("Usuario registrado con éxito.");
 	                break;
 				case 4:
-					System.out.println("por implementar");
-					//eliminarCuenta(scanner);
+					System.out.println("Opcion selecionada: Eliminar un usuario ");
+					System.out.println("Ingrese el ID del Usuario a eliminar: ");
+					int idUsuario = scanner.nextInt();
+					scanner.nextLine();
+					controladorAdministrador.eliminarUsuario(idUsuario);
 					break;
 				case 5:
 					//verMorosos(scanner);
@@ -92,7 +95,7 @@ public class Consola2 {
 					//verSolicitudes(scanner);
 					break;
 				case 7:
-					controladorAdministrador.listarLibros();
+					//controladorAdministrador.listarLibros();
 					break;
 				case 8:
 					System.out.println("por implementar");

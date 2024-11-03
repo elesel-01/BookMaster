@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import base_de_datos.Coneccion;
@@ -101,6 +102,33 @@ public class ControladorAdministrador {
 				statement.setString(5, contrasena);
 				statement.setString(6, rol);
 				statement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void eliminarUsuario(int idUsuario) {
+		Iterator<Usuario> iterator = usuarios.iterator(); // Iterator se usa porque se necesita eliminar un objeto de la lista
+		while (iterator.hasNext()) { // La condicion sinifica que si el iterador tiene un siguiente elemento
+			Usuario usuario = iterator.next(); // Va a la siguiente posicion
+			if (usuario.getId() == idUsuario) {
+				iterator.remove(); // Elimina el objeto de la lista
+				break; // Termina el ciclo cuando se elimina el objeto
+			}
+		}
+		
+		//Eliminar el usuario de la base de datos
+		try (Connection connection = db.getConnection()){
+			String sql = "DELETE FROM usuario WHERE idUsuario=?";
+			try (PreparedStatement ps = connection.prepareStatement(sql)) {
+				ps.setInt(1, idUsuario);
+				int filasAfectada = ps.executeUpdate();
+				if (filasAfectada <= 0) {
+					System.out.println("No se encontro el usuario con el id: " + idUsuario);
+				} else {
+					System.out.println("Usuario eliminado con éxito.");
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
