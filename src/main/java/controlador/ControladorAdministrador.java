@@ -2,6 +2,7 @@ package controlador;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -126,6 +127,34 @@ public class ControladorAdministrador {
 			e.printStackTrace();;
 		}
 	}*/
+	
+	public void librosPrestados() {
+	    String[] librosPrestados = new String[3];
+
+	    try {
+	        Connection connection = db.getConnection();
+	        String sql = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni " +
+	                     "FROM prestamo " +
+	                     "JOIN libro ON prestamo.idLibro = libro.idLibro " +
+	                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario";
+	        PreparedStatement ps = connection.prepareStatement(sql);
+	        ResultSet rs = ps.executeQuery();
+
+	        // Procesar los resultados
+	        while (rs.next()) {
+	            librosPrestados[0] = rs.getString("idPrestamo");
+	            librosPrestados[1] = rs.getString("titulo");
+	            librosPrestados[2] = rs.getString("dni");
+
+	            System.out.println("ID Prestamo: " + librosPrestados[0] + 
+	                               " Titulo: " + librosPrestados[1] + 
+	                               " DNI: " + librosPrestados[2]);
+	        }
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void eliminarUsuario(int idUsuario) {
 		Iterator<Usuario> iterator = usuarios.iterator(); // Iterator se usa porque se necesita eliminar un objeto de la lista

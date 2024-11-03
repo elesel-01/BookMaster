@@ -98,7 +98,7 @@ public class Consola2 {
 					controladorAdministrador.listarLibros();
 					break;
 				case 8:
-					//controladorAdministrador.librosPrestados();
+					controladorAdministrador.librosPrestados();
 					break;
 				case 9:
 					System.out.println("Sesión cerrada.");
