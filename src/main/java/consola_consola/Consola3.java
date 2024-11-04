@@ -47,11 +47,10 @@ public class Consola3 {
                     consola.menuBuscarLibro(); // Se encuentra en Consola.java
                     break;
                 case 5:
-                    System.out.println("Ha cerrado sesión.");
+                    controladorUsuario.cerrarSesion();
                     break;
 				case 0:
-					System.out.println("Ha salido de la aplicación.");
-					salir = true;
+					controladorUsuario.salir(salir);
 					break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");

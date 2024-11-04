@@ -169,6 +169,12 @@ public class ControladorUsuario {
 			System.out.println("Contraseña: " + usuarioLogueado.getPassw());
 		}
 	}
-
-	// ESCRIBIR ACÁ
+	public void cerrarSesion() {
+		System.out.println("Sesión cerrada");
+	}
+	public void salir(boolean salir) {
+		System.out.println("Ha salido de la aplicación.");
+		salir = true;
+	}
+	
 }

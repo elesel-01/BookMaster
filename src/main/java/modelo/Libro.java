@@ -19,7 +19,7 @@ public class Libro {
 		this.categoria = categoria;
 		this.disponible = disponible;
 		
-		// autor.agregarObra(this); no entiendo.
+		
 	}
 
 	/**************** Getters y Setters *********************/
