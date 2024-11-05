@@ -21,10 +21,10 @@ public class Consola2 {
         System.out.println("2. Eliminar un libro"); // VALQUI ya ta
         System.out.println("3. Registrar un nuevo usuario"); // GERARDO -- ControladorAdministrador (LISTO)
         System.out.println("4. Eliminar un usuario"); // GERARDO -- ControladorAdministrador
-        System.out.println("5. Ver usuarios morosos"); //VALQUI  
+        System.out.println("5. Ver usuarios morosos"); //VALQUI  falta ps causaaaaaaa	
         System.out.println("6. Ver solicitudes"); // LUIS
         System.out.println("7. Lista de libros"); // VALQUI ya ta
-        System.out.println("8. Libros prestados"); // VALQUI
+        System.out.println("8. Libros prestados"); // VALQUI ya ta
         System.out.println("9. Cerrar sesión"); // LUIS -- ControladorUsuario
         System.out.print("Ingrese la opción deseada: ");
 	}
