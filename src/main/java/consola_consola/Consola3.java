@@ -48,7 +48,8 @@ public class Consola3 {
                     consola.menuBuscarLibro(); // Se encuentra en Consola.java
                     break;
                 case 5:
-                	controladorUsuario.CerrarSesión(); //CORREGIRRR WAA
+                	System.out.println("CerrandoSesión");
+                	salir = true; 
                     break;
 				case 0:
 					controladorUsuario.salir(salir);

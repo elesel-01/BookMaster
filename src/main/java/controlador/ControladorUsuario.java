@@ -13,7 +13,6 @@ import modelo.Usuario;
 import modelo.Libro;
 
 public class ControladorUsuario {
-	private Consola consola;
 	
 	private List<Usuario> usuarios = new ArrayList<>();
 
@@ -173,16 +172,8 @@ public class ControladorUsuario {
 		}
 	}
 	
-	public void CerrarSesión() {
-        consola.menu();
-        consola.leerOpcion();  
-        consola.procesarOpcion(); // ACÁ HAY UN ERROR, TENGO QUE PONER ALGO EN LOS PARÉNTESIS
-    }
-
 	public void salir(boolean salir) {
 		System.out.println("Ha salido de la aplicación.");
 		salir = true;
 	}
-
-	
 }

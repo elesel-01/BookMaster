@@ -68,6 +68,7 @@ public class Consola {
                 	} else {
                 		Consola3 consolaUsuario = new Consola3(usuarioLogueado);
                 		consolaUsuario.usuarioMenu();
+                		usuarioLogueado=null;
                 	}
 				} else {
 					System.out.println("Usuario o contraseña incorrectos.");
