@@ -22,11 +22,11 @@ public class Consola3 {
         while (!salir) {
             System.out.println("=== MENÚ DE USUARIO DE LA BIBLIOTECA ===");
             System.out.println("1. Mis Libros"); // LUIS -- ControladorUsuario
-            System.out.println("2. Solicitudes"); // LUIS -- ControladorReserva
+            System.out.println("2. Solicitar un libro"); // LUIS -- ControladorReserva
             System.out.println("3. Ver mis datos"); // GERARDO -- ControladorUsuario (LISTO)
             System.out.println("4. Buscar libro"); // GERARDO -- ControladorUsuario (LISTO)
-            System.out.println("5. Cerrar Sesión"); // LUIS -- ControladorUsuario
-            System.out.println("0. Salir"); // LUIS -- ControladorUsuario
+            System.out.println("5. Cerrar Sesión"); // LUIS -- ControladorUsuario (ALGO)
+            System.out.println("0. Salir"); // LUIS -- ControladorUsuario (LISTO)
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();
@@ -38,6 +38,7 @@ public class Consola3 {
                     break;
                 case 2:
                     System.out.println("Estas son tus solicitudes: ");
+                    
                     break;
                 case 3:
                     System.out.println("Sus datos:");
@@ -47,7 +48,7 @@ public class Consola3 {
                     consola.menuBuscarLibro(); // Se encuentra en Consola.java
                     break;
                 case 5:
-                    controladorUsuario.cerrarSesion();
+                	controladorUsuario.CerrarSesión(); //CORREGIRRR WAA
                     break;
 				case 0:
 					controladorUsuario.salir(salir);

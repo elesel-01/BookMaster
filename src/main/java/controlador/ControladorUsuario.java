@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base_de_datos.Coneccion;
+import consola_consola.Consola;
 import modelo.Usuario;
 import modelo.Libro;
 
 public class ControladorUsuario {
+	private Consola consola;
+	
 	private List<Usuario> usuarios = new ArrayList<>();
 
 	public Usuario autenticarUsuario(String correo, String contrasena) {
@@ -169,12 +172,17 @@ public class ControladorUsuario {
 			System.out.println("Contraseña: " + usuarioLogueado.getPassw());
 		}
 	}
-	public void cerrarSesion() {
-		System.out.println("Sesión cerrada");
-	}
+	
+	public void CerrarSesión() {
+        consola.menu();
+        consola.leerOpcion();  
+        consola.procesarOpcion(); // ACÁ HAY UN ERROR, TENGO QUE PONER ALGO EN LOS PARÉNTESIS
+    }
+
 	public void salir(boolean salir) {
 		System.out.println("Ha salido de la aplicación.");
 		salir = true;
 	}
+
 	
 }

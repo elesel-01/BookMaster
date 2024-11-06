@@ -12,6 +12,7 @@ import controlador.ControladorUsuario;
 public class Consola {
 	
 	private Scanner scanner = new Scanner(System.in);
+    boolean salir = false;
 	private ControladorUsuario controladorUsuario = new ControladorUsuario();
 	private Usuario usuarioLogueado = null;
 	
@@ -27,7 +28,7 @@ public class Consola {
         c.scanner.close();
     }
 
-    void menu() {
+    public void menu() {
     	System.out.println("=== MENÚ PRINCIPAL DE LA BIBLIOTECA ===");
         System.out.println("Menu de opciones (No logeados)");
         System.out.println("1. Login");
@@ -36,7 +37,7 @@ public class Consola {
         System.out.println("0. Salir");
     }
 
-    int leerOpcion() {
+    public int leerOpcion() {
         int opcion = -1;  // Valor inválido para la opción
         while (opcion == -1) {
             System.out.print("Ingrese una opcion: ");
@@ -51,7 +52,7 @@ public class Consola {
         return opcion;
     }
 
-    void procesarOpcion(int opcion) {
+    public void procesarOpcion(int opcion) {
         switch (opcion) {
             case 1:
                 System.out.println("Opción seleccionada: Login");
@@ -95,8 +96,8 @@ public class Consola {
 				menuBuscarLibro();
                 break;
             case 0:
-                System.out.println("Saliendo del programa...");
-                break;
+            	controladorUsuario.salir(salir);
+				break;
             default:
                 System.out.println("Opción no válida. Intente de nuevo.");
         }

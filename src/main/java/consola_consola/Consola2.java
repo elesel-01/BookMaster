@@ -5,11 +5,14 @@ import modelo.Libro;
 import modelo.Usuario;
 import java.util.Scanner;
 import controlador.ControladorAdministrador;
+import controlador.ControladorUsuario;
 
 public class Consola2 {
 	private Scanner scanner = new Scanner(System.in);
 	private ControladorAdministrador controladorAdministrador = new ControladorAdministrador();
 	private Usuario usuarioLogueado = null;
+	private ControladorUsuario controladorUsuario = new ControladorUsuario();
+	
 	
 	public Consola2(Usuario usuarioLogueado) {
 		this.usuarioLogueado = usuarioLogueado;
@@ -22,10 +25,10 @@ public class Consola2 {
         System.out.println("3. Registrar un nuevo usuario"); // GERARDO -- ControladorAdministrador (LISTO)
         System.out.println("4. Eliminar un usuario"); // GERARDO -- ControladorAdministrador
         System.out.println("5. Ver usuarios morosos"); //VALQUI  falta ps causaaaaaaa	
-        System.out.println("6. Ver solicitudes"); // LUIS
+        System.out.println("6. Ver solicitudes"); // LUIS  
         System.out.println("7. Lista de libros"); // VALQUI ya ta
         System.out.println("8. Libros prestados"); // VALQUI ya ta
-        System.out.println("9. Cerrar sesión"); // LUIS -- ControladorUsuario
+        System.out.println("9. Cerrar sesión"); // LUIS -- ControladorUsuario (y lito)
         System.out.print("Ingrese la opción deseada: ");
 	}
 	
@@ -91,7 +94,7 @@ public class Consola2 {
 					System.out.println("por implementar");
 					break;
 				case 6:
-					System.out.println("por implementar");
+					
 					//verSolicitudes(scanner);
 					break;
 				case 7:
@@ -101,7 +104,8 @@ public class Consola2 {
 					controladorAdministrador.librosPrestados();
 					break;
 				case 9:
-					System.out.println("Sesión cerrada.");
+					controladorUsuario.cerrarSesion();
+                    System.out.println("Sesión cerrada, volviendo al menú principal");
 					break;
 				default:
 					System.out.println("Opción inválida.");	
