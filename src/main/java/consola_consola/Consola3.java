@@ -1,12 +1,16 @@
 package consola_consola;
 
 import java.util.Scanner;
+
+import controlador.ControladorReserva;
 import controlador.ControladorUsuario;
 import modelo.Usuario;
 
 public class Consola3 {
 	private ControladorUsuario controladorUsuario = new ControladorUsuario();
+    private ControladorReserva controladorReserva = new ControladorReserva();
 	private Usuario usuarioLogueado = null;
+	
 	private Consola consola;
 	
 	/* Se añade un constructor para pasar el usuario logueado */
@@ -25,7 +29,7 @@ public class Consola3 {
             System.out.println("2. Solicitar un libro"); // LUIS -- ControladorReserva
             System.out.println("3. Ver mis datos"); // GERARDO -- ControladorUsuario (LISTO)
             System.out.println("4. Buscar libro"); // GERARDO -- ControladorUsuario (LISTO)
-            System.out.println("5. Cerrar Sesión"); // LUIS -- ControladorUsuario (ALGO)
+            System.out.println("5. Cerrar Sesión"); // LUIS -- ControladorUsuario (LISTO)
             System.out.println("0. Salir"); // LUIS -- ControladorUsuario (LISTO)
             System.out.print("Seleccione una opción: ");
 
@@ -37,8 +41,11 @@ public class Consola3 {
                     System.out.println("Esto son tus libros: ");
                     break;
                 case 2:
-                    System.out.println("Estas son tus solicitudes: ");
-                    
+                	System.out.println("Solicitar un libro");
+                    System.out.print("Ingrese el ID del libro: ");
+                    int idLibro = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    controladorReserva.solicitarLibro(idLibro, usuarioLogueado.getNombre());
                     break;
                 case 3:
                     System.out.println("Sus datos:");
