@@ -172,6 +172,12 @@ public class ControladorUsuario {
 		}
 	}
 	
+	/*public List<Libros> misLibros(){
+		List<Libros> libros = new ArrayList<>();
+	    Coneccion db = new Coneccion();
+		
+	}*/
+	
 	public void salir(boolean salir) {
 		System.out.println("Ha salido de la aplicación.");
 		salir = true;

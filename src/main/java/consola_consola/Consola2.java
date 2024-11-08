@@ -33,6 +33,8 @@ public class Consola2 {
 	}
 	
 	void mostrarAdministrador() {
+        boolean salir = false;
+
 		int opcionAdmin;
 		do {
 			mostrarMenuAdministrador();
@@ -104,8 +106,8 @@ public class Consola2 {
 					controladorAdministrador.librosPrestados();
 					break;
 				case 9:
-					//controladorUsuario.cerrarSesion();
                     System.out.println("Sesión cerrada, volviendo al menú principal");
+                    salir = true;
 					break;
 				default:
 					System.out.println("Opción inválida.");	

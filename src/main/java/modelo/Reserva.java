@@ -14,7 +14,7 @@ public class Reserva {
         this.usuario = usuario;
         this.libro = libro;
         this.fechaReserva = LocalDateTime.now(); // Fecha actual para la reserva
-        this.estado = EstadoReserva.PENDIENTE; // Al crear una reserva, su estado inicial
+       // this.estado = EstadoReserva.PENDIENTE; // Al crear una reserva, su estado inicial
     }
 
     // Getters y setters

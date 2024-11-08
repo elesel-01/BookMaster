@@ -23,7 +23,7 @@ public class ControladorReserva {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Error al realizar la reserva.");
+            System.out.println("No hay disponibilidad.");
         }
     }
 }
