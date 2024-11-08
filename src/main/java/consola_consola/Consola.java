@@ -13,7 +13,7 @@ public class Consola {
 	
 	private Scanner scanner = new Scanner(System.in);
     boolean salir = false;
-	private ControladorUsuario controladorUsuario = new ControladorUsuario();
+	private ControladorUsuario controladorUsuario = new ControladorUsuario(); // De paso cargamos a todos los usuarios desde BD
 	private Usuario usuarioLogueado = null;
 	
     public static void main(String[] args) {
@@ -64,19 +64,20 @@ public class Consola {
                 if (usuarioLogueado != null) {
                 	if ("admin".equals(usuarioLogueado.getRol())) {
                 		Consola2 consolaAdmin = new Consola2(usuarioLogueado);
-                		consolaAdmin.mostrarAdministrador();
+                		consolaAdmin.mostrarAdministrador(); // Mostrar el menú del administrador
                 	} else {
                 		Consola3 consolaUsuario = new Consola3(usuarioLogueado);
-                		consolaUsuario.usuarioMenu();
+                		consolaUsuario.usuarioMenu(); // Mostrar el menú del usuario
                 		usuarioLogueado=null;
                 	}
 				} else {
 					System.out.println("Usuario o contraseña incorrectos.");
 				}
                 break;
+                
             case 2:
                 System.out.println("Opción seleccionada: Registrarse");
-                scanner.nextLine(); // Limpiar el buffer del scanner
+                //scanner.nextLine(); // Limpiar el buffer del scanner
                 System.out.print("Ingrese nombres: ");
                 String nombres = scanner.nextLine();
                 System.out.print("Ingrese apellidos: ");
@@ -89,9 +90,9 @@ public class Consola {
                 System.out.print("Ingrese contraseña: ");
                 contrasena = scanner.next();
                 String rol = "usuario";
-                controladorUsuario.registrarUsuario(nombres, apellidos, correo, dni, contrasena, rol);
-                System.out.println("Usuario registrado con éxito.");
+                controladorUsuario.registrarUsuario(nombres, apellidos, correo, dni, contrasena, rol);           
                 break;
+                
             case 3:
                 System.out.println("Opción seleccionada: Buscar Libro");
 				menuBuscarLibro();
@@ -113,7 +114,7 @@ public class Consola {
             System.out.println("3. Buscar por autor");
             System.out.println("0. Volver");
             opcion = leerOpcion();
-            scanner.nextLine(); // Limpiar el buffer del scanner
+            //scanner.nextLine(); // lo comente porque para que no genere otro salto de liena
             switch (opcion) {
                 case 1:
                     System.out.print("Ingrese el nombre del libro: ");
