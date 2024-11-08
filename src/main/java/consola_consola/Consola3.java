@@ -25,8 +25,8 @@ public class Consola3 {
 
         while (!salir) {
             System.out.println("=== MENÚ DE USUARIO DE LA BIBLIOTECA ===");
-            System.out.println("1. Mis Libros"); // LUIS -- ControladorUsuario
-            System.out.println("2. Solicitar un libro"); // LUIS -- ControladorReserva
+            System.out.println("1. Mis Libros"); // LUIS -- ControladorUsuario 
+            System.out.println("2. Solicitar un libro"); // LUIS -- ControladorReserva (Y LISTO)
             System.out.println("3. Ver mis datos"); // GERARDO -- ControladorUsuario (LISTO)
             System.out.println("4. Buscar libro"); // GERARDO -- ControladorUsuario (LISTO)
             System.out.println("5. Cerrar Sesión"); // LUIS -- ControladorUsuario (LISTO)
@@ -59,7 +59,7 @@ public class Consola3 {
                 	salir = true; 
                     break;
 				case 0:
-					controladorUsuario.salir(salir);
+					controladorUsuario.salir(salir); //ARREGLAR ESTO 
 					break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");

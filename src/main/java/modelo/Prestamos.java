@@ -72,12 +72,12 @@ public class Prestamos {
 		this.estado = estado;
 	}
 
-	public void finalizarPrestamo() {
+	/*public void finalizarPrestamo() {
 		if (estado == EstadoPrestamo.ACTIVO) {
 			this.estado = EstadoPrestamo.FINALIZADO; // Cambiar el estado a FINALIZADO
 			libro.setDisponible(true); // Marcar el libro como disponible nuevamente
 		}
-	}
+	}*/
 
 	public double calcularMulta() {
 		if (estado == EstadoPrestamo.ACTIVO) {
