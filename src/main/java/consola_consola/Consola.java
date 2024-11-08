@@ -8,12 +8,13 @@ import java.util.List;
 import modelo.Libro;
 import modelo.Usuario;
 import controlador.ControladorUsuario;
+import controlador.ControladorLibro;
 
 public class Consola {
 	
 	private Scanner scanner = new Scanner(System.in);
-    boolean salir = false;
 	private ControladorUsuario controladorUsuario = new ControladorUsuario(); // De paso cargamos a todos los usuarios desde BD
+	private ControladorLibro controladorLibro = new ControladorLibro(); // De paso cargamos a todos los libros desde BD
 	private Usuario usuarioLogueado = null;
 	
     public static void main(String[] args) {
@@ -98,7 +99,7 @@ public class Consola {
 				menuBuscarLibro();
                 break;
             case 0:
-            	controladorUsuario.salir(salir);
+            	System.out.println("Saliendo de la aplicación...");
 				break;
             default:
                 System.out.println("Opción no válida. Intente de nuevo.");
@@ -121,22 +122,22 @@ public class Consola {
                     String nombre = scanner.nextLine();
                     // Lógica para buscar por nombre
                     System.out.println("Buscando libro por nombre: " + nombre);
-                    List<Libro> libros = controladorUsuario.buscarLibroPorNombre(nombre);
-                    ControladorUsuario.mostrarLibros(libros);
+                    List<Libro> libros = controladorLibro.buscarLibroPorNombre(nombre);
+                    controladorLibro.mostrarLibros(libros);
                     break;
                 case 2:
                     System.out.print("Ingrese la categoría del libro: ");
                     String categoria = scanner.nextLine();
                     System.out.println("Buscando libro por categoría: " + categoria);
-                    List<Libro> librosPorCategoria = controladorUsuario.buscarLibroPorCategoria(categoria);
-                    ControladorUsuario.mostrarLibros(librosPorCategoria);
+                    List<Libro> librosPorCategoria = controladorLibro.buscarLibroPorCategoria(categoria);
+                    controladorLibro.mostrarLibros(librosPorCategoria);
                     break;
                 case 3:
                     System.out.print("Ingrese el autor del libro: ");
                     String autor = scanner.nextLine();
                     System.out.println("Buscando libro por autor: " + autor);
-                    List<Libro> librosPorAutor = controladorUsuario.buscarLibroPorAutor(autor);
-                    ControladorUsuario.mostrarLibros(librosPorAutor);
+                    List<Libro> librosPorAutor = controladorLibro.buscarLibroPorAutor(autor);
+                    controladorLibro.mostrarLibros(librosPorAutor);
                     break;
                 case 0:
                     System.out.println("Volviendo al menú principal...");
@@ -146,18 +147,5 @@ public class Consola {
             }
         } while (opcion != 0);
     }
-    
-    /*void limpiarConsola() {
-    	try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (IOException | InterruptedException ex) {
-            System.out.println("Error al limpiar la consola.");
-        }
-    }*/
     
 }

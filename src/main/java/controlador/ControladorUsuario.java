@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base_de_datos.Coneccion;
-import consola_consola.Consola;
 import modelo.Usuario;
-import modelo.Libro;
 
 public class ControladorUsuario {
 
@@ -98,7 +96,7 @@ public class ControladorUsuario {
 		}
 	}
 
-	public List<Libro> buscarLibroPorNombre(String nombre) {
+	/*public List<Libro> buscarLibroPorNombre(String nombre) {
 		List<Libro> libros = new ArrayList<>();
 		Coneccion db = new Coneccion();
 		try (Connection connection = db.getConnection()) {
@@ -169,7 +167,7 @@ public class ControladorUsuario {
 		}
 		return libros;
 	}
-
+	
 	public static void mostrarLibros(List<Libro> libros) {
 		if (libros.isEmpty()) {
 			System.out.println("No se encontraron libros.");
@@ -178,7 +176,7 @@ public class ControladorUsuario {
 				System.out.println(libro);
 			}
 		}
-	}
+	}*/
 
 	public void verMisDatos(Usuario usuarioLogueado) {
 		if (usuarioLogueado != null) {
