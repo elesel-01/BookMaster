@@ -104,7 +104,7 @@ public class Consola2 {
 					controladorAdministrador.librosPrestados();
 					break;
 				case 9:
-					controladorUsuario.cerrarSesion();
+					//controladorUsuario.cerrarSesion();
                     System.out.println("Sesión cerrada, volviendo al menú principal");
 					break;
 				default:
