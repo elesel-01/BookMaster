@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class Coneccion {
 	// Driver actualizado al más reciente
-
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String usuario = "root";
 	private static String password = "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ";
