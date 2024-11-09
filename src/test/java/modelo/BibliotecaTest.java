@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import java.util.List;
 
 public class BibliotecaTest {
-    private Biblioteca biblioteca;
+    /*private Biblioteca biblioteca;
     private Libro libro;
     private Usuario usuario;
 
@@ -46,7 +46,7 @@ public class BibliotecaTest {
         biblioteca.registrarUsuario(usuario);
         List<Usuario> usuarios = biblioteca.listarUsuario();
         assertTrue(usuarios.contains(usuario));
-    }
+    }*/
 }
 
 

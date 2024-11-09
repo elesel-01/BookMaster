@@ -10,7 +10,7 @@ public class Libro {
 	private String categoria;
 	private boolean disponible;
 	
-	public Libro( int idEstanteria, String titulo, String autor, String editorial, int anioPublicacion, String categoria, boolean disponible) {
+	public Libro(int idEstanteria, String titulo, String autor, String editorial, int anioPublicacion, String categoria, boolean disponible) {
 		this.idEstanteria = idEstanteria;
 		this.titulo = titulo;
 		this.autor = autor;
@@ -19,7 +19,7 @@ public class Libro {
 		this.categoria = categoria;
 		this.disponible = disponible;
 		
-		// autor.agregarObra(this); no entiendo.
+		
 	}
 
 	/**************** Getters y Setters *********************/
@@ -94,7 +94,7 @@ public class Libro {
 	@Override
 	public String toString() {
 	    return "Libro{" +
-	            ", idLibro=" + idLibro +
+	            " idLibro=" + idLibro +
 	            ", idEstanteria=" + idEstanteria +
 	            ", titulo='" + titulo + '\'' +
 	            ", autor='" + autor + '\'' +

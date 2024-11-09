@@ -8,11 +8,13 @@ import java.util.List;
 import modelo.Libro;
 import modelo.Usuario;
 import controlador.ControladorUsuario;
+import controlador.ControladorLibro;
 
 public class Consola {
 	
 	private Scanner scanner = new Scanner(System.in);
-	private ControladorUsuario controladorUsuario = new ControladorUsuario();
+	private ControladorUsuario controladorUsuario = new ControladorUsuario(); // De paso cargamos a todos los usuarios desde BD
+	private ControladorLibro controladorLibro = new ControladorLibro(); // De paso cargamos a todos los libros desde BD
 	private Usuario usuarioLogueado = null;
 	
     public static void main(String[] args) {
@@ -27,7 +29,8 @@ public class Consola {
         c.scanner.close();
     }
 
-    void menu() {
+    public void menu() {
+    	System.out.println("=== MENÚ PRINCIPAL DE LA BIBLIOTECA ===");
         System.out.println("Menu de opciones (No logeados)");
         System.out.println("1. Login");
         System.out.println("2. Registrarse");
@@ -35,12 +38,13 @@ public class Consola {
         System.out.println("0. Salir");
     }
 
-    int leerOpcion() {
+    public int leerOpcion() {
         int opcion = -1;  // Valor inválido para la opción
         while (opcion == -1) {
             System.out.print("Ingrese una opcion: ");
             try {
                 opcion = scanner.nextInt();
+                scanner.nextLine(); // Limpiar el buffer del scanner
             } catch (InputMismatchException e) {
                 System.out.println("Entrada no válida. Por favor, ingrese un número.");
                 scanner.next(); // Limpiar el buffer del scanner
@@ -49,7 +53,7 @@ public class Consola {
         return opcion;
     }
 
-    void procesarOpcion(int opcion) {
+    public void procesarOpcion(int opcion) {
         switch (opcion) {
             case 1:
                 System.out.println("Opción seleccionada: Login");
@@ -60,17 +64,21 @@ public class Consola {
                 usuarioLogueado = controladorUsuario.autenticarUsuario(correo, contrasena);
                 if (usuarioLogueado != null) {
                 	if ("admin".equals(usuarioLogueado.getRol())) {
-                		menuAdmin();
+                		Consola2 consolaAdmin = new Consola2(usuarioLogueado);
+                		consolaAdmin.mostrarAdministrador(); // Mostrar el menú del administrador
                 	} else {
-                		Consola3.usuarioMenu();
+                		Consola3 consolaUsuario = new Consola3(usuarioLogueado);
+                		consolaUsuario.usuarioMenu(); // Mostrar el menú del usuario
+                		usuarioLogueado=null;
                 	}
 				} else {
 					System.out.println("Usuario o contraseña incorrectos.");
 				}
                 break;
+                
             case 2:
                 System.out.println("Opción seleccionada: Registrarse");
-                scanner.nextLine(); // Limpiar el buffer del scanner
+                //scanner.nextLine(); // Limpiar el buffer del scanner
                 System.out.print("Ingrese nombres: ");
                 String nombres = scanner.nextLine();
                 System.out.print("Ingrese apellidos: ");
@@ -83,16 +91,16 @@ public class Consola {
                 System.out.print("Ingrese contraseña: ");
                 contrasena = scanner.next();
                 String rol = "usuario";
-                controladorUsuario.registrarUsuario(nombres, apellidos, correo, dni, contrasena, rol);
-                System.out.println("Usuario registrado con éxito.");
+                controladorUsuario.registrarUsuario(nombres, apellidos, correo, dni, contrasena, rol);           
                 break;
+                
             case 3:
                 System.out.println("Opción seleccionada: Buscar Libro");
 				menuBuscarLibro();
                 break;
             case 0:
-                System.out.println("Saliendo del programa...");
-                break;
+            	System.out.println("Saliendo de la aplicación...");
+				break;
             default:
                 System.out.println("Opción no válida. Intente de nuevo.");
         }
@@ -107,29 +115,29 @@ public class Consola {
             System.out.println("3. Buscar por autor");
             System.out.println("0. Volver");
             opcion = leerOpcion();
-            scanner.nextLine(); // Limpiar el buffer del scanner
+            //scanner.nextLine(); // lo comente porque para que no genere otro salto de liena
             switch (opcion) {
                 case 1:
                     System.out.print("Ingrese el nombre del libro: ");
                     String nombre = scanner.nextLine();
                     // Lógica para buscar por nombre
                     System.out.println("Buscando libro por nombre: " + nombre);
-                    List<Libro> libros = controladorUsuario.buscarLibroPorNombre(nombre);
-                    ControladorUsuario.mostrarLibros(libros);
+                    List<Libro> libros = controladorLibro.buscarLibroPorNombre(nombre);
+                    controladorLibro.mostrarLibros(libros);
                     break;
                 case 2:
                     System.out.print("Ingrese la categoría del libro: ");
                     String categoria = scanner.nextLine();
                     System.out.println("Buscando libro por categoría: " + categoria);
-                    List<Libro> librosPorCategoria = controladorUsuario.buscarLibroPorCategoria(categoria);
-                    ControladorUsuario.mostrarLibros(librosPorCategoria);
+                    List<Libro> librosPorCategoria = controladorLibro.buscarLibroPorCategoria(categoria);
+                    controladorLibro.mostrarLibros(librosPorCategoria);
                     break;
                 case 3:
                     System.out.print("Ingrese el autor del libro: ");
                     String autor = scanner.nextLine();
                     System.out.println("Buscando libro por autor: " + autor);
-                    List<Libro> librosPorAutor = controladorUsuario.buscarLibroPorAutor(autor);
-                    ControladorUsuario.mostrarLibros(librosPorAutor);
+                    List<Libro> librosPorAutor = controladorLibro.buscarLibroPorAutor(autor);
+                    controladorLibro.mostrarLibros(librosPorAutor);
                     break;
                 case 0:
                     System.out.println("Volviendo al menú principal...");
@@ -139,55 +147,5 @@ public class Consola {
             }
         } while (opcion != 0);
     }
-    
-    void menuAdmin() {
-    	System.out.println("Menú de Administrador");
-    	// Lógica para el menú de administrador
-    }
-
-    void menuUsuario() {
-    	int opcion;
-        do {
-            System.out.println("Menú de Usuario");
-            System.out.println("1. Ver mis datos");
-            System.out.println("0. Volver");
-            opcion = leerOpcion();
-            switch (opcion) {
-                case 1:
-                    verMisDatos();
-                    break;
-                case 0:
-                    System.out.println("Volviendo al menú principal...");
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
-            }
-        } while (opcion != 0);
-    }
-    
-    void verMisDatos() {
-        if (usuarioLogueado != null) {
-            System.out.println("Nombre: " + usuarioLogueado.getNombre());
-            System.out.println("Apellido: " + usuarioLogueado.getApellido());
-            System.out.println("Correo: " + usuarioLogueado.getEmail());
-            System.out.println("DNI: " + usuarioLogueado.getDni());
-            System.out.println("Rol: " + usuarioLogueado.getRol());
-        } else {
-            System.out.println("No hay usuario logueado.");
-        }
-    }
-    
-    /*void limpiarConsola() {
-    	try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (IOException | InterruptedException ex) {
-            System.out.println("Error al limpiar la consola.");
-        }
-    }*/
     
 }

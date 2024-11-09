@@ -5,6 +5,5 @@ package modelo;
  */
 public enum EstadoPrestamo {
 	ACTIVO,
-    ATRASADO,
-    FINALIZADO
+    ATRASADO
 }
