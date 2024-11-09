@@ -9,9 +9,10 @@ public class Coneccion {
 		
 		private static String driver = "com.mysql.cj.jdbc.Driver";
 		private static String usuario = "root";
-		private static String password = "754324786";
+		private static String password = "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ";
 		// URL de la base de datos con ajuste para evitar advertencias de zona horaria y SSL
-		private static String url = "jdbc:mysql://localhost:3306/bookmaster?useSSL=false&serverTimezone=UTC";
+		private static String url = "jdbc:mysql://junction.proxy.rlwy.net:38689/railway?useSSL=false&serverTimezone=UTC";
+
 
 		Connection con = null;
 
