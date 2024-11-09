@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.time.LocalDateTime; //Para obtener fechas
 import java.time.format.DateTimeFormatter;
@@ -52,4 +52,4 @@ public class Reserva {
                 "\n\tFecha de reserva = " + getFechaFormateada() +
                 "\n\tEstado = " + estado;
     }
-}
+}*/
