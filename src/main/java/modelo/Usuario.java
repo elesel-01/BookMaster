@@ -83,6 +83,16 @@ public class Usuario {
 		this.rol = rol;
 	}
 	
+	@Override
+	public String toString() {
+	    return "\tid = " + id + "\n" +
+	           "\tnombre = " + nombre + "\n" +
+	           "\tapellido = " + apellido + "\n" +
+	           "\temail = " + email + "\n" +
+	           "\tpassw = " + passw + "\n" +
+	           "\tdni = " + dni + "\n" +
+	           "\trol = " + rol;
+	}
 }
 
     /*public List<Prestamo> getHistorialPrestamos() {

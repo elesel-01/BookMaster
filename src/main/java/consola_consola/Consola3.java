@@ -45,7 +45,7 @@ public class Consola3 {
                     System.out.print("Ingrese el ID del libro: ");
                     int idLibro = scanner.nextInt();
                     scanner.nextLine(); // Limpiar el buffer
-                    controladorReserva.solicitarLibro(idLibro, usuarioLogueado.getNombre());
+                    controladorReserva.solicitarLibro(idLibro, usuarioLogueado.getId());
                     break;
                 case 3:
                     System.out.println("Sus datos:");

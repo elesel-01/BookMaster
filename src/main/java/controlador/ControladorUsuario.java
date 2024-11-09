@@ -31,6 +31,7 @@ public class ControladorUsuario {
 			try (PreparedStatement statement = connection.prepareStatement(sql);
 					ResultSet resultSet = statement.executeQuery()) {
 				while (resultSet.next()) {
+					int idUsuario = resultSet.getInt("idUsuario");
 					String nombre = resultSet.getString("nombre");
 					String apellido = resultSet.getString("apellido");
 					String correo = resultSet.getString("email");
@@ -38,6 +39,7 @@ public class ControladorUsuario {
 					String rol = resultSet.getString("rol");
 					String contrasena = resultSet.getString("passw");
 					Usuario usuario = new Usuario(nombre, apellido, correo, dni, rol);
+					usuario.setId(idUsuario);
 					usuario.setPassw(contrasena);
 					usuarios.add(usuario); // Agregar cada usuario a la lista
 				}
@@ -96,96 +98,9 @@ public class ControladorUsuario {
 		}
 	}
 
-	/*public List<Libro> buscarLibroPorNombre(String nombre) {
-		List<Libro> libros = new ArrayList<>();
-		Coneccion db = new Coneccion();
-		try (Connection connection = db.getConnection()) {
-			String sql = "SELECT * FROM libro WHERE titulo LIKE ?";
-			try (PreparedStatement statement = connection.prepareStatement(sql)) {
-				statement.setString(1, "%" + nombre + "%");
-				try (ResultSet resultSet = statement.executeQuery()) {
-					while (resultSet.next()) {
-						Libro libro = new Libro(resultSet.getInt("idEstanteria"), resultSet.getString("titulo"),
-								resultSet.getString("autor"), resultSet.getString("editorial"),
-								resultSet.getInt("anioPublicacion"), resultSet.getString("categoria"),
-								resultSet.getBoolean("disponible"));
-						libro.setIdLibro(resultSet.getInt("idLibro"));
-						libros.add(libro);
-					}
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return libros;
-	}
-
-	public List<Libro> buscarLibroPorAutor(String autor) {
-		List<Libro> libros = new ArrayList<>();
-		Coneccion db = new Coneccion();
-		try (Connection connection = db.getConnection()) {
-			String sql = "SELECT * FROM libro WHERE autor LIKE ?";
-			try (PreparedStatement statement = connection.prepareStatement(sql)) {
-				statement.setString(1, "%" + autor + "%");
-				try (ResultSet resultSet = statement.executeQuery()) {
-					while (resultSet.next()) {
-						Libro libro = new Libro(resultSet.getInt("idEstanteria"), resultSet.getString("titulo"),
-								resultSet.getString("autor"), resultSet.getString("editorial"),
-								resultSet.getInt("anioPublicacion"), resultSet.getString("categoria"),
-								resultSet.getBoolean("disponible"));
-						libro.setIdLibro(resultSet.getInt("idLibro"));
-						libros.add(libro);
-					}
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return libros;
-	}
-
-	public List<Libro> buscarLibroPorCategoria(String categoria) {
-		List<Libro> libros = new ArrayList<>();
-		Coneccion db = new Coneccion();
-		try (Connection connection = db.getConnection()) {
-			String sql = "SELECT * FROM libro WHERE categoria LIKE ?";
-			try (PreparedStatement statement = connection.prepareStatement(sql)) {
-				statement.setString(1, "%" + categoria + "%");
-				try (ResultSet resultSet = statement.executeQuery()) {
-					while (resultSet.next()) {
-						Libro libro = new Libro(resultSet.getInt("idEstanteria"), resultSet.getString("titulo"),
-								resultSet.getString("autor"), resultSet.getString("editorial"),
-								resultSet.getInt("anioPublicacion"), resultSet.getString("categoria"),
-								resultSet.getBoolean("disponible"));
-						libro.setIdLibro(resultSet.getInt("idLibro"));
-						libros.add(libro);
-					}
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return libros;
-	}
-	
-	public static void mostrarLibros(List<Libro> libros) {
-		if (libros.isEmpty()) {
-			System.out.println("No se encontraron libros.");
-		} else {
-			for (Libro libro : libros) {
-				System.out.println(libro);
-			}
-		}
-	}*/
-
 	public void verMisDatos(Usuario usuarioLogueado) {
-		if (usuarioLogueado != null) {
-			System.out.println("Nombre: " + usuarioLogueado.getNombre());
-			System.out.println("Apellido: " + usuarioLogueado.getApellido());
-			System.out.println("Correo: " + usuarioLogueado.getEmail());
-			System.out.println("DNI: " + usuarioLogueado.getDni());
-			System.out.println("Contraseña: " + usuarioLogueado.getPassw());
-		}
+		System.out.println("====Datos del usuario====");
+		System.out.println(usuarioLogueado);
 	}
 
 	/*
