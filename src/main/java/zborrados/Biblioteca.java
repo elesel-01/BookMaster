@@ -1,4 +1,4 @@
-package modelo;
+package zborrados;
 
 import java.util.ArrayList;
 import java.util.List;
