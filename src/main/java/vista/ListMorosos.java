@@ -43,7 +43,7 @@ public class ListMorosos extends JPanel {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel
-				.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\Captura de pantalla 2024-11-01 215004 (1).png"));
+				.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 215004 (1).png"));
 		lblNewLabel.setBounds(246, 0, 590, 133);
 		add(lblNewLabel);
 

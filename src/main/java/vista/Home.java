@@ -89,7 +89,7 @@ public class Home extends JPanel {
         add(button_8);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\pngegg (1).png"));
+        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\pngegg (1).png"));
         lblNewLabel.setBounds(62, 31, 130, 130);
         add(lblNewLabel);
 
@@ -106,7 +106,7 @@ public class Home extends JPanel {
         add(lblNewLabel_1_1);
 
         JLabel lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\linea (1).png"));
+        lblNewLabel_2.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Downloads\\linea (1).png"));
         lblNewLabel_2.setBounds(445, 72, 136, 177);
         add(lblNewLabel_2);
 

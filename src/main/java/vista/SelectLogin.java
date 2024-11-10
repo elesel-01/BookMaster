@@ -62,13 +62,13 @@ public class SelectLogin extends JFrame {
         selectLoginPanel.add(btnNewButton);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\Captura de pantalla 2024-11-01 211115 (1).png"));
+        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 211115 (1).png"));
         lblNewLabel.setBounds(576, 78, 260, 352);
         selectLoginPanel.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("");
         lblNewLabel_1.setForeground(new Color(104, 105, 106));
-        lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\Captura de pantalla 2024-11-01 211334 (1).png"));
+        lblNewLabel_1.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 211334 (1).png"));
         lblNewLabel_1.setBounds(0, 0, 576, 512);
         selectLoginPanel.add(lblNewLabel_1);
 

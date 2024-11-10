@@ -27,7 +27,7 @@ public class RegisterUsuario extends JPanel {
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\pngegg (2) (1).png"));
+		lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\pngegg (2) (1).png"));
 		lblNewLabel.setBounds(608, 0, 228, 171);
 		add(lblNewLabel);
 

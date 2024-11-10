@@ -55,12 +55,12 @@ public class Login extends JPanel {
         add(lblNewLabel_4);
 
         JLabel lblNewLabel_3 = new JLabel("");
-        lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\Captura de pantalla 2024-11-01 212904 (1).png"));
+        lblNewLabel_3.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 212904 (1).png"));
         lblNewLabel_3.setBounds(145, 244, 48, 48);
         add(lblNewLabel_3);
 
         JLabel lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\Captura de pantalla 2024-11-01 212704 (1).png"));
+        lblNewLabel_2.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 212704 (1).png"));
         lblNewLabel_2.setBounds(145, 180, 48, 48);
         add(lblNewLabel_2);
 
@@ -81,13 +81,13 @@ public class Login extends JPanel {
         add(btnNewButton);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\Captura de pantalla 2024-11-01 211115 (1).png"));
+        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 211115 (1).png"));
         lblNewLabel.setBounds(576, 78, 260, 352);
         add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("");
         lblNewLabel_1.setForeground(new Color(104, 105, 106));
-        lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\Captura de pantalla 2024-11-01 211334 (1).png"));
+        lblNewLabel_1.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 211334 (1).png"));
         lblNewLabel_1.setBounds(0, 0, 576, 512);
         add(lblNewLabel_1);
 

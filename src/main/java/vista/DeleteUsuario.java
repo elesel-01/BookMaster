@@ -26,7 +26,7 @@ public class DeleteUsuario extends JPanel {
         setLayout(null);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\pngegg (2) (1).png"));
+        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\pngegg (2) (1).png"));
         lblNewLabel.setBounds(608, 0, 228, 171);
         add(lblNewLabel);
 
@@ -69,7 +69,7 @@ public class DeleteUsuario extends JPanel {
         add(textArea_1);
 
         JLabel lblNewLabel_3 = new JLabel("");
-        lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\Usuario\\Downloads\\pngegg (3) (1).png"));
+        lblNewLabel_3.setIcon(new ImageIcon("src\\main\\java\\Imagen\\pngegg (3) (1).png"));
         lblNewLabel_3.setBounds(608, 296, 190, 190);
         add(lblNewLabel_3);
     }
