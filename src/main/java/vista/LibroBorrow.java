@@ -15,19 +15,20 @@ import javax.swing.JScrollPane;
 public class LibroBorrow extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textField;
+    private JTextField txtId;
     private JTable table;
 
     /**
      * Create the panel.
      */
     public LibroBorrow() {
-        setBackground(new Color(255, 255, 255));
+    	setPreferredSize(new java.awt.Dimension(1040, 600));
+    	setBackground(new Color(255, 255, 255));
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(55, 199, 656, 259);
+        scrollPane.setBounds(55, 221, 731, 355);
         add(scrollPane);
 
         table = new JTable();
@@ -41,23 +42,24 @@ public class LibroBorrow extends JPanel {
 
         JTextArea textArea = new JTextArea();
         textArea.setBackground(new Color(39, 91, 131));
-        textArea.setBounds(0, 0, 249, 133);
+        textArea.setBounds(0, 0, 249, 153);
         add(textArea);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 215004 (1).png"));
-        lblNewLabel.setBounds(246, 0, 590, 133);
+        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 215004.png"));
+        lblNewLabel.setBounds(246, 0, 794, 153);
         add(lblNewLabel);
 
-        textField = new JTextField();
-        textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        textField.setBounds(55, 143, 194, 36);
-        add(textField);
-        textField.setColumns(10);
+        txtId = new JTextField();
+        txtId.setText("ID");
+        txtId.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        txtId.setBounds(55, 163, 194, 36);
+        add(txtId);
+        txtId.setColumns(10);
 
         JButton btnNewButton = new JButton("Devolver");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnNewButton.setBounds(269, 143, 130, 36);
+        btnNewButton.setBounds(269, 162, 130, 36);
         add(btnNewButton);
 
         JTextArea textArea_1 = new JTextArea();
