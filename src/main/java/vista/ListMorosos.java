@@ -19,12 +19,13 @@ public class ListMorosos extends JPanel {
 	 * Create the panel.
 	 */
 	public ListMorosos() {
+		setPreferredSize(new java.awt.Dimension(1040, 600));
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(55, 149, 656, 309);
+		scrollPane.setBounds(30, 171, 790, 391);
 		add(scrollPane);
 
 		table = new JTable();
@@ -38,13 +39,13 @@ public class ListMorosos extends JPanel {
 
 		JTextArea textArea = new JTextArea();
 		textArea.setBackground(new Color(39, 91, 131));
-		textArea.setBounds(0, 0, 249, 133);
+		textArea.setBounds(0, 0, 260, 152);
 		add(textArea);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel
-				.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 215004 (1).png"));
-		lblNewLabel.setBounds(246, 0, 590, 133);
+				.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 215004.png"));
+		lblNewLabel.setBounds(258, 0, 782, 152);
 		add(lblNewLabel);
 
 		JTextArea textArea_1 = new JTextArea();

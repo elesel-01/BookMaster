@@ -21,12 +21,13 @@ public class LibroList extends JPanel {
      * Create the panel.
      */
     public LibroList() {
-        setBackground(new Color(255, 255, 255));
+    	setPreferredSize(new java.awt.Dimension(1040, 600));
+    	setBackground(new Color(255, 255, 255));
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(55, 149, 656, 309);
+        scrollPane.setBounds(54, 195, 758, 382);
         add(scrollPane);
 
         table = new JTable();
@@ -40,12 +41,12 @@ public class LibroList extends JPanel {
 
         JTextArea textArea = new JTextArea();
         textArea.setBackground(new Color(39, 91, 131));
-        textArea.setBounds(0, 0, 249, 133);
+        textArea.setBounds(0, 0, 293, 163);
         add(textArea);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 215004 (1).png"));
-        lblNewLabel.setBounds(246, 0, 590, 133);
+        lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\Captura de pantalla 2024-11-01 215004.png"));
+        lblNewLabel.setBounds(293, 0, 747, 163);
         add(lblNewLabel);
 
         JTextArea textArea_1 = new JTextArea();
