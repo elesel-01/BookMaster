@@ -1,4 +1,4 @@
-package modelo;
+package zborrados;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
