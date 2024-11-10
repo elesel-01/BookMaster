@@ -1,4 +1,3 @@
-
 package vista;
 
 import java.awt.Color;
@@ -38,6 +37,12 @@ public class Home extends JPanel {
         button_9.setFont(new Font("Tahoma", Font.PLAIN, 12));
         button_9.setBounds(577, 147, 130, 31);
         add(button_9);
+        button_9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Navigate to DeleteUsuario view
+                navigateToDeleteUsuario();
+            }
+        });
 
         JButton button_10 = new JButton("<html><center>Ver usuario<br>moroso</center></html>");
         button_10.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -62,6 +67,12 @@ public class Home extends JPanel {
         button_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
         button_4.setBounds(106, 426, 130, 31);
         add(button_4);
+        button_4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Navigate to LibroBorrow view
+                navigateToLibroBorrow();
+            }
+        });
 
         JButton button_3 = new JButton("Lista de Libros");
         button_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -102,6 +113,14 @@ public class Home extends JPanel {
         JTextPane textPane = new JTextPane();
         textPane.setBounds(318, 294, 382, 177);
         add(textPane);
+    }
+
+    private void navigateToDeleteUsuario() {
+        // Implement the logic to navigate to DeleteUsuario view
+    }
+
+    private void navigateToLibroBorrow() {
+        // Implement the logic to navigate to LibroBorrow view
     }
 }
 
