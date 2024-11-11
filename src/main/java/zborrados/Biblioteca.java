@@ -1,4 +1,4 @@
-package zborrados;
+/*package zborrados;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class Biblioteca {
 	/*
 	 * En si esta metodo sirve para agregar un libro al catalogo de la biblioteca
 	 * luego ya se encargaría de modificar la disponibilidad
-	 */
+	 
 	public void agregarLibro(Libro libro) {
 		if (libro != null) {
 			boolean exists = false; // para evitar duplicados
@@ -89,4 +89,4 @@ public class Biblioteca {
 		return new ArrayList<>(usuariosRegistrados);
 	}
 
-}
+}*/

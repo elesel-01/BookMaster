@@ -1,7 +1,5 @@
 package consola_consola;
 
-import modelo.Administrador;
-import modelo.Libro;
 import modelo.Usuario;
 import java.util.Scanner;
 import controlador.ControladorAdministrador;

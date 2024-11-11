@@ -1,4 +1,4 @@
-package zborrados;
+/*package zborrados;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -120,3 +120,4 @@ public class Administrador {
 	
 
 }
+*/
