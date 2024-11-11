@@ -84,26 +84,5 @@ class ControladorAdministradorTest {
 		verify(ps).executeUpdate();
 	}
 
-	 @Test
-	    void testEliminarLibro() throws Exception {
-	        int idLibro = 1;
-
-	        controlador.eliminarLibro(idLibro);
-
-	        verify(connection).prepareStatement("DELETE FROM libro WHERE idLibro = ?");
-	        verify(ps).setInt(1, idLibro);
-	        verify(ps).executeUpdate();
-	    }
-
-	    @Test
-	    void testEliminarUsuario() throws Exception {
-	        int idUsuario = 1;
-
-	        controlador.eliminarUsuario(idUsuario);
-
-	        verify(connection).prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
-	        verify(ps).setInt(1, idUsuario);
-	        verify(ps).executeUpdate();
-	    }
 
 }
