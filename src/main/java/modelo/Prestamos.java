@@ -105,14 +105,14 @@ public class Prestamos {
 				fechaDevolucion.format(formatter));
 	}
 
-	public void extenderPlazo(int dias) {
+	/*public void extenderPlazo(int dias) {
 		if (estado == EstadoPrestamo.ACTIVO || estado == EstadoPrestamo.ATRASADO) {
 			this.fechaDevolucion = this.fechaDevolucion.plusDays(dias);
 			System.out.println("El plazo del préstamo ha sido extendido en " + dias + " días.");
 		} else {
 			System.out.println("No se puede extender el plazo de un préstamo que no está activo.");
 		}
-	}
+	}*/
 
 	@Override
 	public String toString() {
