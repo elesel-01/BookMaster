@@ -76,9 +76,19 @@ public class Home extends JPanel {
         });
 
         JButton button_6 = new JButton("Cerrar Seción");
+        button_6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         button_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
         button_6.setBounds(112, 212, 145, 38);
         add(button_6);
+        button_6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "SelectLogin");
+            }
+        });
+        
         
         
 

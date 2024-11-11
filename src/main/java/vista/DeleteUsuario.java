@@ -39,7 +39,7 @@ public class DeleteUsuario extends JPanel {
         this.contentPane = contentPane;
     	setPreferredSize(new java.awt.Dimension(1040, 600));
     	setBackground(new Color(255, 255, 255));
-        setBorder(new EmptyBorder(5, 5, 5, 5));
+        setBorder(new EmptyBorder(0, 0, 0, 0));
         setLayout(null);
 
         JLabel lblNewLabel = new JLabel("");
@@ -88,7 +88,7 @@ public class DeleteUsuario extends JPanel {
 
         JLabel lblNewLabel_3 = new JLabel("");
         lblNewLabel_3.setIcon(new ImageIcon("src\\main\\java\\Imagen\\pngegg (3).png"));
-        lblNewLabel_3.setBounds(812, 359, 228, 231);
+        lblNewLabel_3.setBounds(793, 359, 228, 231);
         add(lblNewLabel_3);
         
         JButton btnBuscar = new JButton("Buscar");
@@ -99,7 +99,7 @@ public class DeleteUsuario extends JPanel {
         
         JButton volverButton = new JButton("Volver");
         volverButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        volverButton.setBounds(888, 229, 142, 46);
+        volverButton.setBounds(839, 229, 142, 46);
         add(volverButton);
         volverButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -113,7 +113,7 @@ public class DeleteUsuario extends JPanel {
             new String[] { "ID", "Nombre", "Apellido", "DNI", "password", "email", "rol" }
         ));
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(34, 316, 750, 150);
+        scrollPane.setBounds(34, 316, 688, 150);
         add(scrollPane);
     }
     
