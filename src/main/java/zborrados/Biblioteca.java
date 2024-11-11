@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
-	private String nombre;
+	/*private String nombre;
 	private List<Libro> catalogo;
 	private List<Usuario> usuariosRegistrados;
 	// private List<Categoria> categorias; es que ya está dentro de catálogos debido
@@ -35,7 +35,7 @@ public class Biblioteca {
 	 * En si esta metodo sirve para agregar un libro al catalogo de la biblioteca
 	 * luego ya se encargaría de modificar la disponibilidad
 	 */
-	public void agregarLibro(Libro libro) {
+	/*public void agregarLibro(Libro libro) {
 		if (libro != null) {
 			boolean exists = false; // para evitar duplicados
 			for (Libro l : catalogo) {
@@ -88,5 +88,5 @@ public class Biblioteca {
 	public List<Usuario> listarUsuario() {
 		return new ArrayList<>(usuariosRegistrados);
 	}
-
+*/
 }

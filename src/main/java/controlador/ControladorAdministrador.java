@@ -45,9 +45,10 @@ public class ControladorAdministrador {
 	public void eliminarLibro(int idLibro) {
 
 		try (Connection connection = db.getConnection()) {
-			String sql = "DELETE FORM libro WHERE idLibro=?";
+			String sql = "DELETE FROM libro WHERE idLibro=?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setInt(1, idLibro);
+				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

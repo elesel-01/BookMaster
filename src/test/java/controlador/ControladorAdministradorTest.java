@@ -1,7 +1,6 @@
 
 package controlador;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -64,27 +63,47 @@ class ControladorAdministradorTest {
 	}
 
 	@Test
-	void testEliminarLibro() {
-		fail("Not yet implemented");
+	void testRegistrarUsuario() throws Exception {
+		String nombre = "jerson";
+		String apellido = "valqui";
+		String correo = "valqui@gmail.com";
+		int dni = 87654321;
+		String contrasena = "12345";
+		String rol = "usuario";
+
+		controlador.registrarUsuario(nombre, apellido, correo, dni, contrasena, rol);
+
+		verify(connection).prepareStatement(
+				"INSERT INTO usuario (nombre, apellido, email, dni, passw, rol) VALUES (?, ?, ?, ?, ?, ?)");
+		verify(ps).setString(1, nombre);
+		verify(ps).setString(2, apellido);
+		verify(ps).setString(3, correo);
+		verify(ps).setInt(4, dni);
+		verify(ps).setString(5, contrasena);
+		verify(ps).setString(6, rol);
+		verify(ps).executeUpdate();
 	}
 
-	@Test
-	void testListarLibros() {
-		fail("Not yet implemented");
-	}
+	 @Test
+	    void testEliminarLibro() throws Exception {
+	        int idLibro = 1;
 
-	@Test
-	void testRegistrarUsuario() {
-		fail("Not yet implemented");
-	}
+	        controlador.eliminarLibro(idLibro);
 
-	@Test
-	void testLibrosPrestados() {
-		fail("Not yet implemented");
-	}
+	        verify(connection).prepareStatement("DELETE FROM libro WHERE idLibro = ?");
+	        verify(ps).setInt(1, idLibro);
+	        verify(ps).executeUpdate();
+	    }
 
-	@Test
-	void testEliminarUsuario() {
-		fail("Not yet implemented");
-	}
+	    @Test
+	    void testEliminarUsuario() throws Exception {
+	        int idUsuario = 1;
+
+	        controlador.eliminarUsuario(idUsuario);
+
+	        verify(connection).prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
+	        verify(ps).setInt(1, idUsuario);
+	        verify(ps).executeUpdate();
+	    }
+
 }
