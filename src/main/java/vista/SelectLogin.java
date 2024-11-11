@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import vista.RegistroLibro;
+
 
 public class SelectLogin extends JFrame {
 
@@ -75,8 +77,30 @@ public class SelectLogin extends JFrame {
         Login loginPanel = new Login(cardLayout, contentPane);
         contentPane.add(loginPanel, "Login");
 
-        Home homePanel = new Home();
+        Home homePanel = new Home(contentPane, cardLayout);
         contentPane.add(homePanel, "Home");
+        
+        RegistroLibro registroLibroPanel = new RegistroLibro(cardLayout, contentPane);
+        contentPane.add(registroLibroPanel, "RegistroLibro");
+        
+        DeleteLibro deleteLibroPanel = new DeleteLibro(cardLayout, contentPane);
+        contentPane.add(deleteLibroPanel, "DeleteLibro");
+        
+        RegisterUsuario registerUsuarioPanel = new RegisterUsuario(cardLayout, contentPane);
+        contentPane.add(registerUsuarioPanel, "RegisterUsuario");
+        
+        ListMorosos listMorososPanel = new ListMorosos(cardLayout, contentPane);
+        contentPane.add(listMorososPanel, "ListMorosos");
+        
+        DeleteUsuario deleteUsuarioPanel = new DeleteUsuario(cardLayout, contentPane);
+        contentPane.add(deleteUsuarioPanel, "DeleteUsuario");
+        
+        LibroList libroListPanel = new LibroList(cardLayout, contentPane);
+        contentPane.add(libroListPanel, "LibroList");
+        
+        LibroBorrow libroBorrowPanel = new LibroBorrow(cardLayout, contentPane);
+        contentPane.add(libroBorrowPanel, "LibroBorrow");
+        
     }
 
     public static void main(String[] args) {

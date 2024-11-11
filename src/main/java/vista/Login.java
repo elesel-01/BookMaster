@@ -90,7 +90,7 @@ public class Login extends JPanel {
         txtUsername = new JTextField();
         txtUsername.setForeground(new Color(104, 105, 106));
         txtUsername.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        txtUsername.setText("    Username");
+        txtUsername.setText("Username");
         txtUsername.setBackground(new Color(192, 192, 192));
         txtUsername.setBounds(239, 227, 227, 58);
         add(txtUsername);
