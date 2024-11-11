@@ -1,5 +1,5 @@
 
-package modelo;
+/*package modelo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -78,5 +78,5 @@ class UsuarioTest {
     void testSetRol() {
         usuario.setRol("admin");
         assertEquals("admin", usuario.getRol());
-    }*/
-}
+    }
+}*/

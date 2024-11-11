@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
@@ -15,24 +17,42 @@ import javax.swing.border.EmptyBorder;
 public class Home extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private final JButton button_7 = new JButton("Agregar Libro");
+    private JPanel contentPane;  // Sin inicializar aquí
+    private CardLayout cardLayout;
 
     /**
      * Create the panel.
      */
-    public Home() {
-    	setPreferredSize(new java.awt.Dimension(1040, 600));
+    public Home(JPanel contentPane, CardLayout cardLayout) {
+        this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
+        this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
+
+        setPreferredSize(new java.awt.Dimension(1040, 600));
         setBackground(new Color(39, 91, 131));
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(null);
+        
+        JButton button_7 = new JButton("Agregar Libro");
         button_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
         button_7.setBounds(411, 114, 170, 47);
         add(button_7);
+        button_7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "RegistroLibro");
+            }
+        });
+            
 
-        JButton button_1 = new JButton("New button");
+
+        JButton button_1 = new JButton("Eliminar Libro");
         button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
         button_1.setBounds(411, 193, 170, 47);
         add(button_1);
+        button_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "DeleteLibro");
+            }
+        });
 
         JButton button_9 = new JButton("Eliminar Usuario");
         button_9.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -40,8 +60,7 @@ public class Home extends JPanel {
         add(button_9);
         button_9.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Navigate to DeleteUsuario view
-                navigateToDeleteUsuario();
+                cardLayout.show(contentPane, "DeleteUsuario");
             }
         });
 
@@ -49,20 +68,29 @@ public class Home extends JPanel {
         button_10.setFont(new Font("Tahoma", Font.PLAIN, 14));
         button_10.setBounds(739, 221, 170, 47);
         add(button_10);
+        
+        button_10.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "ListMorosos");
+            }
+        });
 
         JButton button_6 = new JButton("Cerrar Seción");
+        button_6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         button_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
         button_6.setBounds(112, 212, 145, 38);
         add(button_6);
-
-        JButton button_2 = new JButton("Ver Solicitudes");
-        button_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        button_2.addActionListener(new ActionListener() {
+        button_6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "SelectLogin");
             }
         });
-        button_2.setBounds(106, 322, 151, 47);
-        add(button_2);
+        
+        
+        
 
         JButton button_4 = new JButton("Libros Prestados");
         button_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -70,15 +98,21 @@ public class Home extends JPanel {
         add(button_4);
         button_4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Navigate to LibroBorrow view
-                navigateToLibroBorrow();
+                cardLayout.show(contentPane, "LibroBorrow");
             }
         });
+
 
         JButton button_3 = new JButton("Lista de Libros");
         button_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
         button_3.setBounds(106, 406, 151, 47);
         add(button_3);
+        
+        button_3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "LibroList");
+            }
+        });
 
         JButton button_8 = new JButton("<html><center>Crear cuenta<br>Usuario</center></html>");
         button_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -88,6 +122,12 @@ public class Home extends JPanel {
         });
         button_8.setBounds(739, 84, 170, 47);
         add(button_8);
+        //Funcion boton crear cuenta
+        button_8.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "RegisterUsuario");
+            }
+        });
 
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon("src\\main\\java\\Imagen\\pngegg.png"));

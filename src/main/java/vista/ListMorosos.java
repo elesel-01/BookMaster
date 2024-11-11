@@ -1,8 +1,13 @@
 package vista;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -14,11 +19,14 @@ public class ListMorosos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-
+	private JPanel contentPane;  // Sin inicializar aquí
+    private CardLayout cardLayout;
 	/**
 	 * Create the panel.
 	 */
-	public ListMorosos() {
+	public ListMorosos(CardLayout cardLayout, JPanel contentPane) {
+		this.cardLayout = cardLayout;
+        this.contentPane = contentPane;
 		setPreferredSize(new java.awt.Dimension(1040, 600));
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,5 +59,15 @@ public class ListMorosos extends JPanel {
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setBounds(186, 450, 161, 34);
 		add(textArea_1);
+		
+		JButton volverButton = new JButton("Volver");
+        volverButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        volverButton.setBounds(847, 530, 142, 46);
+        add(volverButton);
+        volverButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	cardLayout.show(contentPane, "Home");
+            }
+        });
 	}
 }
