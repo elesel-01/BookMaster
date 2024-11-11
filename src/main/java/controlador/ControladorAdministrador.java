@@ -109,24 +109,6 @@ public class ControladorAdministrador {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/*public void librosPrestados() {
-		
-		String [] librosPrestados = new String[2];
-		
-		try {
-			Connection connection = db.getConnection();
-            String sql = "SELECT idPrestamo, fechaInicio FROM prestamo";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.executeQuery();
-            librosPrestados[0] = ps.getResultSet().getString("idPrestamo");
-            librosPrestados[1] = ps.getResultSet().getTimestamp("fechaInicio").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            System.out.println("ID Prestamo: "+librosPrestados[0]+" Fecha Inicio: "+librosPrestados[1]);        	
-		}catch(SQLException e) {
-			e.printStackTrace();;
-		}
-	}*/
 	
 	public void librosPrestados() {
 	    String[] librosPrestados = new String[3];
