@@ -1,16 +1,32 @@
 package vista;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import base_de_datos.Coneccion;
+import modelo.Usuario;
+
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import javax.swing.*;
+import java.sql.SQLException;
 
 public class RegisterUsuario extends JPanel {
 
@@ -20,11 +36,15 @@ public class RegisterUsuario extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JPanel contentPane;  // Sin inicializar aquí
+    private CardLayout cardLayout;
 
 	/**
 	 * Create the panel.
 	 */
-	public RegisterUsuario() {
+	public RegisterUsuario(CardLayout cardLayout, JPanel contentPane) {
+		this.cardLayout = cardLayout;
+        this.contentPane = contentPane;
 		setPreferredSize(new java.awt.Dimension(1040, 600));
 		setBackground(new Color(255, 255, 255));
 		setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -126,6 +146,12 @@ public class RegisterUsuario extends JPanel {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton.setBounds(34, 512, 130, 36);
 		add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registrarUsuarioEstandar();
+            }
+        });
 
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setBounds(186, 450, 161, 34);
@@ -135,6 +161,12 @@ public class RegisterUsuario extends JPanel {
 		btnRegistrarComoAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnRegistrarComoAdministrador.setBounds(250, 512, 311, 36);
 		add(btnRegistrarComoAdministrador);
+		btnRegistrarComoAdministrador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registrarUsuarioAdmin();
+            }
+        });
 		
 		textField_4 = new JTextField();
 		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -153,5 +185,109 @@ public class RegisterUsuario extends JPanel {
 		lblNewLabel_2_2_1.setBackground(Color.CYAN);
 		lblNewLabel_2_2_1.setBounds(10, 0, 79, 31);
 		panel_2_1.add(lblNewLabel_2_2_1);
+		
+		JButton volverButton = new JButton("Volver");
+        volverButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        volverButton.setBounds(847, 530, 142, 46);
+        add(volverButton);
+        volverButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	cardLayout.show(contentPane, "Home");
+            }
+        });
 	}
+	
+	// Funcion para registrar Usuario
+	public void registrarUsuarioEstandar() {
+		String nombreText = textField_2.getText();
+		String apellidoText = textField_3.getText();
+		int dniText = Integer.parseInt(textField.getText());
+		String passText = textField_1.getText();
+		String emailText = textField_4.getText();
+		
+		    try (Connection connection = DriverManager.getConnection("jdbc:mysql://junction.proxy.rlwy.net:38689/railway?useSSL=false&serverTimezone=UTC", "root", "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ")) {
+		        
+		        // Verificar si el correo o el DNI ya existen
+		        String checkSql = "SELECT COUNT(*) FROM usuario WHERE dni = ? OR email = ?";
+		        PreparedStatement checkStatement = connection.prepareStatement(checkSql);
+		        checkStatement.setInt(1, dniText);
+		        checkStatement.setString(2, emailText);
+		        ResultSet checkResult = checkStatement.executeQuery();
+		        checkResult.next();
+	
+		        if (checkResult.getInt(1) > 0) {
+		            JOptionPane.showMessageDialog(this, "El correo o el DNI ya están registrados.");
+		            return; // Detener el proceso si ya existe
+		        }
+	
+		        // Si el correo y DNI no existen, procedemos con la inserción
+		        String sql = "INSERT INTO usuario (idUsuario, nombre, apellido, dni, passw, email, rol) VALUES (?, ?, ?, ?, ?, ?, 'usuario')";
+		        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+	
+		        preparedStatement.setInt(1, obtenerSiguienteID(connection));
+		        preparedStatement.setString(2, nombreText);
+		        preparedStatement.setString(3, apellidoText);
+		        preparedStatement.setInt(4, dniText);
+		        preparedStatement.setString(5, passText);
+		        preparedStatement.setString(6, emailText);
+	
+		        preparedStatement.executeUpdate();
+		        JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.");
+	
+		    } catch (SQLException ex) {
+		        ex.printStackTrace();
+		        JOptionPane.showMessageDialog(this, "Error al registrar el usuario.");
+		    }
+		}
+	
+	public void registrarUsuarioAdmin() {
+		String nombreText = textField_2.getText();
+		String apellidoText = textField_3.getText();
+		int dniText = Integer.parseInt(textField.getText());
+		String passText = textField_1.getText();
+		String emailText = textField_4.getText();
+		
+		    try (Connection connection = DriverManager.getConnection("jdbc:mysql://junction.proxy.rlwy.net:38689/railway?useSSL=false&serverTimezone=UTC", "root", "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ")) {
+		        
+		        // Verificar si el correo o el DNI ya existen
+		        String checkSql = "SELECT COUNT(*) FROM usuario WHERE dni = ? OR email = ?";
+		        PreparedStatement checkStatement = connection.prepareStatement(checkSql);
+		        checkStatement.setInt(1, dniText);
+		        checkStatement.setString(2, emailText);
+		        ResultSet checkResult = checkStatement.executeQuery();
+		        checkResult.next();
+	
+		        if (checkResult.getInt(1) > 0) {
+		            JOptionPane.showMessageDialog(this, "El correo o el DNI ya están registrados.");
+		            return; // Detener el proceso si ya existe
+		        }
+	
+		        // Si el correo y DNI no existen, procedemos con la inserción
+		        String sql = "INSERT INTO usuario (idUsuario, nombre, apellido, dni, passw, email, rol) VALUES (?, ?, ?, ?, ?, ?, 'admin')";
+		        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+	
+		        preparedStatement.setInt(1, obtenerSiguienteID(connection));
+		        preparedStatement.setString(2, nombreText);
+		        preparedStatement.setString(3, apellidoText);
+		        preparedStatement.setInt(4, dniText);
+		        preparedStatement.setString(5, passText);
+		        preparedStatement.setString(6, emailText);
+	
+		        preparedStatement.executeUpdate();
+		        JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.");
+	
+		    } catch (SQLException ex) {
+		        ex.printStackTrace();
+		        JOptionPane.showMessageDialog(this, "Error al registrar el usuario.");
+		    }
+		}
+	
+	private int obtenerSiguienteID(Connection connection) throws SQLException {
+        // Aquí iría la consulta para obtener el ID actual más alto en la base de datos y sumar uno
+        String sql = "SELECT MAX(idUsuario) FROM usuario";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        return rs.getInt(1) + 1;  // Retorna el siguiente ID
+    }
 }
