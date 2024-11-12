@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 import base_de_datos.Coneccion;
 import modelo.Libro;
 import modelo.Usuario;
+import modelo.Prestamos;
 
 public class ControladorAdministrador {
 	private List<Libro> libros = new ArrayList<>();
@@ -109,6 +111,7 @@ public class ControladorAdministrador {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
 	
 	public void librosPrestados() {
 	    String[] librosPrestados = new String[3];
@@ -164,5 +167,44 @@ public class ControladorAdministrador {
 			e.printStackTrace();
 		}
 	}
+	
+	/*public void verMorosos() {
+		
+		Prestamos pres = new Prestamos(int id, Libro libro, Usuario usuario, LocalDateTime fechaPrestamo);
+		boolean moroso=pres.estaVencido();
+		if(moroso) {
+			String[] librosPrestados = new String[3];
+
+		    try {
+		        Connection connection = db.getConnection();
+		        String sql = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni " +
+		                     "FROM prestamo " +
+		                     "JOIN libro ON prestamo.idLibro = libro.idLibro " +
+		                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario";
+		        PreparedStatement ps = connection.prepareStatement(sql);
+		        ResultSet rs = ps.executeQuery();
+
+		        // Procesar los resultados
+		        while (rs.next()) {
+		            librosPrestados[0] = rs.getString("idPrestamo");
+		            librosPrestados[1] = rs.getString("titulo");
+		            librosPrestados[2] = rs.getString("dni");
+
+		            System.out.println("ID Prestamo: " + librosPrestados[0] + 
+		                               " Titulo: " + librosPrestados[1] + 
+		                               " DNI: " + librosPrestados[2]);
+		        }
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}else {
+			System.out.println("No hay ususarios morosos");
+		}		
+		
+	}*/
 
 }
