@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -168,32 +169,40 @@ public class ControladorAdministrador {
 		}
 	}
 	
+	
 	public void verMorosos() {
-		String[] verMorosos = new String[4];
-		try {
-			Connection connection = db.getConnection();
+	    try {
+	        Connection connection = db.getConnection();
+	        
 	        String sql = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni, prestamo.fechaEntrega " +
 	                     "FROM prestamo " +
 	                     "JOIN libro ON prestamo.idLibro = libro.idLibro " +
-	                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario";
+	                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario " +
+	                     "WHERE prestamo.fechaEntrega < NOW()";  // Trae solo los registros con fecha de entrega vencida
+	        
 	        PreparedStatement ps = connection.prepareStatement(sql);
 	        ResultSet rs = ps.executeQuery();
+	        
+	        boolean hayMorosos = false;
+	        
 	        while (rs.next()) {
-				verMorosos[0] = rs.getString("idPrestamo");
-				verMorosos[1] = rs.getString("titulo");
-				verMorosos[2] = rs.getString("dni");
-				verMorosos[3] = rs.getString("fechaEntrega");
-				
-				System.out.println("ID Prestamo: " + verMorosos[0] + " Titulo: " + verMorosos[1] + " DNI: "
-						+ verMorosos[2] + " Fecha de Entrega: " + verMorosos[3]);
-				
+	            hayMorosos = true;
+	            String idPrestamo = rs.getString("idPrestamo");
+	            String titulo = rs.getString("titulo");
+	            String dni = rs.getString("dni");
+	            String fechaEntrega = rs.getString("fechaEntrega");
+	            
+	            System.out.println("ID Prestamo: " + idPrestamo + " Titulo: " + titulo + " DNI: " 
+	                               + dni + " Fecha de Entrega: " + fechaEntrega);
 	        }
 	        
-	        
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}	
+	        if (!hayMorosos) {
+	            System.out.println("No hay morosos");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 
 }
