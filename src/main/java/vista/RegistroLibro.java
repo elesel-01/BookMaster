@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Usuario;
+import controlador.ControladorAdministrador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 public class RegistroLibro extends JPanel {
+	
+	private ControladorAdministrador controladorAdministrador = new ControladorAdministrador();
 	
     private static final long serialVersionUID = 1L;
     private JTextField titulo;
@@ -222,10 +225,12 @@ public class RegistroLibro extends JPanel {
         String categoriaText = categoria.getText();
         String codigoEstanteria = codigo_Estanteria.getText();
         String anioPublicacion = anio_publicacion.getText();
-        int numLibros = Integer.parseInt(numero_libro.getText());
+        //int numLibros = Integer.parseInt(numero_libro.getText());
+        
+        controladorAdministrador.registrarLibro(Integer.parseInt(codigoEstanteria), tituloText, autorText, editorialText, Integer.parseInt(anioPublicacion), categoriaText, true);
 
         // Conectar a la base de datos y registrar el libro
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://junction.proxy.rlwy.net:38689/railway?useSSL=false&serverTimezone=UTC", "root", "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ")) {
+        /*try (Connection connection = DriverManager.getConnection("jdbc:mysql://junction.proxy.rlwy.net:38689/railway?useSSL=false&serverTimezone=UTC", "root", "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ")) {
             String sql = "INSERT INTO libro (titulo, autor, editorial, categoria, idEstanteria, anioPublicacion, idLibro,disponible) VALUES (?, ?, ?, ?, ?, ?, ?,1)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -245,7 +250,7 @@ public class RegistroLibro extends JPanel {
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error al registrar el libro.");
-        }
+        }*/
     }
     private int obtenerSiguienteID(Connection connection) throws SQLException {
         // Aquí iría la consulta para obtener el ID actual más alto en la base de datos y sumar uno

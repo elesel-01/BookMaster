@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import base_de_datos.Coneccion;
 import modelo.Libro;
 import modelo.Usuario;
@@ -40,8 +42,10 @@ public class ControladorAdministrador {
 				ps.execute();
 			}
 			
+			JOptionPane.showMessageDialog(null, "Libro(s) registrado(s) exitosamente.");
 		} catch (Exception e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error al registrar el libro.");
 		}
 	}
 
