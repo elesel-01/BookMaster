@@ -168,43 +168,32 @@ public class ControladorAdministrador {
 		}
 	}
 	
-	/*public void verMorosos() {
-		
-		Prestamos pres = new Prestamos(int id, Libro libro, Usuario usuario, LocalDateTime fechaPrestamo);
-		boolean moroso=pres.estaVencido();
-		if(moroso) {
-			String[] librosPrestados = new String[3];
-
-		    try {
-		        Connection connection = db.getConnection();
-		        String sql = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni " +
-		                     "FROM prestamo " +
-		                     "JOIN libro ON prestamo.idLibro = libro.idLibro " +
-		                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario";
-		        PreparedStatement ps = connection.prepareStatement(sql);
-		        ResultSet rs = ps.executeQuery();
-
-		        // Procesar los resultados
-		        while (rs.next()) {
-		            librosPrestados[0] = rs.getString("idPrestamo");
-		            librosPrestados[1] = rs.getString("titulo");
-		            librosPrestados[2] = rs.getString("dni");
-
-		            System.out.println("ID Prestamo: " + librosPrestados[0] + 
-		                               " Titulo: " + librosPrestados[1] + 
-		                               " DNI: " + librosPrestados[2]);
-		        }
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	public void verMorosos() {
+		String[] verMorosos = new String[4];
+		try {
+			Connection connection = db.getConnection();
+	        String sql = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni, prestamo.fechaEntrega " +
+	                     "FROM prestamo " +
+	                     "JOIN libro ON prestamo.idLibro = libro.idLibro " +
+	                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario";
+	        PreparedStatement ps = connection.prepareStatement(sql);
+	        ResultSet rs = ps.executeQuery();
+	        while (rs.next()) {
+				verMorosos[0] = rs.getString("idPrestamo");
+				verMorosos[1] = rs.getString("titulo");
+				verMorosos[2] = rs.getString("dni");
+				verMorosos[3] = rs.getString("fechaEntrega");
+				
+				System.out.println("ID Prestamo: " + verMorosos[0] + " Titulo: " + verMorosos[1] + " DNI: "
+						+ verMorosos[2] + " Fecha de Entrega: " + verMorosos[3]);
+				
+	        }
+	        
+	        
 			
-			
-			
-		}else {
-			System.out.println("No hay ususarios morosos");
-		}		
-		
-	}*/
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
 
 }

@@ -91,7 +91,7 @@ public class Consola2 {
 					break;
 				case 5:
 					//verMorosos(scanner);
-					System.out.println("por implementar");
+					controladorAdministrador.verMorosos();
 					break;
 				case 6:
 					
