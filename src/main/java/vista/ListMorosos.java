@@ -5,6 +5,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import controlador.ControladorAdministrador;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,9 +20,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import base_de_datos.Coneccion;
 
 public class ListMorosos extends JPanel {
 
+	private ControladorAdministrador controlador;
+	
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JPanel contentPane;  // Sin inicializar aquí
@@ -25,6 +36,7 @@ public class ListMorosos extends JPanel {
 	 * Create the panel.
 	 */
 	public ListMorosos(CardLayout cardLayout, JPanel contentPane) {
+		controlador = new ControladorAdministrador();
 		this.cardLayout = cardLayout;
         this.contentPane = contentPane;
 		setPreferredSize(new java.awt.Dimension(1040, 600));
@@ -68,6 +80,15 @@ public class ListMorosos extends JPanel {
             public void actionPerformed(ActionEvent e) {
             	cardLayout.show(contentPane, "Home");
             }
+            
         });
-	}
+        
+        verMorosos();
+        
+	}	
+	
+	private void verMorosos() {
+		DefaultTableModel model = controlador.verMorosos();
+        table.setModel(model);
+    }
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import base_de_datos.Coneccion;
 import modelo.Libro;
@@ -172,41 +175,44 @@ public class ControladorAdministrador {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public void verMorosos() {
-	    try {
-	        Connection connection = db.getConnection();
-	        
-	        String sql = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni, prestamo.fechaEntrega " +
-	                     "FROM prestamo " +
-	                     "JOIN libro ON prestamo.idLibro = libro.idLibro " +
-	                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario " +
-	                     "WHERE prestamo.fechaEntrega < NOW()";  // Trae solo los registros con fecha de entrega vencida
-	        
-	        PreparedStatement ps = connection.prepareStatement(sql);
-	        ResultSet rs = ps.executeQuery();
-	        
-	        boolean hayMorosos = false;
-	        
-	        while (rs.next()) {
-	            hayMorosos = true;
-	            String idPrestamo = rs.getString("idPrestamo");
-	            String titulo = rs.getString("titulo");
-	            String dni = rs.getString("dni");
-	            String fechaEntrega = rs.getString("fechaEntrega");
-	            
-	            System.out.println("ID Prestamo: " + idPrestamo + " Titulo: " + titulo + " DNI: " 
-	                               + dni + " Fecha de Entrega: " + fechaEntrega);
-	        }
-	        
-	        if (!hayMorosos) {
-	            System.out.println("No hay morosos");
-	        }
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	}
+    public DefaultTableModel verMorosos() {
+	       DefaultTableModel model = new DefaultTableModel();
+	       model.addColumn("ID Prestamo");
+	       model.addColumn("Titulo");
+	       model.addColumn("DNI");
+	       model.addColumn("Fecha de Entrega");
+
+	       Coneccion db = new Coneccion();
+	       Connection connection = db.getConnection();
+
+	       if (connection != null) {
+	           try {
+	               String query = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni, prestamo.fechaEntrega " +
+	                       "FROM prestamo " +
+	                       "JOIN libro ON prestamo.idLibro = libro.idLibro " +
+	                       "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario " +
+	                       "WHERE prestamo.fechaEntrega < NOW()";  // Trae solo los registros con fecha de entrega vencida
+	                
+	               Statement statement = connection.createStatement();
+	               ResultSet resultSet = statement.executeQuery(query);
+
+	                while (resultSet.next()) {
+	                    Object[] row = new Object[4];
+	                    row[0] = resultSet.getInt("idPrestamo");
+	                    row[1] = resultSet.getString("titulo");
+	                    row[2] = resultSet.getInt("dni");
+	                    row[3] = resultSet.getString("fechaEntrega");
+	                   model.addRow(row);
+	                }
+	               resultSet.close();
+	               statement.close();
+	               connection.close();
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           }
+	       }
+	        return model;
+	   }
 
 }
