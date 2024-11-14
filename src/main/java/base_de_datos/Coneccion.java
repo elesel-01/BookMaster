@@ -8,7 +8,6 @@ public class Coneccion {
 	// Driver actualizado al más reciente
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String usuario = "root";
-	//private static String password = "canimelin12";
 	private static String password = "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ";
 	// URL de la base de datos con ajuste para evitar advertencias de zona horaria y
 	// SSL
