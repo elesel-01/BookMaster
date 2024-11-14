@@ -93,17 +93,18 @@ public class Libro {
 	
 	@Override
 	public String toString() {
-	    return "Libro{" +
-	            " idLibro=" + idLibro +
-	            ", idEstanteria=" + idEstanteria +
-	            ", titulo='" + titulo + '\'' +
-	            ", autor='" + autor + '\'' +
-	            ", disponible=" + (disponible ? "Sí" : "No") +
-	            ", editorial='" + editorial + '\'' +
-	            ", anioPublicacion=" + anioPublicacion +
-	            ", categoria='" + categoria + '\'' +
-	            '}';
+	    return "Libro{idLibro=" + idLibro +
+	           ", idEstanteria=" + idEstanteria +
+	           ", titulo='" + titulo + '\'' +
+	           ", autor='" + autor + '\'' +
+	           ", editorial='" + editorial + '\'' +
+	           ", anioPublicacion=" + anioPublicacion +
+	           ", categoria='" + categoria + '\'' +
+	           ", disponible=" + disponible +
+	           '}';
 	}
+
+
 	/*
 	public void prestar() {
 		if (disponible) {

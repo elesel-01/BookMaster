@@ -4,14 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import base_de_datos.Coneccion;
 import modelo.Libro;
 import modelo.Usuario;
+import modelo.Prestamos;
 
 public class ControladorAdministrador {
 	private List<Libro> libros = new ArrayList<>();
@@ -38,17 +42,20 @@ public class ControladorAdministrador {
 				ps.execute();
 			}
 			
+			JOptionPane.showMessageDialog(null, "Libro(s) registrado(s) exitosamente.");
 		} catch (Exception e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error al registrar el libro.");
 		}
 	}
 
 	public void eliminarLibro(int idLibro) {
 
 		try (Connection connection = db.getConnection()) {
-			String sql = "DELETE FORM libro WHERE idLibro=?";
+			String sql = "DELETE FROM libro WHERE idLibro=?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setInt(1, idLibro);
+				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -111,23 +118,6 @@ public class ControladorAdministrador {
 		}
 	}
 	
-	/*public void librosPrestados() {
-		
-		String [] librosPrestados = new String[2];
-		
-		try {
-			Connection connection = db.getConnection();
-            String sql = "SELECT idPrestamo, fechaInicio FROM prestamo";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.executeQuery();
-            librosPrestados[0] = ps.getResultSet().getString("idPrestamo");
-            librosPrestados[1] = ps.getResultSet().getTimestamp("fechaInicio").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            System.out.println("ID Prestamo: "+librosPrestados[0]+" Fecha Inicio: "+librosPrestados[1]);        	
-		}catch(SQLException e) {
-			e.printStackTrace();;
-		}
-	}*/
-	
 	public void librosPrestados() {
 	    String[] librosPrestados = new String[3];
 
@@ -181,6 +171,42 @@ public class ControladorAdministrador {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public void verMorosos() {
+	    try {
+	        Connection connection = db.getConnection();
+	        
+	        String sql = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni, prestamo.fechaEntrega " +
+	                     "FROM prestamo " +
+	                     "JOIN libro ON prestamo.idLibro = libro.idLibro " +
+	                     "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario " +
+	                     "WHERE prestamo.fechaEntrega < NOW()";  // Trae solo los registros con fecha de entrega vencida
+	        
+	        PreparedStatement ps = connection.prepareStatement(sql);
+	        ResultSet rs = ps.executeQuery();
+	        
+	        boolean hayMorosos = false;
+	        
+	        while (rs.next()) {
+	            hayMorosos = true;
+	            String idPrestamo = rs.getString("idPrestamo");
+	            String titulo = rs.getString("titulo");
+	            String dni = rs.getString("dni");
+	            String fechaEntrega = rs.getString("fechaEntrega");
+	            
+	            System.out.println("ID Prestamo: " + idPrestamo + " Titulo: " + titulo + " DNI: " 
+	                               + dni + " Fecha de Entrega: " + fechaEntrega);
+	        }
+	        
+	        if (!hayMorosos) {
+	            System.out.println("No hay morosos");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 }

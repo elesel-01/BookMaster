@@ -1,7 +1,5 @@
 package consola_consola;
 
-import modelo.Administrador;
-import modelo.Libro;
 import modelo.Usuario;
 import java.util.Scanner;
 import controlador.ControladorAdministrador;
@@ -93,7 +91,7 @@ public class Consola2 {
 					break;
 				case 5:
 					//verMorosos(scanner);
-					System.out.println("por implementar");
+					controladorAdministrador.verMorosos();
 					break;
 				case 6:
 					

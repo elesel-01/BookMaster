@@ -1,4 +1,4 @@
-package modelo;
+/*package zborrados;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 
 public class Administrador {
 	
-	 private Connection getConnection() {
+	/* private Connection getConnection() {
 	        Coneccion con = new Coneccion();
 	        return con.getConnection(); // Asegúrate de que Coneccion tenga un método getConnection que devuelva un Connection
 	 }
@@ -117,6 +117,5 @@ public class Administrador {
 		}
 		 
 	}
-	
-
 }
+*/
