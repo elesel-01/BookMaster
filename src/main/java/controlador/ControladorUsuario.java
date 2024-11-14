@@ -52,7 +52,7 @@ public class ControladorUsuario {
 	// Funcion para autenticar al usuario
 	public Usuario autenticarUsuario(String correo, String contrasena) {
 		for (Usuario usuario : usuarios) {
-			if (usuario.getEmail().equals(correo) && usuario.getPassw().equals(contrasena)) {
+			if (usuario.getEmail().equals(correo) && usuario.getPassw().equals(contrasena)&& usuario.getRol().equals("admin")) {
 				return usuario;
 			}
 		}
