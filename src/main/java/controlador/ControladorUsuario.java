@@ -114,4 +114,7 @@ public class ControladorUsuario {
 		System.out.println("Ha salido de la aplicación.");
 		salir = true;
 	}
+	public List<Usuario> getUsuarios() {
+	    return usuarios;
+	}
 }
