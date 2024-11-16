@@ -57,7 +57,9 @@ public class Consola2 {
 					System.out.println("ingrese la categoria del Libro: ");
 					String categoria = scanner.nextLine();
 					boolean disponible = true;
-					controladorAdministrador.registrarLibro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible);
+					System.out.println("Ingrese la cantidad de libros: ");
+					int numLibros = scanner.nextInt();
+					controladorAdministrador.registrarLibro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible,numLibros);
 					System.out.println("nuevo libro registrado con exito gaaaaa");
 					break;
 				case 2:

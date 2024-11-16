@@ -225,9 +225,10 @@ public class RegistroLibro extends JPanel {
         String categoriaText = categoria.getText();
         String codigoEstanteria = codigo_Estanteria.getText();
         String anioPublicacion = anio_publicacion.getText();
-        //int numLibros = Integer.parseInt(numero_libro.getText());
+        int numLibros = Integer.parseInt(numero_libro.getText());
         
-        controladorAdministrador.registrarLibro(Integer.parseInt(codigoEstanteria), tituloText, autorText, editorialText, Integer.parseInt(anioPublicacion), categoriaText, true);
+        controladorAdministrador.registrarLibro(Integer.parseInt(codigoEstanteria), tituloText, autorText, editorialText, Integer.parseInt(anioPublicacion), categoriaText, true,
+        		numLibros);
 
         // Conectar a la base de datos y registrar el libro
         /*try (Connection connection = DriverManager.getConnection("jdbc:mysql://junction.proxy.rlwy.net:38689/railway?useSSL=false&serverTimezone=UTC", "root", "mjNGynPcLMflxpMOuYiSWvIagExuMwVJ")) {

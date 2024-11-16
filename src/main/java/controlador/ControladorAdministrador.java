@@ -28,13 +28,14 @@ public class ControladorAdministrador {
 	Coneccion db = new Coneccion();
 
 	public void registrarLibro(int idEstanteria, String titulo, String autor, String editorial, int anioPublicacion,
-			String categoria, boolean disponible) {
+			String categoria, boolean disponible, int numLibros) {
 		Libro nuevoLibro = new Libro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible);
 		libros.add(nuevoLibro);
 
 		try (Connection connection = db.getConnection()) {
 			String sql = "INSERT INTO libro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible) VALUES(?,?,?,?,?,?,?)";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
+				for(int i =0; i<numLibros; i++) {
 				ps.setInt(1, idEstanteria);
 				ps.setString(2, titulo);
 				ps.setString(3, autor);
@@ -43,6 +44,7 @@ public class ControladorAdministrador {
 				ps.setString(6, categoria);
 				ps.setBoolean(7, disponible);
 				ps.execute();
+				}
 			}
 			
 			JOptionPane.showMessageDialog(null, "Libro(s) registrado(s) exitosamente.");
