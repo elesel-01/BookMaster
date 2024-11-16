@@ -295,6 +295,11 @@ public class LoginResponsive extends JFrame {
         LibroBorrow libroBorrowPanel = new LibroBorrow(cardLayout, contentPane);
         contentPane.add(libroBorrowPanel, "LibroBorrow");
         
+        BusquedaGenero busquedaGeneroPanel = new BusquedaGenero(contentPane, cardLayout);
+        contentPane.add(busquedaGeneroPanel, "BusquedaGenero");
+        BusquedaNombre busquedaNombrePanel = new BusquedaNombre(contentPane, cardLayout);
+        contentPane.add(busquedaNombrePanel, "BusquedaNombre");
+        
     }
     
     public JPanel getCuerpo() {

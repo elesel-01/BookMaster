@@ -5,6 +5,8 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -283,7 +285,23 @@ public class BusquedaAutor extends JPanel {
 		JPanel Gridpanel = new JPanel();
 		scrollBusqueda.setViewportView(Gridpanel);
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
+		
+		JButton btnBusquedaCategoria = new JButton("Buscar por categoría");
+        btnBusquedaCategoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaCategoria");
+            }
+        });
+        btonmid.add(btnBusquedaCategoria, BorderLayout.CENTER);
 
+        JButton btnBusquedaGenero = new JButton("Buscar por género");
+        btnBusquedaGenero.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaGenero");
+            }
+        });
+        btonmid.add(btnBusquedaGenero, BorderLayout.CENTER);
+		
 	}
 
 }

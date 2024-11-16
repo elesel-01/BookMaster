@@ -2,6 +2,7 @@ package vista;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -23,11 +24,15 @@ public class BusquedaGenero extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtBuscar;
+	private JPanel contentPane;  // Sin inicializar aquí
+    private CardLayout cardLayout;
 
 	/**
 	 * Create the panel.
 	 */
-	public BusquedaGenero() {
+	public BusquedaGenero(JPanel contentPane, CardLayout cardLayout) {
+		this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
+        this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
 		setBounds(0, 0, 1040, 640);
 		setLayout(new BorderLayout(0, 0));
 		
@@ -283,6 +288,24 @@ public class BusquedaGenero extends JPanel {
 		JPanel Gridpanel = new JPanel();
 		scrollBusqueda.setViewportView(Gridpanel);
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
+		
+		// Configurar el botón para navegar a BusquedaCategoria
+        JButton btnBusquedaNombre = new JButton("Buscar por nombre");
+        btnBusquedaNombre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaNombre");
+            }
+        });
+        btonmid.add(btnBusquedaNombre, BorderLayout.CENTER);
+
+        // Configurar el botón para navegar a BusquedaGenero
+        JButton btnBusquedaAutor = new JButton("Buscar por autor");
+        btnBusquedaAutor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaAutor");
+            }
+        });
+        btonmid.add(btnBusquedaAutor, BorderLayout.CENTER);
 
 	}
 
