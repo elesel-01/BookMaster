@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import base_de_datos.Coneccion;
+import modelo.EncriptarPassw;
 import modelo.Libro;
 import modelo.Usuario;
 import modelo.Prestamos;
@@ -102,7 +103,9 @@ public class ControladorAdministrador {
 	public void registrarUsuario(String nombre, String apellido, String correo, int dni, String contrasena,
 			String rol) {
 		Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, dni, rol);
-		nuevoUsuario.setPassw(contrasena);
+		String passwordEncriptado = EncriptarPassw.encriptar(contrasena);
+		nuevoUsuario.setPassw(passwordEncriptado);
+		contrasena=passwordEncriptado;
 		usuarios.add(nuevoUsuario);
 
 		// Insertar el usuario a la base de datos
