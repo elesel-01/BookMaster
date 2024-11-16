@@ -27,6 +27,7 @@ public class SelectLogin extends JFrame {
     public SelectLogin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 1040, 640);
+        setLocationRelativeTo(null);
         cardLayout = new CardLayout();
         contentPane = new JPanel(cardLayout);
         contentPane.setBackground(new Color(39, 91, 131));
@@ -77,8 +78,8 @@ public class SelectLogin extends JFrame {
         Login loginPanel = new Login(cardLayout, contentPane);
         contentPane.add(loginPanel, "Login");
 
-        Home homePanel = new Home(contentPane, cardLayout);
-        contentPane.add(homePanel, "Home");
+        //Home homePanel = new Home(contentPane, cardLayout);
+        //contentPane.add(homePanel, "Home");
         
         RegistroLibro registroLibroPanel = new RegistroLibro(cardLayout, contentPane);
         contentPane.add(registroLibroPanel, "RegistroLibro");

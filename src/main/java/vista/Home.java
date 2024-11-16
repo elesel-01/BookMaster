@@ -75,7 +75,7 @@ public class Home extends JPanel {
             }
         });
 
-        JButton button_6 = new JButton("Cerrar Seción");
+        JButton button_6 = new JButton("Cerrar Sesión");
         button_6.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
@@ -85,7 +85,7 @@ public class Home extends JPanel {
         add(button_6);
         button_6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPane, "SelectLogin");
+                cardLayout.show(contentPane, "LoginResponsive");
             }
         });
         

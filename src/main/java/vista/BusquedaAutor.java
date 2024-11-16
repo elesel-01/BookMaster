@@ -1,33 +1,33 @@
 package vista;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import java.awt.Image;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JSeparator;
-import javax.swing.JScrollPane;
-import java.awt.GridBagLayout;
-import javax.swing.ScrollPaneConstants;
 import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 public class BusquedaAutor extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtBuscar;
-
+	private JPanel contentPane;  // Sin inicializar aquí
+    private CardLayout cardLayout;
 	/**
 	 * Create the panel.
 	 */
-	public BusquedaAutor() {
+	public BusquedaAutor(JPanel contentPane, CardLayout cardLayout) {
+		this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
+        this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
+        
 		setBounds(0, 0, 1040, 640);
 		setLayout(new BorderLayout(0, 0));
 		
