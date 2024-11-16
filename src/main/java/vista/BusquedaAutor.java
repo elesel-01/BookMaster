@@ -167,8 +167,15 @@ public class BusquedaAutor extends JPanel {
 		botonn.add(lblNewLabel_22, BorderLayout.WEST);
 		
 		JButton btnNewButton_3 = new JButton("Buscar por nombre");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaNombre");
+            }
+		});
 		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
 		botonn.add(btnNewButton_3, BorderLayout.CENTER);
+		
+		
 		
 		JPanel btn2 = new JPanel();
 		btn2.setBackground(Color.decode("#1F4E61"));
@@ -194,6 +201,15 @@ public class BusquedaAutor extends JPanel {
 		
 		JButton btnNewButton_4 = new JButton("Buscar por categoría");
 		btonmid.add(btnNewButton_4, BorderLayout.CENTER);
+		
+		JButton btnBusquedaGenero = new JButton("Buscar por género");
+        btnBusquedaGenero.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaGenero");
+            }
+        });
+        btnBusquedaGenero.setHorizontalAlignment(SwingConstants.CENTER);
+        btonmid.add(btnBusquedaGenero, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel_23 = new JLabel("     ");
 		lblNewLabel_23.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -286,22 +302,14 @@ public class BusquedaAutor extends JPanel {
 		scrollBusqueda.setViewportView(Gridpanel);
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
 		
-		JButton btnBusquedaCategoria = new JButton("Buscar por categoría");
-        btnBusquedaCategoria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPane, "BusquedaCategoria");
-            }
-        });
-        btonmid.add(btnBusquedaCategoria, BorderLayout.CENTER);
-
-        JButton btnBusquedaGenero = new JButton("Buscar por género");
+       /* JButton btnBusquedaGenero = new JButton("Buscar por género");
         btnBusquedaGenero.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(contentPane, "BusquedaGenero");
             }
         });
         btonmid.add(btnBusquedaGenero, BorderLayout.CENTER);
-		
+		*/
 	}
 
 }
