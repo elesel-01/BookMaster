@@ -10,20 +10,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.*;
-import javax.swing.*;
+import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import base_de_datos.Coneccion;
+
+import controlador.ControladorLibro;
+import modelo.Libro;
 
 public class BusquedaAutor extends JPanel {
 
@@ -278,7 +272,7 @@ public class BusquedaAutor extends JPanel {
 		pnIncentral.add(panelBotn, BorderLayout.NORTH);
 		panelBotn.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_28 = new JLabel("                                                                                                                      ");
+		JLabel lblNewLabel_28 = new JLabel("                                                                                                                                                                                                                            ");
 		panelBotn.add(lblNewLabel_28, BorderLayout.EAST);
 		
 		JButton btnNewButton_5 = new JButton("Solicitar");
@@ -312,60 +306,43 @@ public class BusquedaAutor extends JPanel {
 		JPanel Gridpanel = new JPanel();
 		scrollBusqueda.setViewportView(Gridpanel);
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
+
 		
-		modeloTabla = new DefaultTableModel(new Object[]{"Autor", "ID", "Titulo","ID Estanteria", "Editorial","Año", "Categoria","Disponible"},0);
+		modeloTabla = new DefaultTableModel(new Object[]{"Autor", "Titulo", "Categoria","Disponibilidad", "Estantería"},0);
 	    tablaLibros = new JTable(modeloTabla);
-	    JScrollPane scrollPane = new JScrollPane(tablaLibros);
-	    panel.add(scrollPane, BorderLayout.CENTER);
-	        
-		// Listener para buscar automáticamente
-        txtBuscar.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                String filtro = txtBuscar.getText();
-                cargarDatos(filtro);
+	    scrollBusqueda.setViewportView(tablaLibros);
+		
+	    ControladorLibro controladorLibro = new ControladorLibro();   
+
+        
+		//cargarDatos("");
+	    txtBuscar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nombreLibro = txtBuscar.getText();
+                if (!nombreLibro.trim().isEmpty()) {
+                    List<Libro> libros = controladorLibro.buscarLibroPorNombre(nombreLibro);
+                    if (libros.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No se encontraron libros con ese nombre.");
+                    } else {
+                        mostrarResultados(libros);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un nombre de libro.");
+                }
             }
         });
-        
-		cargarDatos("");
+		
 	}
-    private void cargarDatos(String filtro) {
-        modeloTabla.setRowCount(0); // Limpiar la tabla
-
-        Coneccion db = new Coneccion();
-        Connection connection = db.getConnection();
-
-        if (connection != null) {
-            try {
-                String query = "SELECT * FROM libro WHERE titulo LIKE ? OR autor LIKE ?";
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, "%" + filtro + "%");
-                statement.setString(2, "%" + filtro + "%");
-                ResultSet resultSet = statement.executeQuery();
-
-                while (resultSet.next()) {
-                    Object[] row = new Object[8];
-                    row[0] = resultSet.getString("autor");
-                    row[1] = resultSet.getInt("idLibro");
-                    row[2] = resultSet.getString("titulo");
-                    row[3] = resultSet.getInt("idEstanteria");
-                    row[4] = resultSet.getString("editorial");
-                    row[5] = resultSet.getInt("anioPublicacion");
-                    row[6] = resultSet.getString("categoria");
-                    row[7] = resultSet.getString("disponible");
-
-                    modeloTabla.addRow(row);
-                }
-
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+    
+	private void mostrarResultados(List<Libro> libros) {
+		modeloTabla.setRowCount(0); // Limpiar la tabla
+        for (Libro libro : libros) {
+        	modeloTabla.addRow(new Object[]{
+        			libro.getAutor(),
+        			libro.getTitulo(),
+            		libro.getCategoria(),
+            		libro.isDisponible(),
+            		libro.getIdEstanteria()});
         }
     }
-
 }
