@@ -71,12 +71,6 @@ public class LoginResponsive extends JFrame {
         contentPane = new JPanel(cardLayout);
         setContentPane(contentPane);
 
-        // Añadir paneles Home y BusquedaAutor
-        Home homePanel = new Home(contentPane, cardLayout);
-        contentPane.add(homePanel, "Home");
-        BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout);
-        contentPane.add(busquedaAutorPanel, "BusquedaAutor");
-
         // Añadir panel de login
         JPanel loginPanel = new JPanel(new BorderLayout());
         contentPane.add(loginPanel, "Login");
@@ -226,7 +220,14 @@ public class LoginResponsive extends JFrame {
         gbc_4.gridy = 5;
         gbc_4.fill = GridBagConstraints.BOTH;
         Cuerpo.add(txtPassword, gbc_4);
+        
+        // Añadir paneles Home y BusquedaAutor
+        Home homePanel = new Home(contentPane, cardLayout);
+        contentPane.add(homePanel, "Home");
+        BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout);
+        contentPane.add(busquedaAutorPanel, "BusquedaAutor");
 
+        
         // Botón "Ingresar"
         btnIngresar = new JButton(" INGRESAR ");
         btnIngresar.addActionListener(new ActionListener() {

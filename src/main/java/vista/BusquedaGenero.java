@@ -172,6 +172,11 @@ public class BusquedaGenero extends JPanel {
 		JButton btnNewButton_3 = new JButton("Buscar por autor");
 		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
 		botonn.add(btnNewButton_3, BorderLayout.CENTER);
+		btnNewButton_3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaAutor");
+            }
+        });
 		
 		JPanel btn2 = new JPanel();
 		btn2.setBackground(Color.decode("#1F4E61"));
@@ -197,6 +202,11 @@ public class BusquedaGenero extends JPanel {
 		
 		JButton btnNewButton_4 = new JButton("Buscar por nombre");
 		btonmid.add(btnNewButton_4, BorderLayout.CENTER);
+        btnNewButton_4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaNombre");
+            }
+        });
 		
 		JLabel lblNewLabel_23 = new JLabel("     ");
 		lblNewLabel_23.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -297,15 +307,6 @@ public class BusquedaGenero extends JPanel {
             }
         });
         btonmid.add(btnBusquedaNombre, BorderLayout.CENTER);
-
-        // Configurar el botón para navegar a BusquedaGenero
-        JButton btnBusquedaAutor = new JButton("Buscar por autor");
-        btnBusquedaAutor.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPane, "BusquedaAutor");
-            }
-        });
-        btonmid.add(btnBusquedaAutor, BorderLayout.CENTER);
 
 	}
 
