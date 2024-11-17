@@ -318,9 +318,9 @@ public class BusquedaAutor extends JPanel {
 		//cargarDatos("");
 	    txtBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String nombreLibro = txtBuscar.getText();
-                if (!nombreLibro.trim().isEmpty()) {
-                    List<Libro> libros = controladorLibro.buscarLibroPorNombre(nombreLibro);
+                String nombreAutor = txtBuscar.getText();
+                if (!nombreAutor.trim().isEmpty()) {
+                    List<Libro> libros = controladorLibro.buscarLibroPorAutor(nombreAutor);
                     if (libros.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "No se encontraron libros con ese nombre.");
                     } else {
