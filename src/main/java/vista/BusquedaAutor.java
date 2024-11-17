@@ -278,7 +278,7 @@ public class BusquedaAutor extends JPanel {
 		pnIncentral.add(panelBotn, BorderLayout.NORTH);
 		panelBotn.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_28 = new JLabel("                                                                                                                                                                                                                            ");
+		JLabel lblNewLabel_28 = new JLabel("                                                                                                                      ");
 		panelBotn.add(lblNewLabel_28, BorderLayout.EAST);
 		
 		JButton btnNewButton_5 = new JButton("Solicitar");
@@ -316,7 +316,7 @@ public class BusquedaAutor extends JPanel {
 		modeloTabla = new DefaultTableModel(new Object[]{"Autor", "ID", "Titulo","ID Estanteria", "Editorial","Año", "Categoria","Disponible"},0);
 	    tablaLibros = new JTable(modeloTabla);
 	    JScrollPane scrollPane = new JScrollPane(tablaLibros);
-	    add(scrollPane, BorderLayout.CENTER);
+	    panel.add(scrollPane, BorderLayout.CENTER);
 	        
 		// Listener para buscar automáticamente
         txtBuscar.addKeyListener(new KeyAdapter() {
