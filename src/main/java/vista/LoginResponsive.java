@@ -72,10 +72,6 @@ public class LoginResponsive extends JFrame {
         setContentPane(contentPane);
 
         // Añadir paneles Home y BusquedaAutor
-        Home homePanel = new Home(contentPane, cardLayout);
-        contentPane.add(homePanel, "Home");
-        BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout);
-        contentPane.add(busquedaAutorPanel, "BusquedaAutor");
 
         // Añadir panel de login
         JPanel loginPanel = new JPanel(new BorderLayout());
@@ -272,7 +268,7 @@ public class LoginResponsive extends JFrame {
         initStyles(); // Inicializa los listeners para placeholders
 
         // Mostrar el panel de login inicialmente
-        cardLayout.show(contentPane, "Login");
+        cardLayout.show(contentPane, "LoginResponsive");
         
         RegistroLibro registroLibroPanel = new RegistroLibro(cardLayout, contentPane);
         contentPane.add(registroLibroPanel, "RegistroLibro");
@@ -300,6 +296,11 @@ public class LoginResponsive extends JFrame {
         BusquedaNombre busquedaNombrePanel = new BusquedaNombre(contentPane, cardLayout);
         contentPane.add(busquedaNombrePanel, "BusquedaNombre");
         
+        Home homePanel = new Home(contentPane, cardLayout);
+        contentPane.add(homePanel, "Home");
+        
+        BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout);
+        contentPane.add(busquedaAutorPanel, "BusquedaAutor");
     }
     
     public JPanel getCuerpo() {

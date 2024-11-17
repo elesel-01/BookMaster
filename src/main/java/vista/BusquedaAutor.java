@@ -7,6 +7,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.*;
+import javax.swing.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,15 +18,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import base_de_datos.Coneccion;
+
 public class BusquedaAutor extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtBuscar;
 	private JPanel contentPane;  // Sin inicializar aquí
     private CardLayout cardLayout;
+    
+    private JTable tablaLibros;
+    private DefaultTableModel modeloTabla;
 	/**
 	 * Create the panel.
 	 */
@@ -30,7 +41,7 @@ public class BusquedaAutor extends JPanel {
 		this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
         this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
         
-		setBounds(0, 0, 1040, 640);
+        setBounds(0, 0, 1040, 640);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel TopPanel = new JPanel();
@@ -302,14 +313,59 @@ public class BusquedaAutor extends JPanel {
 		scrollBusqueda.setViewportView(Gridpanel);
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
 		
-       /* JButton btnBusquedaGenero = new JButton("Buscar por género");
-        btnBusquedaGenero.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPane, "BusquedaGenero");
+		modeloTabla = new DefaultTableModel(new Object[]{"Autor", "ID", "Titulo","ID Estanteria", "Editorial","Año", "Categoria","Disponible"},0);
+	    tablaLibros = new JTable(modeloTabla);
+	    JScrollPane scrollPane = new JScrollPane(tablaLibros);
+	    add(scrollPane, BorderLayout.CENTER);
+	        
+		// Listener para buscar automáticamente
+        txtBuscar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String filtro = txtBuscar.getText();
+                cargarDatos(filtro);
             }
         });
-        btonmid.add(btnBusquedaGenero, BorderLayout.CENTER);
-		*/
+        
+		cargarDatos("");
 	}
+    private void cargarDatos(String filtro) {
+        modeloTabla.setRowCount(0); // Limpiar la tabla
+
+        Coneccion db = new Coneccion();
+        Connection connection = db.getConnection();
+
+        if (connection != null) {
+            try {
+                String query = "SELECT * FROM libro WHERE titulo LIKE ? OR autor LIKE ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setString(1, "%" + filtro + "%");
+                statement.setString(2, "%" + filtro + "%");
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    Object[] row = new Object[8];
+                    row[0] = resultSet.getString("autor");
+                    row[1] = resultSet.getInt("idLibro");
+                    row[2] = resultSet.getString("titulo");
+                    row[3] = resultSet.getInt("idEstanteria");
+                    row[4] = resultSet.getString("editorial");
+                    row[5] = resultSet.getInt("anioPublicacion");
+                    row[6] = resultSet.getString("categoria");
+                    row[7] = resultSet.getString("disponible");
+
+                    modeloTabla.addRow(row);
+                }
+
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 }
