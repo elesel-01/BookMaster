@@ -169,14 +169,14 @@ public class BusquedaGenero extends JPanel {
 		JLabel lblNewLabel_22 = new JLabel("                  ");
 		botonn.add(lblNewLabel_22, BorderLayout.WEST);
 		
-		JButton btnNewButton_3 = new JButton("Buscar por autor");
-		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
-		botonn.add(btnNewButton_3, BorderLayout.CENTER);
-		btnNewButton_3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPane, "BusquedaAutor");
+		JButton btnBusquedaNombre = new JButton("Buscar por Nombre");
+		btnBusquedaNombre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaNombre");
             }
-        });
+		});
+		btnBusquedaNombre.setHorizontalAlignment(SwingConstants.LEFT);
+		botonn.add(btnBusquedaNombre, BorderLayout.CENTER);
 		
 		JPanel btn2 = new JPanel();
 		btn2.setBackground(Color.decode("#1F4E61"));
@@ -300,13 +300,23 @@ public class BusquedaGenero extends JPanel {
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
 		
 		// Configurar el botón para navegar a BusquedaCategoria
-        JButton btnBusquedaNombre = new JButton("Buscar por nombre");
+        /*JButton btnBusquedaNombre = new JButton("Buscar por nombre");
         btnBusquedaNombre.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(contentPane, "BusquedaNombre");
             }
         });
         btonmid.add(btnBusquedaNombre, BorderLayout.CENTER);
+
+         */	
+        // Configurar el botón para navegar a BusquedaGenero
+        JButton btnBusquedaAutor = new JButton("Buscar por autor");
+        btnBusquedaAutor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaAutor");
+            }
+        });
+        btonmid.add(btnBusquedaAutor, BorderLayout.CENTER);
 
 	}
 

@@ -170,15 +170,15 @@ public class BusquedaNombre extends JPanel {
 		JLabel lblNewLabel_22 = new JLabel("                  ");
 		botonn.add(lblNewLabel_22, BorderLayout.WEST);
 		
-		JButton btnNewButton_3 = new JButton("Buscar por género");
-		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
-		botonn.add(btnNewButton_3, BorderLayout.CENTER);
-        btnNewButton_3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPane, "BusquedaGenero");
-            }
-        });
-        
+		JButton btnBusquedaGenero = new JButton("Buscar por género");
+		btnBusquedaGenero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(contentPane, "BusquedaGenero");
+			}
+		});
+		btnBusquedaGenero.setHorizontalAlignment(SwingConstants.LEFT);
+		botonn.add(btnBusquedaGenero, BorderLayout.CENTER);
+		
 		JPanel btn2 = new JPanel();
 		btn2.setBackground(Color.decode("#1F4E61"));
 		panelbtnes.add(btn2, BorderLayout.EAST);
@@ -300,6 +300,24 @@ public class BusquedaNombre extends JPanel {
 		scrollBusqueda.setViewportView(Gridpanel);
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
 
+		// Configurar el botón para navegar a BusquedaCategoria
+        /*JButton btnBusquedaGenero = new JButton("Buscar por genero");
+        btnBusquedaGenero.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaGenero");
+            }
+        });
+        btonmid.add(btnBusquedaGenero, BorderLayout.CENTER);
+*/
+        // Configurar el botón para navegar a BusquedaGenero
+        JButton btnBusquedaAutor = new JButton("Buscar por autor");
+        btnBusquedaAutor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaAutor");
+            }
+        });
+        btonmid.add(btnBusquedaAutor, BorderLayout.CENTER);
+		
 	}
 
 }
