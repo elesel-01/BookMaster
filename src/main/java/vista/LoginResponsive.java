@@ -289,8 +289,8 @@ public class LoginResponsive extends JFrame {
 			}
 		});
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnIngresar.setBackground(new Color(255, 128, 0));
-		btnIngresar.setForeground(Color.WHITE);
+		btnIngresar.setBackground(Color.decode("#EBEBEB"));
+		btnIngresar.setForeground(new Color(0,0,0));
 		gbc_1 = new GridBagConstraints();
 		gbc_1.fill = GridBagConstraints.BOTH;
 		gbc_1.insets = new Insets(10, 10, 10, 10);
@@ -301,8 +301,8 @@ public class LoginResponsive extends JFrame {
 		// Botón "Registrar"
 		btnRegistrar = new JButton(" REGISTRARSE ");
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnRegistrar.setBackground(new Color(255, 128, 0));
-		btnRegistrar.setForeground(Color.WHITE);
+		btnRegistrar.setBackground(Color.decode("#EBEBEB"));
+		btnRegistrar.setForeground(Color.BLACK);
 		gbc_2 = new GridBagConstraints();
 		gbc_2.fill = GridBagConstraints.BOTH;
 		gbc_2.insets = new Insets(10, 10, 10, 10);
