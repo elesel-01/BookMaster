@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,10 +22,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.ControladorLibro;
+import controlador.ControladorReserva;
 import modelo.Libro;
+import modelo.Session;
+import modelo.Usuario;
 
 public class BusquedaGenero extends JPanel {
 	
@@ -33,6 +39,8 @@ public class BusquedaGenero extends JPanel {
     private CardLayout cardLayout;
     private JTable table;
     private DefaultTableModel tableModel;
+    private ControladorReserva controladorReserva = new ControladorReserva();
+    Usuario usuarioActual = Session.getUsuarioActual();
 	/**
 	 * Create the panel.
 	 */
@@ -272,6 +280,62 @@ public class BusquedaGenero extends JPanel {
 		panelBotn.add(lblNewLabel_28, BorderLayout.EAST);
 		
 		JButton btnNewButton_5 = new JButton("Solicitar");
+        btnNewButton_5.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
+        panelBotn.add(btnNewButton_5, BorderLayout.WEST);
+		btnNewButton_5.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Crear el cuadro de diálogo
+		        JDialog dialogoReserva = new JDialog((JFrame) SwingUtilities.getWindowAncestor(BusquedaGenero.this), "Reservar Libro", true);
+		        dialogoReserva.setSize(400, 200);
+		        dialogoReserva.setLocationRelativeTo(BusquedaGenero.this);
+		        dialogoReserva.getContentPane().setLayout(new BorderLayout());
+		        
+		        // Panel superior con etiqueta
+		        JPanel panelSuperior = new JPanel();
+		        panelSuperior.add(new JLabel("Ingrese la ID del libro a reservar:"));
+		        dialogoReserva.getContentPane().add(panelSuperior, BorderLayout.NORTH);
+
+		        // Panel central con campo de texto
+		        JPanel panelCentral = new JPanel();
+		        JTextField campoID = new JTextField(20);
+		        panelCentral.add(campoID);
+		        dialogoReserva.getContentPane().add(panelCentral, BorderLayout.CENTER);
+
+		        // Panel inferior con botones
+		        JPanel panelInferior = new JPanel();
+		        JButton botonReservar = new JButton("Reservar");
+		        JButton botonCancelar = new JButton("Cancelar");
+		        panelInferior.add(botonReservar);
+		        panelInferior.add(botonCancelar);
+		        dialogoReserva.getContentPane().add(panelInferior, BorderLayout.SOUTH);
+
+		        // Acción para el botón Reservar
+		        botonReservar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                String idLibro = campoID.getText().trim();
+		                int IdUsario=Session.getUsuarioId();
+		                if (!idLibro.isEmpty()) {
+		                	controladorReserva.solicitarLibro(Integer.parseInt(idLibro),IdUsario);
+		                    JOptionPane.showMessageDialog(dialogoReserva, "Reserva realizada para el libro con ID: " + idLibro);
+		                    
+		                    dialogoReserva.dispose();
+		                } else {
+		                    JOptionPane.showMessageDialog(dialogoReserva, "Por favor, ingrese una ID válida.", "Error", JOptionPane.ERROR_MESSAGE);
+		                }
+		            }
+		        });
+
+		        // Acción para el botón Cancelar
+		        botonCancelar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                dialogoReserva.dispose();
+		            }
+		        });
+
+		        // Mostrar el cuadro de diálogo
+		        dialogoReserva.setVisible(true);
+		    }
+		});
 		btnNewButton_5.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
 		panelBotn.add(btnNewButton_5, BorderLayout.WEST);
 		
