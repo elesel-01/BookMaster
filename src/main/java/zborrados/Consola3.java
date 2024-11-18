@@ -1,4 +1,4 @@
-package consola_consola;
+package zborrados;
 
 import java.util.Scanner;
 
@@ -7,14 +7,14 @@ import controlador.ControladorUsuario;
 import modelo.Usuario;
 
 public class Consola3 {
-	private ControladorUsuario controladorUsuario = new ControladorUsuario();
+	/*private ControladorUsuario controladorUsuario = new ControladorUsuario();
     private ControladorReserva controladorReserva = new ControladorReserva();
 	private Usuario usuarioLogueado = null;
 	
 	private Consola consola;
 	
 	/* Se añade un constructor para pasar el usuario logueado */
-	public Consola3(Usuario usuarioLogueado) {
+	/*public Consola3(Usuario usuarioLogueado) {
 		this.usuarioLogueado = usuarioLogueado;
 		this.consola = new Consola(); //Inicializar consola sino no sabe a quien apuntar
 	}
@@ -68,5 +68,5 @@ public class Consola3 {
         }
 
         //scanner.close();
-    }
+    }*/
 }

@@ -15,7 +15,7 @@ public class ControladorReserva {
 	    LocalDateTime fechaReserva = LocalDateTime.now();
 
 	    try (Connection connection = db.getConnection()) {
-	        // Check if the book is available
+
 	        String checkBookSql = "SELECT disponible FROM libro WHERE idLibro = ?";
 	        try (PreparedStatement checkBookStatement = connection.prepareStatement(checkBookSql)) {
 	            checkBookStatement.setInt(1, idLibro);
@@ -31,15 +31,13 @@ public class ControladorReserva {
 	                        insertLoanStatement.executeUpdate();
 	                        System.out.println("Préstamo realizado con éxito para el libro con ID: " + idLibro);
 	                    }
-
-	                    // Update the book's availability
+        
 	                    String updateBookSql = "UPDATE libro SET disponible = FALSE WHERE idLibro = ?";
 	                    try (PreparedStatement updateBookStatement = connection.prepareStatement(updateBookSql)) {
 	                        updateBookStatement.setInt(1, idLibro);
 	                        updateBookStatement.executeUpdate();
 	                    }
 	                } else {
-	                    // Book is not available, show message
 	                    System.out.println("Libro no disponible actualmente. Por favor, solicite más tarde.");
 	                }
 	            }

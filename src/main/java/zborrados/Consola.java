@@ -1,4 +1,4 @@
-package consola_consola;
+package zborrados;
 
 import java.util.InputMismatchException;
 //import java.io.IOException;
@@ -12,7 +12,7 @@ import controlador.ControladorLibro;
 
 public class Consola {
 	
-	private Scanner scanner = new Scanner(System.in);
+	/*private Scanner scanner = new Scanner(System.in);
 	private ControladorUsuario controladorUsuario = new ControladorUsuario(); // De paso cargamos a todos los usuarios desde BD
 	private ControladorLibro controladorLibro = new ControladorLibro(); // De paso cargamos a todos los libros desde BD
 	private Usuario usuarioLogueado = null;
@@ -147,5 +147,5 @@ public class Consola {
             }
         } while (opcion != 0);
     }
-    
+    */
 }
