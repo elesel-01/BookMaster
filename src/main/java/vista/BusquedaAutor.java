@@ -7,17 +7,25 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.sql.*;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import base_de_datos.Coneccion;
 
 import controlador.ControladorLibro;
+import controlador.ControladorReserva;
 import modelo.Libro;
+import modelo.Usuario;
 
 public class BusquedaAutor extends JPanel {
 
@@ -28,13 +36,14 @@ public class BusquedaAutor extends JPanel {
     
     private JTable tablaLibros;
     private DefaultTableModel modeloTabla;
+    private Usuario usuarioLogueado;
 	/**
 	 * Create the panel.
 	 */
-	public BusquedaAutor(JPanel contentPane, CardLayout cardLayout) {
+	public BusquedaAutor(JPanel contentPane, CardLayout cardLayout, Usuario usuarioLogueado) {
 		this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
         this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
-        
+        this.usuarioLogueado = usuarioLogueado; // Asigna el usuario logueado;
         setBounds(0, 0, 1040, 640);
 		setLayout(new BorderLayout(0, 0));
 		
@@ -276,26 +285,34 @@ public class BusquedaAutor extends JPanel {
 		panelBotn.add(lblNewLabel_28, BorderLayout.EAST);
 		
 		JButton btnNewButton_5 = new JButton("Solicitar");
-		btnNewButton_5.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
-		panelBotn.add(btnNewButton_5, BorderLayout.WEST);
-		btnNewButton_5.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        int selectedRow = tablaLibros.getSelectedRow();
-		        if (selectedRow != -1) {
-		            int idLibro = (int) modeloTabla.getValueAt(selectedRow, 0); // Assuming the first column is idLibro
-		            int idUsuario = obtenerIdUsuarioActual(); // Implement this method to get the current user ID
-		            ControladorReserva controladorReserva = new ControladorReserva();
-		            boolean exito = controladorReserva.solicitarLibro(idLibro, idUsuario);
-		            if (exito) {
-		                JOptionPane.showMessageDialog(null, "Reserva realizada con éxito.");
-		            } else {
-		                JOptionPane.showMessageDialog(null, "No se pudo realizar la reserva.");
-		            }
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Por favor, seleccione un libro de la tabla.");
-		        }
-		    }
-		});
+        btnNewButton_5.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
+        panelBotn.add(btnNewButton_5, BorderLayout.WEST);
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String idLibroStr = JOptionPane.showInputDialog("Ingrese el ID del libro que desea reservar:");
+                if (idLibroStr != null && !idLibroStr.trim().isEmpty()) {
+                    try {
+                        int idLibro = Integer.parseInt(idLibroStr.trim());
+                        int idUsuario = usuarioLogueado.getId(); // Obtenemos el id del usuario logueado
+
+                        ControladorReserva controladorReserva = new ControladorReserva();
+
+                        // Llama al método de reserva
+                        controladorReserva.solicitarLibro(idLibro, idUsuario);
+
+                        // Mostrar mensaje al usuario después de la ejecución del método
+                        JOptionPane.showMessageDialog(null, "Reserva procesada. Verifica si fue exitosa.");
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "ID de libro inválido. Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID de libro.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
+
 		
 		JPanel panelSeparador = new JPanel();
 		panelSeparador.setBackground(Color.decode("#D6D6D6"));
