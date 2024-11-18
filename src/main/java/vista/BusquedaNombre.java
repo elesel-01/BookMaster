@@ -64,10 +64,6 @@ public class BusquedaNombre extends JPanel {
         JLabel lblNewLabel_2 = new JLabel("   ");
         panelSalir.add(lblNewLabel_2, BorderLayout.SOUTH);
 
-        JButton btnNewButton = new JButton("");
-        btnNewButton.setIcon(new ImageIcon(BusquedaNombre.class.getResource("/media/volver resized.png")));
-        panelSalir.add(btnNewButton, BorderLayout.WEST);
-
         JLabel lblNewLabel_3 = new JLabel("   ");
         panelSalir.add(lblNewLabel_3, BorderLayout.EAST);
 
