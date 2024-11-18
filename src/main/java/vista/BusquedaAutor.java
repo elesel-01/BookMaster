@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,13 +22,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.ControladorLibro;
 import controlador.ControladorReserva;
 import modelo.Libro;
-import modelo.Usuario;
-
+import modelo.Session;
 public class BusquedaAutor extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -36,14 +38,14 @@ public class BusquedaAutor extends JPanel {
     
     private JTable tablaLibros;
     private DefaultTableModel modeloTabla;
-    private Usuario usuarioLogueado;
+    private ControladorReserva controladorReserva;
+    String usuarioActual = Session.getUsuarioActual();
 	/**
 	 * Create the panel.
 	 */
-	public BusquedaAutor(JPanel contentPane, CardLayout cardLayout, Usuario usuarioLogueado) {
+	public BusquedaAutor(JPanel contentPane, CardLayout cardLayout) {
 		this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
         this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
-        this.usuarioLogueado = usuarioLogueado; // Asigna el usuario logueado;
         setBounds(0, 0, 1040, 640);
 		setLayout(new BorderLayout(0, 0));
 		
@@ -287,32 +289,61 @@ public class BusquedaAutor extends JPanel {
 		JButton btnNewButton_5 = new JButton("Solicitar");
         btnNewButton_5.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
         panelBotn.add(btnNewButton_5, BorderLayout.WEST);
-        btnNewButton_5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String idLibroStr = JOptionPane.showInputDialog("Ingrese el ID del libro que desea reservar:");
-                if (idLibroStr != null && !idLibroStr.trim().isEmpty()) {
-                    try {
-                        int idLibro = Integer.parseInt(idLibroStr.trim());
-                        int idUsuario = usuarioLogueado.getId(); // Obtenemos el id del usuario logueado
+		btnNewButton_5.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Crear el cuadro de diálogo
+		        JDialog dialogoReserva = new JDialog((JFrame) SwingUtilities.getWindowAncestor(BusquedaAutor.this), "Reservar Libro", true);
+		        dialogoReserva.setSize(400, 200);
+		        dialogoReserva.setLocationRelativeTo(BusquedaAutor.this);
+		        dialogoReserva.setLayout(new BorderLayout());
+		        
+		        // Panel superior con etiqueta
+		        JPanel panelSuperior = new JPanel();
+		        panelSuperior.add(new JLabel("Ingrese la ID del libro a reservar:"));
+		        dialogoReserva.add(panelSuperior, BorderLayout.NORTH);
 
-                        ControladorReserva controladorReserva = new ControladorReserva();
+		        // Panel central con campo de texto
+		        JPanel panelCentral = new JPanel();
+		        JTextField campoID = new JTextField(20);
+		        panelCentral.add(campoID);
+		        dialogoReserva.add(panelCentral, BorderLayout.CENTER);
 
-                        // Llama al método de reserva
-                        controladorReserva.solicitarLibro(idLibro, idUsuario);
+		        // Panel inferior con botones
+		        JPanel panelInferior = new JPanel();
+		        JButton botonReservar = new JButton("Reservar");
+		        JButton botonCancelar = new JButton("Cancelar");
+		        panelInferior.add(botonReservar);
+		        panelInferior.add(botonCancelar);
+		        dialogoReserva.add(panelInferior, BorderLayout.SOUTH);
 
-                        // Mostrar mensaje al usuario después de la ejecución del método
-                        JOptionPane.showMessageDialog(null, "Reserva procesada. Verifica si fue exitosa.");
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "ID de libro inválido. Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID de libro.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-        });
+		        // Acción para el botón Reservar
+		        botonReservar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                String idLibro = campoID.getText().trim();
+		                int IdUsario=Session.getUsuarioId();
+		                if (!idLibro.isEmpty()) {
+		                	controladorReserva.solicitarLibro(Integer.parseInt(idLibro),IdUsario);
+		                    JOptionPane.showMessageDialog(dialogoReserva, "Reserva realizada para el libro con ID: " + idLibro);
+		                    
+		                    dialogoReserva.dispose();
+		                } else {
+		                    JOptionPane.showMessageDialog(dialogoReserva, "Por favor, ingrese una ID válida.", "Error", JOptionPane.ERROR_MESSAGE);
+		                }
+		            }
+		        });
 
+		        // Acción para el botón Cancelar
+		        botonCancelar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                dialogoReserva.dispose();
+		            }
+		        });
 
+		        // Mostrar el cuadro de diálogo
+		        dialogoReserva.setVisible(true);
+		    }
+		});
+		
 		
 		JPanel panelSeparador = new JPanel();
 		panelSeparador.setBackground(Color.decode("#D6D6D6"));

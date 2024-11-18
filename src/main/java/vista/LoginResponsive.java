@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import modelo.Session;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
@@ -263,16 +264,20 @@ public class LoginResponsive extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        String usuario = txtUser.getText();
 		        String contrasena = new String(txtPassword.getPassword());
+		        // Guardar el usuario en la sesión
+		        Session.setUsuarioActual(usuario);
+		        
+
 		        Usuario autenticado = controladorUsuario.autenticarUsuario(usuario, contrasena);
 		        if (autenticado != null) {
+		        	
+		        	int IdUsuario = autenticado.getId();
+		        	Session.setIdUsuario(IdUsuario);
 		            String mensaje = String.format("Login successful, bienvenido %s", autenticado.getNombre());
 		            JOptionPane.showMessageDialog(null, mensaje);
 		            if (autenticado.getRol().equals("admin")) {
 		                cardLayout.show(contentPane, "Home");
 		            } else {
-		                // Crear instancia de BusquedaAutor pasando el usuario autenticado
-		                BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout, autenticado);
-		                contentPane.add(busquedaAutorPanel, "BusquedaAutor");
 		                cardLayout.show(contentPane, "BusquedaAutor");
 		            }
 		        } else {
@@ -352,10 +357,10 @@ public class LoginResponsive extends JFrame {
 		BusquedaNombre busquedaNombrePanel = new BusquedaNombre(contentPane, cardLayout);
 		contentPane.add(busquedaNombrePanel, "BusquedaNombre");
 		
-		Home homePanel = new Home(contentPane, cardLayout, autenticado);
+		Home homePanel = new Home(contentPane, cardLayout);
 		contentPane.add(homePanel, "Home");
 
-		BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout, autenticado);
+		BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout);
 		contentPane.add(busquedaAutorPanel, "BusquedaAutor");
 	}
 

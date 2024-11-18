@@ -20,14 +20,12 @@ public class Home extends JPanel {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;  // Sin inicializar aquí
     private CardLayout cardLayout;
-    private Usuario usuario;
     /**
      * Create the panel.
      */
-    public Home(JPanel contentPane, CardLayout cardLayout, Usuario usuario) {
+    public Home(JPanel contentPane, CardLayout cardLayout) {
         this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
         this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
-        this.usuario = usuario;
         
         setPreferredSize(new java.awt.Dimension(1040, 600));
         setBackground(new Color(39, 91, 131));
