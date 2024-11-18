@@ -14,7 +14,8 @@ public class ControladorLibro {
 	
 	// Lista para guardar los libros en memoria
     private List<Libro> libros = new ArrayList<>();
-
+    private Connection connection;
+    
     public ControladorLibro() {
         cargarLibrosDesdeBaseDeDatos();
     }
@@ -64,7 +65,7 @@ public class ControladorLibro {
         return resultado;
     }
 
-    public List<Libro> buscarLibroPorCategoria(String categoria) {
+	public List<Libro> buscarLibroPorCategoria(String categoria) {
         List<Libro> resultado = new ArrayList<>();
         for (Libro libro : libros) {
             if (libro.getCategoria().toLowerCase().contains(categoria.toLowerCase())) {
@@ -83,5 +84,16 @@ public class ControladorLibro {
             }
         }
     }
+    
+    public void cerrarConexionBaseDeDatos() {
+        if (this.connection != null) {
+            try {
+                this.connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
 }
 

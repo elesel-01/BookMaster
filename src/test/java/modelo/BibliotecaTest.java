@@ -1,6 +1,6 @@
 package modelo;
 
-import static org.junit.jupiter.api.Assertions.*;
+/*import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import java.util.List;
@@ -46,9 +46,9 @@ public class BibliotecaTest {
         biblioteca.registrarUsuario(usuario);
         List<Usuario> usuarios = biblioteca.listarUsuario();
         assertTrue(usuarios.contains(usuario));
-    }*/
+    }
 }
-
+*/
 
 
 

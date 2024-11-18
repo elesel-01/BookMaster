@@ -103,15 +103,30 @@ public class ControladorUsuario {
 		System.out.println(usuarioLogueado);
 	}
 
-	/*
-	 * public List<Libros> misLibros(){ List<Libros> libros = new ArrayList<>();
-	 * Coneccion db = new Coneccion();
-	 * 
-	 * }
-	 */
-
 	public void salir(boolean salir) {
 		System.out.println("Ha salido de la aplicación.");
 		salir = true;
 	}
+	public List<Usuario> getUsuarios() {
+	    return usuarios;
+	}
+	
+	public boolean verificarUsuario(String usuario) {
+        for (Usuario u : usuarios) {
+            if (u.getEmail().equals(usuario)) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
+	public boolean verificarContrasena(String contrasena) {
+        for (Usuario u : usuarios) {
+            if (u.getPassw().equals(contrasena)) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
 }

@@ -93,38 +93,15 @@ public class Libro {
 	
 	@Override
 	public String toString() {
-	    return "Libro{" +
-	            " idLibro=" + idLibro +
-	            ", idEstanteria=" + idEstanteria +
-	            ", titulo='" + titulo + '\'' +
-	            ", autor='" + autor + '\'' +
-	            ", disponible=" + (disponible ? "Sí" : "No") +
-	            ", editorial='" + editorial + '\'' +
-	            ", anioPublicacion=" + anioPublicacion +
-	            ", categoria='" + categoria + '\'' +
-	            '}';
+	    return "Libro{idLibro=" + idLibro +
+	           ", idEstanteria=" + idEstanteria +
+	           ", titulo='" + titulo + '\'' +
+	           ", autor='" + autor + '\'' +
+	           ", editorial='" + editorial + '\'' +
+	           ", anioPublicacion=" + anioPublicacion +
+	           ", categoria='" + categoria + '\'' +
+	           ", disponible=" + disponible +
+	           '}';
 	}
-	/*
-	public void prestar() {
-		if (disponible) {
-			disponible = false;
-			System.out.println("Libro prestado correctamente.");
-		} else {
-			System.out.println("El libro no está disponible para prestar.");
-		}
-	}
-
-	public void devolver() {
-		if (!disponible) {
-			disponible = true;
-			System.out.println("Libro devuelto correctamente.");
-		} else {
-			System.out.println("El libro ya estaba disponible.");
-		}
-	}
-
-	public void reserva(Usuario usuario) {
-		System.out.println("El libro ha sido reservado por " + usuario.getNombre());
-	}*/
 
 }

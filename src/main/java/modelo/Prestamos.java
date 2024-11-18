@@ -72,12 +72,6 @@ public class Prestamos {
 		this.estado = estado;
 	}
 
-	/*public void finalizarPrestamo() {
-		if (estado == EstadoPrestamo.ACTIVO) {
-			this.estado = EstadoPrestamo.FINALIZADO; // Cambiar el estado a FINALIZADO
-			libro.setDisponible(true); // Marcar el libro como disponible nuevamente
-		}
-	}*/
 
 	public double calcularMulta() {
 		if (estado == EstadoPrestamo.ACTIVO) {
@@ -103,15 +97,6 @@ public class Prestamos {
 
 		return String.format("\n\tFecha de préstamo: %s\n\tFecha de devolución: %s", fechaPrestamo.format(formatter),
 				fechaDevolucion.format(formatter));
-	}
-
-	public void extenderPlazo(int dias) {
-		if (estado == EstadoPrestamo.ACTIVO || estado == EstadoPrestamo.ATRASADO) {
-			this.fechaDevolucion = this.fechaDevolucion.plusDays(dias);
-			System.out.println("El plazo del préstamo ha sido extendido en " + dias + " días.");
-		} else {
-			System.out.println("No se puede extender el plazo de un préstamo que no está activo.");
-		}
 	}
 
 	@Override

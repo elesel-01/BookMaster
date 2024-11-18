@@ -4,14 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import base_de_datos.Coneccion;
 import modelo.Libro;
 import modelo.Usuario;
+import modelo.Prestamos;
 
 public class ControladorAdministrador {
 	private List<Libro> libros = new ArrayList<>();
@@ -21,13 +28,14 @@ public class ControladorAdministrador {
 	Coneccion db = new Coneccion();
 
 	public void registrarLibro(int idEstanteria, String titulo, String autor, String editorial, int anioPublicacion,
-			String categoria, boolean disponible) {
+			String categoria, boolean disponible, int numLibros) {
 		Libro nuevoLibro = new Libro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible);
 		libros.add(nuevoLibro);
 
 		try (Connection connection = db.getConnection()) {
 			String sql = "INSERT INTO libro(idEstanteria, titulo, autor, editorial, anioPublicacion, categoria, disponible) VALUES(?,?,?,?,?,?,?)";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
+				for(int i =0; i<numLibros; i++) {
 				ps.setInt(1, idEstanteria);
 				ps.setString(2, titulo);
 				ps.setString(3, autor);
@@ -36,19 +44,23 @@ public class ControladorAdministrador {
 				ps.setString(6, categoria);
 				ps.setBoolean(7, disponible);
 				ps.execute();
+				}
 			}
 			
+			JOptionPane.showMessageDialog(null, "Libro(s) registrado(s) exitosamente.");
 		} catch (Exception e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error al registrar el libro.");
 		}
 	}
 
 	public void eliminarLibro(int idLibro) {
 
 		try (Connection connection = db.getConnection()) {
-			String sql = "DELETE FORM libro WHERE idLibro=?";
+			String sql = "DELETE FROM libro WHERE idLibro=?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setInt(1, idLibro);
+				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -111,23 +123,6 @@ public class ControladorAdministrador {
 		}
 	}
 	
-	/*public void librosPrestados() {
-		
-		String [] librosPrestados = new String[2];
-		
-		try {
-			Connection connection = db.getConnection();
-            String sql = "SELECT idPrestamo, fechaInicio FROM prestamo";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.executeQuery();
-            librosPrestados[0] = ps.getResultSet().getString("idPrestamo");
-            librosPrestados[1] = ps.getResultSet().getTimestamp("fechaInicio").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            System.out.println("ID Prestamo: "+librosPrestados[0]+" Fecha Inicio: "+librosPrestados[1]);        	
-		}catch(SQLException e) {
-			e.printStackTrace();;
-		}
-	}*/
-	
 	public void librosPrestados() {
 	    String[] librosPrestados = new String[3];
 
@@ -182,5 +177,44 @@ public class ControladorAdministrador {
 			e.printStackTrace();
 		}
 	}
+
+    public DefaultTableModel verMorosos() {
+	       DefaultTableModel model = new DefaultTableModel();
+	       model.addColumn("ID Prestamo");
+	       model.addColumn("Titulo");
+	       model.addColumn("DNI");
+	       model.addColumn("Fecha de Entrega");
+
+	       Coneccion db = new Coneccion();
+	       Connection connection = db.getConnection();
+
+	       if (connection != null) {
+	           try {
+	               String query = "SELECT prestamo.idPrestamo, libro.titulo, usuario.dni, prestamo.fechaEntrega " +
+	                       "FROM prestamo " +
+	                       "JOIN libro ON prestamo.idLibro = libro.idLibro " +
+	                       "JOIN usuario ON prestamo.idUsuario = usuario.idUsuario " +
+	                       "WHERE prestamo.fechaEntrega < NOW()";  // Trae solo los registros con fecha de entrega vencida
+	                
+	               Statement statement = connection.createStatement();
+	               ResultSet resultSet = statement.executeQuery(query);
+
+	                while (resultSet.next()) {
+	                    Object[] row = new Object[4];
+	                    row[0] = resultSet.getInt("idPrestamo");
+	                    row[1] = resultSet.getString("titulo");
+	                    row[2] = resultSet.getInt("dni");
+	                    row[3] = resultSet.getString("fechaEntrega");
+	                   model.addRow(row);
+	                }
+	               resultSet.close();
+	               statement.close();
+	               connection.close();
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           }
+	       }
+	        return model;
+	   }
 
 }
