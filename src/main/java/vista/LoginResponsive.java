@@ -264,15 +264,14 @@ public class LoginResponsive extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        String usuario = txtUser.getText();
 		        String contrasena = new String(txtPassword.getPassword());
-		        // Guardar el usuario en la sesión
-		        Session.setUsuarioActual(usuario);
-		        
+		        // Guardar el usuario en la sesión		        
 
 		        Usuario autenticado = controladorUsuario.autenticarUsuario(usuario, contrasena);
 		        if (autenticado != null) {
 		        	
 		        	int IdUsuario = autenticado.getId();
 		        	Session.setIdUsuario(IdUsuario);
+		        	Session.setUsuarioLogueado(autenticado);
 		            String mensaje = String.format("Login successful, bienvenido %s", autenticado.getNombre());
 		            JOptionPane.showMessageDialog(null, mensaje);
 		            if (autenticado.getRol().equals("admin")) {

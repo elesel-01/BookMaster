@@ -1,14 +1,18 @@
 package modelo;
 
 public class Session {
-    private static String usuarioActual;
+    private static Usuario usuarioActual;
     private static int IdUsuario;
 
-    public static String getUsuarioActual() {
+    public static Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+    
+    public static Usuario setUsuarioLogueado(Usuario usuarioActual) {
         return usuarioActual;
     }
 
-    public static void setUsuarioActual(String usuario) {
+    public static void setUsuarioActual(Usuario usuario) {
         usuarioActual = usuario;
     }
     public static void setIdUsuario(int usuario) {
@@ -18,4 +22,5 @@ public class Session {
     public static int getUsuarioId() {
         return IdUsuario;
     }
+    
 }

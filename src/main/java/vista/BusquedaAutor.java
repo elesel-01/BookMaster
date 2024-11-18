@@ -29,6 +29,7 @@ import controlador.ControladorLibro;
 import controlador.ControladorReserva;
 import modelo.Libro;
 import modelo.Session;
+import modelo.Usuario;
 public class BusquedaAutor extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +40,7 @@ public class BusquedaAutor extends JPanel {
     private JTable tablaLibros;
     private DefaultTableModel modeloTabla;
     private ControladorReserva controladorReserva = new ControladorReserva();
-    String usuarioActual = Session.getUsuarioActual();
+    Usuario usuarioActual = Session.getUsuarioActual();
 	/**
 	 * Create the panel.
 	 */
