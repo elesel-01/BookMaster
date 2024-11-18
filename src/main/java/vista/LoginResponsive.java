@@ -264,14 +264,12 @@ public class LoginResponsive extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        String usuario = txtUser.getText();
 		        String contrasena = new String(txtPassword.getPassword());
-		        // Guardar el usuario en la sesión		        
 
 		        Usuario autenticado = controladorUsuario.autenticarUsuario(usuario, contrasena);
 		        if (autenticado != null) {
-		        	
-		        	int IdUsuario = autenticado.getId();
-		        	Session.setIdUsuario(IdUsuario);
-		        	Session.setUsuarioLogueado(autenticado);
+		            int IdUsuario = autenticado.getId();
+		            Session.setIdUsuario(IdUsuario);
+		            Session.setUsuarioLogueado(autenticado);
 		            String mensaje = String.format("Login successful, bienvenido %s", autenticado.getNombre());
 		            JOptionPane.showMessageDialog(null, mensaje);
 		            if (autenticado.getRol().equals("admin")) {
@@ -293,6 +291,13 @@ public class LoginResponsive extends JFrame {
 		            JOptionPane.showMessageDialog(null, mensajeError, "Error de autenticación",
 		                    JOptionPane.ERROR_MESSAGE);
 		        }
+
+		        // Vaciar campos de texto después de realizar las acciones
+		        txtUser.setText("Ingresar usuario");
+		        txtUser.setForeground(Color.GRAY);
+		        txtPassword.setText("**********");
+		        txtPassword.setForeground(Color.GRAY);
+		        txtPassword.setEchoChar((char) 0); // Remover echo char para el placeholder
 		    }
 		});
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 14));
