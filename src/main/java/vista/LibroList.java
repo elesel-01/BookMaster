@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.CardLayout;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.sql.*;
 import base_de_datos.Coneccion;
+import javax.swing.Timer;
 
 
 public class LibroList extends JPanel {
@@ -73,6 +75,27 @@ public class LibroList extends JPanel {
         JTextArea textArea_1 = new JTextArea();
         textArea_1.setBounds(186, 450, 161, 34);  // Tamaño y ubicación del área de texto
         add(textArea_1);
+        
+        JButton actualizarButton = new JButton("Actualizar");
+        actualizarButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        actualizarButton.setBounds(847, 460, 142, 46);
+        add(actualizarButton);
+
+        actualizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadTableData(); // Recargar los datos
+            }
+        });
+        
+        Timer timer = new Timer(30000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadTableData();
+            }
+        });
+        timer.start();
+    
         
         loadTableData();
     }

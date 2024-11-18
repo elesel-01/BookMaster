@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import modelo.Session;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
@@ -260,33 +261,41 @@ public class LoginResponsive extends JFrame {
 		// Botón "Ingresar"
 		btnIngresar = new JButton(" INGRESAR ");
 		btnIngresar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String usuario = txtUser.getText();
-				String contrasena = new String(txtPassword.getPassword());
-				Usuario autenticado = controladorUsuario.autenticarUsuario(usuario, contrasena);
-				if (autenticado != null) {
-					String mensaje = String.format("Login successful, bienvenido %s", autenticado.getNombre());
-					JOptionPane.showMessageDialog(null, mensaje);
-					if (autenticado.getRol().equals("admin")) {
-						cardLayout.show(contentPane, "Home");
-					} else {
-						cardLayout.show(contentPane, "BusquedaAutor");
-					}
-				} else {
-					boolean usuarioCorrecto = controladorUsuario.verificarUsuario(usuario);
-					boolean contrasenaCorrecta = controladorUsuario.verificarContrasena(contrasena);
-					String mensajeError;
-					if (!usuarioCorrecto && !contrasenaCorrecta) {
-						mensajeError = "Correo y contraseña incorrectos.";
-					} else if (!usuarioCorrecto) {
-						mensajeError = "Correo incorrecto.";
-					} else {
-						mensajeError = "Contraseña incorrecta.";
-					}
-					JOptionPane.showMessageDialog(null, mensajeError, "Error de autenticación",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String usuario = txtUser.getText();
+		        String contrasena = new String(txtPassword.getPassword());
+
+		        // Guardar el usuario en la sesión
+		        Session.setUsuarioActual(usuario);
+		        
+
+		        Usuario autenticado = controladorUsuario.autenticarUsuario(usuario, contrasena);
+		        if (autenticado != null) {
+		        	
+		        	int IdUsuario = autenticado.getId();
+		        	Session.setIdUsuario(IdUsuario);
+		            String mensaje = String.format("Login successful, bienvenido %s", autenticado.getNombre());
+		            JOptionPane.showMessageDialog(null, mensaje);
+		            if (autenticado.getRol().equals("admin")) {
+		                cardLayout.show(contentPane, "Home");
+		            } else {
+		                cardLayout.show(contentPane, "BusquedaAutor");
+		            }
+		        } else {
+		            boolean usuarioCorrecto = controladorUsuario.verificarUsuario(usuario);
+		            boolean contrasenaCorrecta = controladorUsuario.verificarContrasena(contrasena);
+		            String mensajeError;
+		            if (!usuarioCorrecto && !contrasenaCorrecta) {
+		                mensajeError = "Correo y contraseña incorrectos.";
+		            } else if (!usuarioCorrecto) {
+		                mensajeError = "Correo incorrecto.";
+		            } else {
+		                mensajeError = "Contraseña incorrecta.";
+		            }
+		            JOptionPane.showMessageDialog(null, mensajeError, "Error de autenticación",
+		                    JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
 		});
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnIngresar.setBackground(Color.decode("#EBEBEB"));
