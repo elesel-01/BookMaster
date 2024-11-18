@@ -38,7 +38,7 @@ public class BusquedaAutor extends JPanel {
     
     private JTable tablaLibros;
     private DefaultTableModel modeloTabla;
-    private ControladorReserva controladorReserva;
+    private ControladorReserva controladorReserva = new ControladorReserva();
     String usuarioActual = Session.getUsuarioActual();
 	/**
 	 * Create the panel.
