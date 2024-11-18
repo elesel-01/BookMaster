@@ -3,8 +3,11 @@ package vista;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -49,6 +52,16 @@ public class MisDatos extends JPanel {
 		panel.setBounds(0, 0, 696, 640);
 		add(panel);
 		panel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Volver");
+		btnNewButton.setBounds(530, 570, 101, 23);
+		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "BusquedaAutor");
+            }
+        });
+		
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setLayout(null);

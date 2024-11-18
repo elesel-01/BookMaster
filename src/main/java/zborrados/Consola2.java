@@ -6,7 +6,7 @@ import controlador.ControladorAdministrador;
 import controlador.ControladorUsuario;
 
 public class Consola2 {
-	/*private Scanner scanner = new Scanner(System.in);
+	private Scanner scanner = new Scanner(System.in);
 	private ControladorAdministrador controladorAdministrador = new ControladorAdministrador();
 	private Usuario usuarioLogueado = null;
 	private ControladorUsuario controladorUsuario = new ControladorUsuario();
@@ -115,6 +115,6 @@ public class Consola2 {
 			
 		}while(opcionAdmin != 9);
 	}
-	*/
+	
 	
 }
