@@ -1,5 +1,5 @@
 
-package vista;
+/*package zborrados;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -23,7 +23,7 @@ public class SelectLogin extends JFrame {
 
     /**
      * Create the frame.
-     */
+     
     public SelectLogin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 1040, 640);
@@ -108,4 +108,4 @@ public class SelectLogin extends JFrame {
         SelectLogin frame = new SelectLogin();
         frame.setVisible(true);
     }
-}
+}*/
