@@ -74,6 +74,17 @@ public class LibroList extends JPanel {
         textArea_1.setBounds(186, 450, 161, 34);  // Tamaño y ubicación del área de texto
         add(textArea_1);
         
+     // Agregar botón "Actualizar"
+        JButton actualizarButton = new JButton("Actualizar");
+        actualizarButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        actualizarButton.setBounds(847, 460, 142, 46); // Ubicación en la interfaz
+        add(actualizarButton);
+        actualizarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadTableData(); // Llama al método que recarga la tabla desde la BD
+            }
+        });
+        
         loadTableData();
     }
     private void loadTableData() {
@@ -105,7 +116,7 @@ public class LibroList extends JPanel {
                     row[4] = resultSet.getString("editorial");
                     row[5] = resultSet.getInt("anioPublicacion");
                     row[6] = resultSet.getString("categoria");
-                    row[7] = resultSet.getInt("disponible");
+                    row[7] = resultSet.getBoolean("disponible");
 
                     model.addRow(row);
                 }
@@ -119,4 +130,10 @@ public class LibroList extends JPanel {
             }
         }
     }
+    
+    public void recargarTabla() {
+        loadTableData();
+    }
+
+
 }

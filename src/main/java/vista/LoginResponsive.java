@@ -332,6 +332,14 @@ public class LoginResponsive extends JFrame {
 
 		LibroList libroListPanel = new LibroList(cardLayout, contentPane);
 		contentPane.add(libroListPanel, "LibroList");
+		cardLayout.addLayoutComponent(libroListPanel, "LibroList");
+		contentPane.addComponentListener(new java.awt.event.ComponentAdapter() {
+		    public void componentShown(java.awt.event.ComponentEvent evt) {
+		        if (evt.getSource() instanceof LibroList) {
+		            libroListPanel.recargarTabla();
+		        }
+		    }
+		});
 
 		LibroBorrow libroBorrowPanel = new LibroBorrow(cardLayout, contentPane);
 		contentPane.add(libroBorrowPanel, "LibroBorrow");
@@ -354,7 +362,7 @@ public class LoginResponsive extends JFrame {
 
 	// MÉTODO PARA INICIALIZAR LOS LISTENERS Y EL COMPORTAMIENTO DE LOS PLACEHOLDERS
 	private void initStyles() {
-		// Agrega comportamiento específico aquí si es necesario
+		// Agrega comportamiento específico aquí si es necesario	
 	}
 
 	public static void main(String[] args) {

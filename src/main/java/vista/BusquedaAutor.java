@@ -278,6 +278,24 @@ public class BusquedaAutor extends JPanel {
 		JButton btnNewButton_5 = new JButton("Solicitar");
 		btnNewButton_5.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
 		panelBotn.add(btnNewButton_5, BorderLayout.WEST);
+		btnNewButton_5.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedRow = tablaLibros.getSelectedRow();
+		        if (selectedRow != -1) {
+		            int idLibro = (int) modeloTabla.getValueAt(selectedRow, 0); // Assuming the first column is idLibro
+		            int idUsuario = obtenerIdUsuarioActual(); // Implement this method to get the current user ID
+		            ControladorReserva controladorReserva = new ControladorReserva();
+		            boolean exito = controladorReserva.solicitarLibro(idLibro, idUsuario);
+		            if (exito) {
+		                JOptionPane.showMessageDialog(null, "Reserva realizada con éxito.");
+		            } else {
+		                JOptionPane.showMessageDialog(null, "No se pudo realizar la reserva.");
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Por favor, seleccione un libro de la tabla.");
+		        }
+		    }
+		});
 		
 		JPanel panelSeparador = new JPanel();
 		panelSeparador.setBackground(Color.decode("#D6D6D6"));
@@ -345,4 +363,8 @@ public class BusquedaAutor extends JPanel {
             		libro.getIdEstanteria()});
         }
     }
+	
+	private int obtenerIdUsuarioActual() {
+	    return 1; // Placeholder value
+	}
 }
