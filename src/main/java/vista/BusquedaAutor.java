@@ -249,6 +249,16 @@ public class BusquedaAutor extends JPanel {
 		JButton ButtonDatos = new JButton("");
 		ButtonDatos.setIcon(new ImageIcon(BusquedaAutor.class.getResource("/media/agregar-usuario (1).png")));
 		panelTitulo.add(ButtonDatos, BorderLayout.SOUTH);
+		ButtonDatos.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        if (Session.getUsuarioActual() != null) {
+		            cardLayout.show(contentPane, "MisDatos");
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Error: No hay un usuario logueado.", "Error", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+		});
+
 		
 		JPanel panelCentral = new JPanel();
 		panelCentral.setBackground(Color.decode("#D6D6D6"));

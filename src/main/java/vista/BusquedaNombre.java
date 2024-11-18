@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -234,6 +235,19 @@ public class BusquedaNombre extends JPanel {
         JButton BttnMisDatos = new JButton("");
         BttnMisDatos.setIcon(new ImageIcon(BusquedaNombre.class.getResource("/media/agregar-usuario (1).png")));
         panelTitulo.add(BttnMisDatos, BorderLayout.SOUTH);
+        BttnMisDatos.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        System.out.println("Intentando cambiar a MisDatos...");
+		        cardLayout.show(contentPane, "MisDatos");
+
+		        // Imprimir el panel visible actual
+		        for (Component comp : contentPane.getComponents()) {
+		            if (comp.isVisible()) {
+		                System.out.println("Panel visible actual: " + comp.getClass().getName());
+		            }
+		        }
+		    }
+		});
 
         JPanel panelCentral = new JPanel();
         panelCentral.setBackground(Color.decode("#D6D6D6"));

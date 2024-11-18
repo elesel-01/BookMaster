@@ -1,40 +1,46 @@
 package vista;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Font;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+
 import modelo.Session;
 import modelo.Usuario;
 
 public class MisDatos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private Usuario usuario = Session.getUsuarioActual();
+	//private Usuario usuario = Session.getUsuarioActual();
 	
-	String nombre = usuario.getNombre();
-	String apellido = usuario.getApellido();
-	String email = usuario.getEmail();
-	String pass = usuario.getPassw();
-	int dni = usuario.getDni();
-	String rol = usuario.getRol();
-	int id = usuario.getId();
+	private JPanel contentPane;  // Sin inicializar aquí
+    private CardLayout cardLayout;
 	/**
 	 * Create the panel.
 	 */
-	public MisDatos() {
+	public MisDatos(JPanel contentPane, CardLayout cardLayout) {
+		System.out.println("Inicializando panel MisDatos...");
+		this.contentPane = contentPane;
+	    this.cardLayout = cardLayout;
+
+	    // Verificar si el usuario está configurado
+	    if (Session.getUsuarioActual() == null) {
+	        throw new IllegalStateException("No hay un usuario logueado.");
+	    }
+	    Usuario usuario = Session.getUsuarioActual();
+	    
+	    String nombre = usuario.getNombre();
+	    String apellido = usuario.getApellido();
+	    String email = usuario.getEmail();
+	    String pass = usuario.getPassw();
+	    int dni = usuario.getDni();
+	    String rol = usuario.getRol();
+	    int id = usuario.getId();
+	    
 		setBackground(Color.decode("#1F4E61"));
 		setBounds(0, 0, 1040, 640);
 		setLayout(null);

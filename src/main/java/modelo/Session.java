@@ -8,13 +8,13 @@ public class Session {
         return usuarioActual;
     }
     
-    public static Usuario setUsuarioLogueado(Usuario usuarioActual) {
-        return usuarioActual;
+    public static void setUsuarioLogueado(Usuario usuarioLogueado) {
+        Session.usuarioActual = usuarioLogueado;
     }
 
-    public static void setUsuarioActual(Usuario usuario) {
+    /*public static void setUsuarioActual(Usuario usuario) {
         usuarioActual = usuario;
-    }
+    }*/
     public static void setIdUsuario(int usuario) {
 
         IdUsuario=usuario;

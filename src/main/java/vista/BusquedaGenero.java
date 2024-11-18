@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -237,6 +238,21 @@ public class BusquedaGenero extends JPanel {
 		JButton BtnMisDatos = new JButton("");
 		BtnMisDatos.setIcon(new ImageIcon(BusquedaGenero.class.getResource("/media/agregar-usuario (1).png")));
 		panelTitulo.add(BtnMisDatos, BorderLayout.SOUTH);
+		BtnMisDatos.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        System.out.println("Intentando cambiar a MisDatos...");
+		        cardLayout.show(contentPane, "MisDatos");
+
+		        // Imprimir el panel visible actual
+		        for (Component comp : contentPane.getComponents()) {
+		            if (comp.isVisible()) {
+		                System.out.println("Panel visible actual: " + comp.getClass().getName());
+		            }
+		        }
+		    }
+		});
+
+
 		
 		JPanel panelCentral = new JPanel();
 		panelCentral.setBackground(Color.decode("#D6D6D6"));
@@ -274,6 +290,7 @@ public class BusquedaGenero extends JPanel {
 		JButton btnNewButton_5 = new JButton("Solicitar");
 		btnNewButton_5.setFont(new Font("Microsoft YaHei", Font.BOLD, 14));
 		panelBotn.add(btnNewButton_5, BorderLayout.WEST);
+		
 		
 		JPanel panelSeparador = new JPanel();
 		panelSeparador.setBackground(Color.decode("#D6D6D6"));
@@ -346,8 +363,4 @@ public class BusquedaGenero extends JPanel {
         }
     }
       
-    
-	
-
-
 }

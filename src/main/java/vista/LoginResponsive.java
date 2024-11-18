@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -22,11 +23,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import modelo.Session;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import controlador.ControladorUsuario;
+import modelo.Session;
 import modelo.Usuario;
 
 public class LoginResponsive extends JFrame {
@@ -34,8 +35,6 @@ public class LoginResponsive extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel Fondo;
 	private JPanel Cuerpo;
-
-	public JButton btnRegistrar;
 	public JButton btnIngresar;
 	public JTextField txtUser;
 	public JPasswordField txtPassword;
@@ -49,7 +48,6 @@ public class LoginResponsive extends JFrame {
 	public JLabel lblIconoPassword;
 	public JLabel lblEspacioVacio;
 	private GridBagConstraints gbc_1;
-	private GridBagConstraints gbc_2;
 	private GridBagConstraints gbc_3;
 	private GridBagConstraints gbc_4;
 	private GridBagConstraints gbc_5;
@@ -62,7 +60,8 @@ public class LoginResponsive extends JFrame {
 	public LoginResponsive() {
 		controladorUsuario = new ControladorUsuario(); // Instancia de ControladorUsuario, se cargan todos los usuarios desde BD
 
-		setTitle("Login Responsive");
+		setTitle("BoookMaster");
+		setIconImage(new ImageIcon(getClass().getResource("/Imagenes/newlogobookmaster.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1040, 640);
 		setLocationRelativeTo(null);
@@ -128,7 +127,6 @@ public class LoginResponsive extends JFrame {
 				lblTitulo.setFont(lblTitulo.getFont().deriveFont((float) (27 * scaleFactor)));
 				lblAnNoTienes.setFont(lblAnNoTienes.getFont().deriveFont((float) (25 * scaleFactor)));
 				btnIngresar.setFont(btnIngresar.getFont().deriveFont((float) (14 * scaleFactor)));
-				btnRegistrar.setFont(btnRegistrar.getFont().deriveFont((float) (14 * scaleFactor)));
 
 				Cuerpo.revalidate();
 				Cuerpo.repaint();
@@ -264,37 +262,34 @@ public class LoginResponsive extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		        String usuario = txtUser.getText();
 		        String contrasena = new String(txtPassword.getPassword());
-		        // Guardar el usuario en la sesión		        
 
 		        Usuario autenticado = controladorUsuario.autenticarUsuario(usuario, contrasena);
 		        if (autenticado != null) {
-		        	
-		        	int IdUsuario = autenticado.getId();
-		        	Session.setIdUsuario(IdUsuario);
-		        	Session.setUsuarioLogueado(autenticado);
+		            int IdUsuario = autenticado.getId();
+		            Session.setIdUsuario(IdUsuario);
+		            Session.setUsuarioLogueado(autenticado);
+
+		            System.out.println("Usuario logueado: " + autenticado.getNombre());
+
+		            // Registrar el panel "MisDatos" dinámicamente
+		            MisDatos misDatosPanel = new MisDatos(contentPane, cardLayout);
+		            contentPane.add(misDatosPanel, "MisDatos");
+		            System.out.println("Panel MisDatos registrado dinámicamente.");
+
 		            String mensaje = String.format("Login successful, bienvenido %s", autenticado.getNombre());
 		            JOptionPane.showMessageDialog(null, mensaje);
+
 		            if (autenticado.getRol().equals("admin")) {
 		                cardLayout.show(contentPane, "Home");
 		            } else {
 		                cardLayout.show(contentPane, "BusquedaAutor");
 		            }
 		        } else {
-		            boolean usuarioCorrecto = controladorUsuario.verificarUsuario(usuario);
-		            boolean contrasenaCorrecta = controladorUsuario.verificarContrasena(contrasena);
-		            String mensajeError;
-		            if (!usuarioCorrecto && !contrasenaCorrecta) {
-		                mensajeError = "Correo y contraseña incorrectos.";
-		            } else if (!usuarioCorrecto) {
-		                mensajeError = "Correo incorrecto.";
-		            } else {
-		                mensajeError = "Contraseña incorrecta.";
-		            }
-		            JOptionPane.showMessageDialog(null, mensajeError, "Error de autenticación",
-		                    JOptionPane.ERROR_MESSAGE);
+		            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.", "Error de autenticación", JOptionPane.ERROR_MESSAGE);
 		        }
 		    }
 		});
+
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnIngresar.setBackground(Color.decode("#EBEBEB"));
 		btnIngresar.setForeground(new Color(0,0,0));
@@ -304,18 +299,6 @@ public class LoginResponsive extends JFrame {
 		gbc_1.gridx = 2;
 		gbc_1.gridy = 6;
 		Cuerpo.add(btnIngresar, gbc_1);
-
-		// Botón "Registrar"
-		btnRegistrar = new JButton(" REGISTRARSE ");
-		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnRegistrar.setBackground(Color.decode("#EBEBEB"));
-		btnRegistrar.setForeground(Color.BLACK);
-		gbc_2 = new GridBagConstraints();
-		gbc_2.fill = GridBagConstraints.BOTH;
-		gbc_2.insets = new Insets(10, 10, 10, 10);
-		gbc_2.gridx = 2;
-		gbc_2.gridy = 7;
-		Cuerpo.add(btnRegistrar, gbc_2);
 
 		initStyles(); // Inicializa los listeners para placeholders
 
@@ -361,8 +344,14 @@ public class LoginResponsive extends JFrame {
 
 		BusquedaAutor busquedaAutorPanel = new BusquedaAutor(contentPane, cardLayout);
 		contentPane.add(busquedaAutorPanel, "BusquedaAutor");
-	}
+		
+		for (Component comp : contentPane.getComponents()) {
+		    System.out.println("Panel registrado: " + comp.getClass().getName());
+		}
 
+
+	}
+	
 	public JPanel getCuerpo() {
 		return Cuerpo;
 	}
