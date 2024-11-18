@@ -13,20 +13,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
-import modelo.Usuario;
 
 public class Home extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;  // Sin inicializar aquí
     private CardLayout cardLayout;
+
     /**
      * Create the panel.
      */
     public Home(JPanel contentPane, CardLayout cardLayout) {
         this.contentPane = contentPane;  // Asigna contentPane que viene del contenedor principal
         this.cardLayout = cardLayout;    // Asigna cardLayout que viene del contenedor principal
-        
+
         setPreferredSize(new java.awt.Dimension(1040, 600));
         setBackground(new Color(39, 91, 131));
         setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -85,13 +85,11 @@ public class Home extends JPanel {
         add(button_6);
         button_6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPane, "LoginResponsive");
+                cardLayout.show(contentPane, "Login");
+                JOptionPane.showMessageDialog(null, "Has cerrado sesión correctamente.");
             }
         });
         
-        
-        
-
         JButton button_4 = new JButton("Libros Prestados");
         button_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
         button_4.setBounds(106, 492, 151, 47);
@@ -164,4 +162,3 @@ public class Home extends JPanel {
         // Implement the logic to navigate to LibroBorrow view
     }
 }
-

@@ -105,6 +105,16 @@ public class BusquedaAutor extends JPanel {
 		
 		JButton btnNewButton_1 = new JButton("Cerrar Sesión");
 		actualbutns.add(btnNewButton_1, BorderLayout.NORTH);
+		btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+		btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPane, "Login");
+                JOptionPane.showMessageDialog(null, "Has cerrado sesión correctamente.");
+            }
+        });
 		
 		JPanel panelSearch = new JPanel();
 		panelSearch.setBackground(Color.decode("#1F4E61"));
