@@ -202,19 +202,6 @@ public class BusquedaAutor extends JPanel {
 		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
 		botonn.add(btnNewButton_3, BorderLayout.CENTER);
 		
-		
-		
-		JPanel btn2 = new JPanel();
-		btn2.setBackground(Color.decode("#1F4E61"));
-		panelbtnes.add(btn2, BorderLayout.EAST);
-		btn2.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel_34 = new JLabel("                  ");
-		btn2.add(lblNewLabel_34, BorderLayout.EAST);
-		
-		JButton btnNewButton_2 = new JButton("Gestionar Libros");
-		btn2.add(btnNewButton_2, BorderLayout.CENTER);
-		
 		JPanel btonmid = new JPanel();
 		btonmid.setBackground(Color.decode("#1F4E61"));
 		panelbtnes.add(btonmid, BorderLayout.CENTER);
@@ -259,10 +246,9 @@ public class BusquedaAutor extends JPanel {
 		JLabel lblNewLabel_31 = new JLabel("  ");
 		panelTitulo.add(lblNewLabel_31, BorderLayout.WEST);
 		
-		JLabel lblNewLabel_32 = new JLabel("");
-		lblNewLabel_32.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_32.setIcon(new ImageIcon(BusquedaAutor.class.getResource("/media/agregar-usuario (1).png")));
-		panelTitulo.add(lblNewLabel_32, BorderLayout.SOUTH);
+		JButton ButtonDatos = new JButton("");
+		ButtonDatos.setIcon(new ImageIcon(BusquedaAutor.class.getResource("/media/agregar-usuario (1).png")));
+		panelTitulo.add(ButtonDatos, BorderLayout.SOUTH);
 		
 		JPanel panelCentral = new JPanel();
 		panelCentral.setBackground(Color.decode("#D6D6D6"));
@@ -306,18 +292,18 @@ public class BusquedaAutor extends JPanel {
 		        JDialog dialogoReserva = new JDialog((JFrame) SwingUtilities.getWindowAncestor(BusquedaAutor.this), "Reservar Libro", true);
 		        dialogoReserva.setSize(400, 200);
 		        dialogoReserva.setLocationRelativeTo(BusquedaAutor.this);
-		        dialogoReserva.setLayout(new BorderLayout());
+		        dialogoReserva.getContentPane().setLayout(new BorderLayout());
 		        
 		        // Panel superior con etiqueta
 		        JPanel panelSuperior = new JPanel();
 		        panelSuperior.add(new JLabel("Ingrese la ID del libro a reservar:"));
-		        dialogoReserva.add(panelSuperior, BorderLayout.NORTH);
+		        dialogoReserva.getContentPane().add(panelSuperior, BorderLayout.NORTH);
 
 		        // Panel central con campo de texto
 		        JPanel panelCentral = new JPanel();
 		        JTextField campoID = new JTextField(20);
 		        panelCentral.add(campoID);
-		        dialogoReserva.add(panelCentral, BorderLayout.CENTER);
+		        dialogoReserva.getContentPane().add(panelCentral, BorderLayout.CENTER);
 
 		        // Panel inferior con botones
 		        JPanel panelInferior = new JPanel();
@@ -325,7 +311,7 @@ public class BusquedaAutor extends JPanel {
 		        JButton botonCancelar = new JButton("Cancelar");
 		        panelInferior.add(botonReservar);
 		        panelInferior.add(botonCancelar);
-		        dialogoReserva.add(panelInferior, BorderLayout.SOUTH);
+		        dialogoReserva.getContentPane().add(panelInferior, BorderLayout.SOUTH);
 
 		        // Acción para el botón Reservar
 		        botonReservar.addActionListener(new ActionListener() {
