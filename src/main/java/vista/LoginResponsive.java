@@ -287,6 +287,13 @@ public class LoginResponsive extends JFrame {
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.", "Error de autenticación", JOptionPane.ERROR_MESSAGE);
 		        }
+
+		        // Vaciar campos de texto después de realizar las acciones
+		        txtUser.setText("Ingresar usuario");
+		        txtUser.setForeground(Color.GRAY);
+		        txtPassword.setText("**********");
+		        txtPassword.setForeground(Color.GRAY);
+		        txtPassword.setEchoChar((char) 0); // Remover echo char para el placeholder
 		    }
 		});
 

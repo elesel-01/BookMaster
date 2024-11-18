@@ -104,28 +104,4 @@ public class Libro {
 	           '}';
 	}
 
-
-	/*
-	public void prestar() {
-		if (disponible) {
-			disponible = false;
-			System.out.println("Libro prestado correctamente.");
-		} else {
-			System.out.println("El libro no está disponible para prestar.");
-		}
-	}
-
-	public void devolver() {
-		if (!disponible) {
-			disponible = true;
-			System.out.println("Libro devuelto correctamente.");
-		} else {
-			System.out.println("El libro ya estaba disponible.");
-		}
-	}
-
-	public void reserva(Usuario usuario) {
-		System.out.println("El libro ha sido reservado por " + usuario.getNombre());
-	}*/
-
 }
