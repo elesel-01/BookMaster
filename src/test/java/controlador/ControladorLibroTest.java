@@ -8,16 +8,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import modelo.Libro;
+import controlador.ControladorLibro;
 
 public class ControladorLibroTest {
 
 	private ControladorLibro controladorLibro;
 
-	@Before
-	public void setUp() {
-		controladorLibro = new ControladorLibro();
-		controladorLibro.cargarLibrosDesdeBaseDeDatos();
-	}
+
+@Before
+public void setUp() {
+    controladorLibro = new ControladorLibro();
+    controladorLibro.cargarLibrosDesdeBaseDeDatos();
+    // Verificar que los libros se cargaron correctamente
+}
+
 
 	
 	@Test
