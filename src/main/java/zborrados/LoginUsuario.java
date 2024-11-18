@@ -1,4 +1,4 @@
-package vista;
+package zborrados;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -19,14 +19,14 @@ import javax.swing.JPasswordField;
 
 public class LoginUsuario extends JPanel {
 
-	private static final long serialVersionUID = 1L;
+	/*private static final long serialVersionUID = 1L;
 	private JTextField txtUsername;
 	private JPasswordField passwordField;
 
 	/**
 	 * Create the panel.
 	 */
-	public LoginUsuario() {
+	/*public LoginUsuario() {
 		setBackground(Color.decode("#1F4E61"));
 		setBounds(0, 0, 1040, 640);
 		setLayout(null);
@@ -83,5 +83,5 @@ public class LoginUsuario extends JPanel {
 		lblNewLabel_1.setBounds(0, 0, 345, 518);
 		panel_1.add(lblNewLabel_1);
 
-	}
+	}*/
 }
