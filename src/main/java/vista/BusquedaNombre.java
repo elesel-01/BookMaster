@@ -299,7 +299,7 @@ public class BusquedaNombre extends JPanel {
         panel.add(scrollBusqueda, BorderLayout.CENTER);
 
         // Inicializar JTable y su modelo
-        tableModel = new DefaultTableModel(new Object[]{"Nombre", "Autor", "Categoría", "Disponibilidad", "Estantería"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"ID","Nombre", "Autor", "Categoría", "Disponibilidad", "Estantería"}, 0);
         table = new JTable(tableModel);
         scrollBusqueda.setViewportView(table);
 
@@ -327,6 +327,7 @@ public class BusquedaNombre extends JPanel {
         tableModel.setRowCount(0); // Limpiar la tabla
         for (Libro libro : libros) {
             tableModel.addRow(new Object[]{
+            		libro.getIdLibro(),
             		libro.getTitulo(),
             		libro.getAutor(),
             		libro.getCategoria(),

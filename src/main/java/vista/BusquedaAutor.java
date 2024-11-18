@@ -375,7 +375,7 @@ public class BusquedaAutor extends JPanel {
 		Gridpanel.setLayout(new GridLayout(0, 3, 10, 10));
 
 		
-		modeloTabla = new DefaultTableModel(new Object[]{"Autor", "Titulo", "Categoria","Disponibilidad", "Estantería"},0);
+		modeloTabla = new DefaultTableModel(new Object[]{"ID","Autor", "Titulo", "Categoria","Disponibilidad", "Estantería"},0);
 	    tablaLibros = new JTable(modeloTabla);
 	    scrollBusqueda.setViewportView(tablaLibros);
 		
@@ -405,6 +405,7 @@ public class BusquedaAutor extends JPanel {
 		modeloTabla.setRowCount(0); // Limpiar la tabla
         for (Libro libro : libros) {
         	modeloTabla.addRow(new Object[]{
+        			libro.getIdLibro(),
         			libro.getAutor(),
         			libro.getTitulo(),
             		libro.getCategoria(),
